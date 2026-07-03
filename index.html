@@ -2,8 +2,15 @@
 <html lang="az">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<title>Observable Universe of Work — Azərbaycan</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Azərbaycan Karyera Bələdçisi</title>
+<meta name="description" content="Azərbaycan əmək bazarı: peşələr üzrə median maaşlar, tələbat və bacarıqlar. Открытые данные о рынке труда Азербайджана.">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#04060d">
+<meta property="og:title" content="Azərbaycan Karyera Bələdçisi">
+<meta property="og:description" content="Median maaşlar, vakansiyalar və bacarıqlar — 9 sektor, 40+ peşə. Pulsuz və reklamsız.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%235ec8b8'/%3E%3Cstop offset='1' stop-color='%236aa9f0'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='16' fill='url(%23g)'/%3E%3Ccircle cx='24' cy='40' r='7' fill='%23fff'/%3E%3Ccircle cx='42' cy='24' r='5' fill='%23fff' opacity='.9'/%3E%3Ccircle cx='44' cy='44' r='3.5' fill='%23fff' opacity='.75'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -11,7 +18,7 @@
 :root{ --ink:#eaf0fb; --soft:#93a1bd; --faint:#566480; --mono:"IBM Plex Mono",monospace; }
 *{box-sizing:border-box; margin:0; padding:0}
 html,body{height:100%; overflow:hidden; background:#04060d; color:var(--ink);
-  font-family:"Inter",system-ui,sans-serif; -webkit-font-smoothing:antialiased; user-select:none}
+  font-family:"Inter",system-ui,sans-serif; -webkit-font-smoothing:antialiased}
 canvas{position:fixed; inset:0; display:block}
 .mono{font-family:var(--mono); font-variant-numeric:tabular-nums}
 
@@ -84,17 +91,18 @@ canvas{position:fixed; inset:0; display:block}
   width:38px;height:38px;border-radius:50%; font-size:15px; display:grid; place-items:center}
 
 /* back */
-.back{position:fixed; top:26px; left:30px; display:none; align-items:center; gap:9px; cursor:pointer;
-  padding:11px 18px; border-radius:100px; background:rgba(12,18,32,.62); backdrop-filter:blur(14px);
-  border:1px solid rgba(255,255,255,.1); color:var(--ink); font-family:"Space Grotesk",sans-serif; font-weight:500; font-size:14px}
+.back{position:fixed; top:72px; left:30px; display:none; align-items:center; gap:9px; cursor:pointer;
+  padding:13px 22px; border-radius:100px; background:rgba(18,32,52,.88); backdrop-filter:blur(14px);
+  border:1.5px solid rgba(127,233,192,.5); color:#eafff8; font-family:"Space Grotesk",sans-serif; font-weight:600; font-size:16px}
 .back.show{display:flex}
 .back:hover{background:rgba(255,255,255,.07)}
 
 /* arrival */
-.gate{position:fixed; inset:0; z-index:20; display:grid; place-items:center; text-align:center;
-  background:radial-gradient(circle at 50% 50%, rgba(4,6,13,.2), rgba(4,6,13,.86)); transition:opacity 1.1s; padding:24px}
+.gate{position:fixed; inset:0; z-index:20; text-align:center; overflow-y:auto;
+  display:flex; align-items:center; justify-content:center;
+  background:radial-gradient(120% 90% at 50% 0%, #0a1526, #05070f 70%); transition:opacity 1.1s; padding:34px 24px}
 .gate.gone{opacity:0; pointer-events:none}
-.gate .ge{font-family:var(--mono); font-size:11px; letter-spacing:.3em; text-transform:uppercase; color:#7fe9c0; margin-bottom:20px}
+.gate .ge{font-family:var(--mono); font-size:11px; letter-spacing:.3em; text-transform:uppercase; color:#7fe9c0; margin-bottom:14px}
 .gate h2{font-family:"Space Grotesk",sans-serif; font-weight:600; font-size:clamp(30px,6vw,62px); line-height:1.04; letter-spacing:-.02em; max-width:18ch}
 .gate p{color:var(--soft); margin:18px auto 30px; max-width:48ch; font-size:14.5px; line-height:1.6}
 .gate .enter{pointer-events:auto; cursor:pointer; border:0; font-family:"Space Grotesk",sans-serif; font-weight:600;
@@ -102,9 +110,18 @@ canvas{position:fixed; inset:0; display:block}
   box-shadow:0 10px 40px rgba(127,233,192,.3); transition:transform .3s}
 .gate .enter:hover{transform:translateY(-2px)}
 
-.note{position:fixed; left:30px; bottom:26px; font-family:var(--mono); font-size:10px; color:var(--faint); letter-spacing:.05em}
-@media(max-width:760px){ .brand{max-width:70vw} .note{display:none} .detail{top:auto; bottom:150px; right:50%; transform:translateX(50%)} .detail.show{transform:translateX(50%)} }
-@media(prefers-reduced-motion:reduce){*{transition:none!important; animation:none!important}}
+.note{position:fixed; right:30px; bottom:26px; font-family:var(--mono); font-size:10px; color:var(--faint); letter-spacing:.05em; text-align:right}
+@media(max-width:760px){ .brand{max-width:64vw; top:16px; left:16px} .brand h1{font-size:17px} .brand .tag{display:none}
+  .note{display:none}
+  .detail{top:auto; bottom:150px; right:50%; transform:translateX(50%)} .detail.show{transform:translateX(50%)}
+  .langsw{top:auto; bottom:92px; left:12px; transform:none}
+  .crumbs{top:18px; left:16px; max-width:70vw} .back{top:56px; left:16px; padding:10px 16px; font-size:14px}
+  .homebtn{left:12px; bottom:20px; width:48px; height:48px; padding:0; border-radius:50%; justify-content:center; gap:0; font-size:0}
+  .homebtn::before{font-size:20px}
+  .dock{left:auto; right:10px; transform:none; max-width:calc(100vw - 76px)}
+  .timebar{bottom:148px; padding:9px 14px; gap:10px} .timebar .yr{font-size:19px; min-width:54px} .timebar input{width:32vw}
+  .insight{top:16px; right:12px} }
+@media(prefers-reduced-motion:reduce){*{transition:none!important; animation:none!important} #landing{scroll-behavior:auto}}
 .langsw{position:fixed; top:26px; left:50%; transform:translateX(-50%); display:flex; gap:3px; padding:4px;
   background:rgba(12,18,32,.62); backdrop-filter:blur(14px); border:1px solid rgba(255,255,255,.08); border-radius:100px; z-index:6}
 .langsw button{border:0; background:transparent; color:var(--soft); cursor:pointer; font-family:var(--mono);
@@ -113,7 +130,7 @@ canvas{position:fixed; inset:0; display:block}
 .langsw button:hover{color:var(--ink)} .langsw button.on:hover{color:#06121f}
 .crumbs{position:fixed; top:27px; left:30px; display:none; align-items:center; gap:9px; z-index:6; max-width:64vw; flex-wrap:wrap}
 .crumbs.show{display:flex}
-.crumbs .cb{font-family:"Space Grotesk",sans-serif; font-size:14px; color:var(--soft); cursor:pointer; transition:color .2s; white-space:nowrap}
+.crumbs .cb{font-family:"Space Grotesk",sans-serif; font-size:16px; color:#c2cfe0; cursor:pointer; transition:color .2s; white-space:nowrap}
 .crumbs .cb:hover{color:var(--ink)} .crumbs .cb.cur{color:var(--ink); font-weight:600}
 .crumbs .sep{color:var(--faint); font-size:13px}
 .insight{position:fixed; top:26px; right:26px; width:min(300px,82vw); background:rgba(10,15,28,.66);
@@ -150,12 +167,12 @@ canvas{position:fixed; inset:0; display:block}
 .d-col{flex:1; min-width:0}
 .d-col .row{font-size:12.5px; color:var(--ink); padding:3px 0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
 
-.note{left:auto; right:30px; text-align:right}
-.homebtn{position:fixed; left:30px; bottom:24px; z-index:6; display:flex; align-items:center; gap:7px;
-  padding:8px 15px; border-radius:100px; border:1px solid rgba(255,255,255,.12); cursor:pointer;
-  background:rgba(12,18,32,.62); backdrop-filter:blur(14px); color:var(--soft);
-  font-family:"Space Grotesk",sans-serif; font-size:13px; transition:.25s}
-.homebtn::before{content:"\2302"; font-size:15px; line-height:1}
+.homebtn{position:fixed; left:30px; bottom:26px; z-index:6; display:flex; align-items:center; gap:9px;
+  padding:15px 30px; border-radius:100px; border:1.5px solid rgba(127,233,192,.65); cursor:pointer;
+  background:rgba(18,38,52,.92); backdrop-filter:blur(14px); color:#eafff8; font-weight:600;
+  box-shadow:0 10px 30px rgba(127,233,192,.26);
+  font-family:"Space Grotesk",sans-serif; font-size:17px; transition:.25s}
+.homebtn::before{content:"\2302"; font-size:18px; line-height:1}
 .homebtn:hover{color:var(--ink); border-color:rgba(127,233,192,.4)}
 
 /* ===================== LANDING (light) ===================== */
@@ -167,21 +184,21 @@ canvas{position:fixed; inset:0; display:block}
    linear-gradient(180deg,#ffffff 0%, #f7f9fc 100%)}
 .landing::-webkit-scrollbar{width:10px} .landing::-webkit-scrollbar-thumb{background:#d8dfeb; border-radius:8px}
 .l-nav{position:sticky; top:0; z-index:5; display:flex; align-items:center; justify-content:space-between;
-  padding:16px 40px; background:rgba(255,255,255,.82); backdrop-filter:blur(14px); border-bottom:1px solid #eaeef5}
-.l-brand{display:flex; align-items:center; gap:11px; font-family:"Space Grotesk",sans-serif; font-weight:700; font-size:18px; color:#16203a}
-.l-mark{width:15px; height:15px; border-radius:5px; background:linear-gradient(135deg,#5ec8b8,#6aa9f0)}
-.l-links{display:flex; gap:30px}
+  padding:24px 44px; gap:20px; background:rgba(255,255,255,.82); backdrop-filter:blur(14px); border-bottom:1px solid #eaeef5}
+.l-brand{display:flex; align-items:center; gap:12px; font-family:"Space Grotesk",sans-serif; font-weight:700; font-size:20px; color:#16203a; white-space:nowrap; flex-shrink:0}
+.l-mark{width:18px; height:18px; border-radius:6px; background:linear-gradient(135deg,#5ec8b8,#6aa9f0); flex-shrink:0}
+.l-links{display:flex; gap:22px; white-space:nowrap}
 .l-links .lnav{color:#56617b; font-size:14.5px; cursor:pointer; text-decoration:none; transition:.2s; font-weight:500}
 .l-links .lnav:hover{color:#16203a}
 .l-right{display:flex; align-items:center; gap:14px}
 .l-lang{display:flex; gap:2px; padding:3px; border-radius:100px; background:#eef2f8; border:1px solid #e3e9f2}
 .l-lang button{border:0; background:transparent; color:#6b7690; cursor:pointer; font-family:var(--mono); font-size:11.5px; letter-spacing:.06em; padding:6px 11px; border-radius:100px; transition:.2s}
 .l-lang button.on{background:#16203a; color:#fff}
-.l-cta{border:0; cursor:pointer; font-family:"Space Grotesk",sans-serif; font-weight:600; font-size:14.5px; padding:11px 22px; border-radius:11px;
+.l-cta{border:0; cursor:pointer; font-family:"Space Grotesk",sans-serif; font-weight:600; font-size:15px; padding:12px 22px; border-radius:12px; white-space:nowrap;
   color:#fff; background:linear-gradient(120deg,#17b6a4,#3aa0d8); box-shadow:0 8px 22px rgba(23,182,164,.26); transition:transform .2s, box-shadow .2s}
 .l-cta:hover{transform:translateY(-2px); box-shadow:0 12px 28px rgba(23,182,164,.36)}
 
-.l-hero{display:grid; grid-template-columns:1.05fr .95fr; gap:48px; align-items:center; max-width:1180px; margin:0 auto; padding:64px 40px 34px}
+.l-hero{display:grid; grid-template-columns:1.05fr .95fr; gap:48px; align-items:center; max-width:1180px; margin:0 auto; padding:64px 40px 34px; position:relative; isolation:isolate}
 .l-eye{display:inline-block; font-family:var(--mono); font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:#17a08f;
   background:rgba(23,182,164,.10); padding:6px 13px; border-radius:100px; margin-bottom:20px}
 .l-title{font-family:"Space Grotesk",sans-serif; font-weight:700; font-size:clamp(32px,4.4vw,52px); line-height:1.07; letter-spacing:-.015em; color:#141c30; margin:0 0 18px}
@@ -258,10 +275,14 @@ canvas{position:fixed; inset:0; display:block}
 
 @media(max-width:900px){
   .l-hero{grid-template-columns:1fr; padding-top:46px} .l-hero-art{order:-1; max-width:380px; margin:0 auto}
-  .l-links{display:none}
+  .l-brand{font-size:15px; min-width:0; flex-shrink:1; overflow:hidden; white-space:nowrap; text-overflow:ellipsis}
+  .l-links{gap:12px} .ltab[data-page="home"]{display:none}
+  .l-right{gap:8px} .l-fav span[data-i]{display:none}
+  .l-cta{padding:10px 14px; font-size:13.5px}
+  .l-lang button{padding:6px 8px; font-size:11px}
   .l-stats{grid-template-columns:repeat(2,1fr)} .l-grid,.l-grid3,.l-steps,.l-read-grid{grid-template-columns:1fr}
   .l-data{grid-template-columns:1fr; gap:24px} .l-facts{grid-template-columns:1fr 1fr}
-  .l-nav{padding:13px 18px} .l-sec{padding:42px 20px} .l-foot{padding:26px 20px 40px}
+  .l-nav{padding:12px 12px; gap:10px} .l-sec{padding:42px 20px} .l-foot{padding:26px 20px 40px}
   .filter-grid{grid-template-columns:1fr}
 }
 .legend{position:fixed; left:26px; top:50%; transform:translateY(-50%); z-index:6; width:188px; max-height:78vh; overflow-y:auto;
@@ -369,10 +390,12 @@ canvas{position:fixed; inset:0; display:block}
 .d2-sim:hover{border-color:#17b6a4;background:#f3fbfa}
 
 /* nav additions */
-.l-links .ltab{color:#56617b;font-size:14.5px;cursor:pointer;text-decoration:none;font-weight:500;transition:.2s;padding-bottom:3px;border-bottom:2px solid transparent}
+.l-links .ltab{color:#56617b;font-size:15px;cursor:pointer;text-decoration:none;font-weight:500;transition:.2s;padding-bottom:3px;border-bottom:2px solid transparent}
 .l-links .ltab:hover{color:#16203a}
 .l-links .ltab.on{color:#141c30;border-bottom-color:#17b6a4}
-.l-fav{border:1px solid #e3e9f2;background:#fff;color:#56617b;cursor:pointer;font-family:"Space Grotesk",sans-serif;font-weight:600;font-size:13.5px;padding:8px 13px;border-radius:100px;display:flex;align-items:center;gap:6px;transition:.18s}
+.l-fav{border:1px solid #e3e9f2;background:#fff;color:#56617b;cursor:pointer;font-family:"Space Grotesk",sans-serif;font-weight:600;font-size:14px;padding:9px 14px;border-radius:100px;display:flex;align-items:center;gap:7px;white-space:nowrap;transition:.18s}
+  .fav-i{color:#e5636f;font-size:14px}
+  .fav-n{background:#eef2f8;color:#56617b;border-radius:100px;min-width:20px;text-align:center;font-size:12.5px;padding:1px 6px}
 .l-fav:hover{border-color:#ef8fb0;color:#ef4d77}
 #favCount{font-family:var(--mono);font-size:12px}
 
@@ -436,6 +459,180 @@ canvas{position:fixed; inset:0; display:block}
 .out-name{font-size:15px;color:#1f2940;font-weight:500}
 .out-tag{font-size:11.5px;color:#aeb6c6;font-style:italic;white-space:nowrap}
 .d2-live{font-size:10px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:#0f8c7e;background:rgba(23,182,164,.1);border-radius:100px;padding:2px 8px;vertical-align:middle;margin-left:4px}
+.l-dd{position:relative;display:inline-flex}
+.l-dd-btn{border:0;background:none;cursor:pointer;font-family:"Space Grotesk",sans-serif;font-weight:500;font-size:15px;color:#56617b;display:flex;align-items:center;gap:5px;padding:0 0 3px;border-bottom:2px solid transparent;transition:.2s}
+.l-dd-btn:hover{color:#16203a}
+.l-dd-btn.on{color:#0f8c7e;border-bottom-color:#17a08f}
+.l-dd-caret{font-size:10px;transition:.2s}
+.l-dd.open .l-dd-caret{transform:rotate(180deg)}
+.l-dd-menu{position:absolute;top:calc(100% + 12px);left:0;background:#fff;border:1px solid #e9edf4;border-radius:14px;box-shadow:0 14px 38px rgba(20,30,60,.13);padding:8px;min-width:196px;display:none;flex-direction:column;gap:2px;z-index:30}
+.l-dd.open .l-dd-menu{display:flex}
+.l-dd-item{display:block;padding:10px 14px;border-radius:9px;font-size:14.5px;color:#4a5570;border-bottom:0 !important}
+.l-dd-item:hover{background:#f2f6fb;color:#16203a}
+.l-dd-item.on{background:#eaf6f3;color:#0f8c7e}
+.gate-hub{width:min(1060px,94vw);text-align:left;margin:auto 0}
+.gh-head{text-align:center;margin-bottom:20px}
+.gh-h2{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:26px;color:#eaf3ff;margin:0 0 8px;line-height:1.12}
+.gh-sub{color:#9fb4c9;font-size:15px;margin:0}
+.gh-cols{display:flex;gap:20px;align-items:stretch}
+.gh-col{flex:1;background:rgba(255,255,255,.05);border:1px solid rgba(127,233,192,.16);border-radius:18px;padding:20px;position:relative;min-width:0}
+.gh-col-t{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:18px;color:#eaf3ff;margin:0 0 6px}
+.gh-col-d{color:#9fb4c9;font-size:13px;line-height:1.5;margin:0 0 15px}
+.gh-badge{position:absolute;top:15px;right:15px;font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;padding:4px 9px;border-radius:100px}
+.gh-badge-soon{color:#ffce85;background:rgba(240,162,59,.14);border:1px solid rgba(240,162,59,.3)}
+.gh-map{width:100%;border-radius:12px;overflow:hidden;max-height:230px}
+.gh-map svg{max-height:230px}
+.gh-map svg{display:block;width:100%;height:auto}
+.gh-sea{fill:#0b1a33;opacity:.55}
+.gh-land{fill:#122641;stroke:#2dd4bf;stroke-opacity:.5;stroke-width:1.6}
+.gh-city{fill:#2dd4bf}
+.gh-clab{fill:#9fb4c9;font-family:"Inter",sans-serif;font-size:9px}
+.gh-bub{fill:#0d1b30;stroke:#2dd4bf;stroke-opacity:.5}
+.gh-bubt{fill:#cfe9e3;font-family:"Inter",sans-serif;font-size:9px;font-weight:700;text-anchor:middle}
+.gh-sig{display:grid;grid-template-columns:1fr 1fr;gap:10px 16px;margin-bottom:16px}
+.gh-sig-row{color:#b9c6d8;font-size:13px;line-height:1.45;display:flex;gap:9px;align-items:flex-start}
+.gh-sig-row b{color:#eaf3ff;font-weight:600}
+.gh-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0;margin-top:4px}
+.gh-d1{background:linear-gradient(135deg,#17b6a4,#3aa0d8)}
+.gh-d2{background:linear-gradient(135deg,#f0a23b,#f06f59)}
+.gh-d3{background:linear-gradient(135deg,#8f70ef,#56b3f5)}
+.gh-d4{background:linear-gradient(135deg,#ef72a8,#6cc99a)}
+.gh-uni .enter{display:block;margin:0 auto}
+@media(max-width:820px){.gh-cols{flex-direction:column}}
+.lenscap{position:fixed; left:50%; transform:translateX(-50%); bottom:112px; z-index:6;
+  max-width:min(560px,90vw); text-align:center; padding:9px 18px; border-radius:100px;
+  background:rgba(12,18,32,.72); backdrop-filter:blur(14px); border:1px solid rgba(127,233,192,.22);
+  color:#cfe0ee; font-family:"Inter",sans-serif; font-size:13px; line-height:1.35;
+  opacity:0; pointer-events:none; transition:opacity .3s}
+.lenscap.show{opacity:1}
+.glang{display:inline-flex; gap:3px; padding:4px; margin:0 auto 16px; background:rgba(255,255,255,.06);
+  border:1px solid rgba(127,233,192,.2); border-radius:100px}
+.glang button{border:0; background:transparent; color:#9fb4c9; cursor:pointer; font-family:var(--mono);
+  font-size:12px; letter-spacing:.08em; padding:7px 15px; border-radius:100px; transition:.25s}
+.glang button:hover{color:#eafff8}
+.glang button.on{background:linear-gradient(120deg,#7fe9c0,#54d0e0); color:#06121f}
+:focus-visible{outline:2px solid #17b6a4; outline-offset:2px}
+canvas#sky{touch-action:none}
+.zoomctl{position:fixed; right:26px; bottom:64px; z-index:6; display:flex; flex-direction:column; gap:7px}
+.zoomctl button{width:40px;height:40px;border-radius:50%;border:1px solid rgba(255,255,255,.12);cursor:pointer;background:rgba(12,18,32,.62);backdrop-filter:blur(14px);color:var(--ink);font-size:18px;line-height:1;display:grid;place-items:center;transition:.2s}
+.zoomctl button:hover{background:rgba(255,255,255,.12)}
+.pc-chip.ok{background:rgba(23,182,164,.12);border-color:rgba(23,182,164,.45);color:#0f8c7e}
+.pc-chip.miss{background:rgba(240,162,59,.16);border-color:rgba(224,160,74,.5);color:#a8731f}
+.out-row{width:100%;border:0;cursor:pointer;font-family:inherit;font-size:14.5px;text-align:left;transition:.15s}
+button.out-row:hover{background:#f3fbfa}
+.out-name{font-weight:600;color:#141c30}
+.out-tag.up{color:#0f8c7e;font-style:normal;font-weight:600}
+.out-tag.new{color:#6a57cf;font-style:normal;font-weight:600}
+@media(max-width:760px){ .zoomctl{right:10px; bottom:92px} .zoomctl button{width:44px;height:44px} }
+.msearch{position:fixed; top:72px; left:50%; transform:translateX(-50%); z-index:6; width:min(300px,84vw)}
+.msearch input{width:100%; padding:9px 14px; border-radius:12px; border:1px solid rgba(255,255,255,.12);
+  background:rgba(12,18,32,.62); backdrop-filter:blur(14px); color:var(--ink); font:inherit; font-size:13px; outline:none; transition:.2s}
+.msearch input:focus{border-color:rgba(127,233,192,.5)}
+.ms-res{position:absolute; top:calc(100% + 6px); left:0; right:0; border-radius:12px; overflow:hidden; display:none;
+  background:rgba(10,15,28,.92); backdrop-filter:blur(16px); border:1px solid rgba(255,255,255,.1)}
+.ms-res.on{display:block}
+.ms-row{display:flex; align-items:center; gap:9px; padding:9px 13px; font-size:13px; color:var(--soft); cursor:pointer; transition:.12s}
+.ms-row:hover,.ms-row.sel{background:rgba(127,233,192,.12); color:var(--ink)}
+.ms-row .pc-dot{width:7px; height:7px; border-radius:50%; flex-shrink:0}
+.ms-v{margin-left:auto; font-family:var(--mono); font-size:11px; color:var(--faint)}
+.ms-empty{cursor:default; color:var(--faint)}
+.d-fav{position:absolute; top:14px; right:14px; border:0; background:transparent; cursor:pointer;
+  font-size:19px; line-height:1; padding:4px 6px; color:var(--soft); transition:.15s; z-index:2}
+.d-fav:hover{color:#ef6b8f; transform:scale(1.12)} .d-fav.on{color:#ef4d77}
+.lg-n{margin-left:auto; font-family:var(--mono); font-size:10px; color:var(--faint)}
+@media(max-width:760px){ .msearch{top:56px; left:auto; right:12px; transform:none; width:min(240px,58vw)} }
+/* ---------- landing motion (v3) ---------- */
+#landing{scroll-behavior:smooth; overflow-x:hidden}
+@keyframes pageIn{from{opacity:0; transform:translateY(10px)}to{opacity:1; transform:none}}
+@keyframes heroIn{from{opacity:0; transform:translateY(14px)}to{opacity:1; transform:none}}
+@keyframes artIn{from{opacity:0; transform:translateY(18px) scale(.985)}to{opacity:1; transform:none}}
+@keyframes blobA{from{transform:translate(0,0) scale(1)}to{transform:translate(34px,22px) scale(1.12)}}
+@keyframes blobB{from{transform:translate(0,0) scale(1.05)}to{transform:translate(-30px,-24px) scale(.96)}}
+@keyframes floaty{from{transform:translateY(0)}to{transform:translateY(-7px)}}
+@keyframes barUp{from{transform:scaleY(.18)}to{transform:scaleY(1)}}
+@keyframes lineDraw{to{stroke-dashoffset:0}}
+@keyframes dotIn{from{opacity:0; transform:scale(.3)}to{opacity:1; transform:scale(1)}}
+@keyframes blip{from{transform:scale(1)}to{transform:scale(1.14)}}
+@keyframes favPop{0%{transform:scale(1)}40%{transform:scale(1.4)}100%{transform:scale(1)}}
+@keyframes tickPulse{0%{box-shadow:0 0 0 0 rgba(23,182,164,.45)}70%{box-shadow:0 0 0 9px rgba(23,182,164,0)}100%{box-shadow:0 0 0 0 rgba(23,182,164,0)}}
+.anim:not(.rm) #landing .page.page-on{animation:pageIn .34s cubic-bezier(.22,.7,.3,1)}
+.anim:not(.rm) .l-hero-txt>*{animation:heroIn .6s cubic-bezier(.2,.7,.3,1) both}
+.anim:not(.rm) .l-hero-txt>:nth-child(1){animation-delay:.02s}
+.anim:not(.rm) .l-hero-txt>:nth-child(2){animation-delay:.08s}
+.anim:not(.rm) .l-hero-txt>:nth-child(3){animation-delay:.14s}
+.anim:not(.rm) .l-hero-txt>:nth-child(4){animation-delay:.20s}
+.anim:not(.rm) .l-hero-txt>:nth-child(5){animation-delay:.26s}
+.anim:not(.rm) .l-hero-txt>:nth-child(6){animation-delay:.32s}
+.anim:not(.rm) .l-hero-txt>:nth-child(7){animation-delay:.38s}
+.anim:not(.rm) .l-hero-art{animation:artIn .7s .18s cubic-bezier(.2,.7,.3,1) both}
+.l-hero::before,.l-hero::after{content:""; position:absolute; z-index:-1; border-radius:50%; pointer-events:none}
+.l-hero::before{width:430px; height:430px; top:-90px; left:-110px;
+  background:radial-gradient(circle at 38% 38%, rgba(94,200,184,.18), rgba(94,200,184,0) 66%)}
+.l-hero::after{width:390px; height:390px; right:-80px; bottom:-70px;
+  background:radial-gradient(circle at 60% 55%, rgba(155,140,240,.15), rgba(155,140,240,0) 66%)}
+.anim:not(.rm) .l-hero::before{animation:blobA 26s ease-in-out infinite alternate; will-change:transform}
+.anim:not(.rm) .l-hero::after{animation:blobB 32s ease-in-out infinite alternate; will-change:transform}
+.l-bars rect{transform-box:fill-box; transform-origin:50% 100%}
+.anim:not(.rm) .l-bars rect{animation:barUp .8s cubic-bezier(.2,.75,.25,1) both}
+.anim:not(.rm) .l-bars rect:nth-child(1){animation-delay:.15s}
+.anim:not(.rm) .l-bars rect:nth-child(2){animation-delay:.22s}
+.anim:not(.rm) .l-bars rect:nth-child(3){animation-delay:.29s}
+.anim:not(.rm) .l-bars rect:nth-child(4){animation-delay:.36s}
+.anim:not(.rm) .l-bars rect:nth-child(5){animation-delay:.43s}
+.anim:not(.rm) .l-bars rect:nth-child(6){animation-delay:.50s}
+.anim:not(.rm) .l-line{stroke-dasharray:1; stroke-dashoffset:1; animation:lineDraw 1s .6s cubic-bezier(.4,0,.2,1) both}
+.anim:not(.rm) .l-dots circle{transform-box:fill-box; transform-origin:center; animation:dotIn .45s cubic-bezier(.34,1.4,.5,1) both}
+.anim:not(.rm) .l-dots circle:nth-of-type(1){animation-delay:1.05s}
+.anim:not(.rm) .l-dots circle:nth-of-type(2){animation-delay:1.12s}
+.anim:not(.rm) .l-dots circle:nth-of-type(3){animation-delay:1.19s}
+.anim:not(.rm) .l-dots circle:nth-of-type(4){animation-delay:1.26s}
+.anim:not(.rm) .l-dots circle:nth-of-type(5){animation-delay:1.33s}
+.anim:not(.rm) .l-dots circle:nth-of-type(6){animation-delay:1.40s}
+.l-float{transform-box:fill-box}
+.anim:not(.rm) .l-float.f2{animation:floaty 7s .8s ease-in-out infinite alternate}
+.anim:not(.rm) .l-float.f3{animation:floaty 6s .3s ease-in-out infinite alternate}
+.anim:not(.rm) .l-blips circle{transform-box:fill-box; transform-origin:center; animation:blip 9s ease-in-out infinite alternate}
+.anim:not(.rm) .l-blips circle:nth-of-type(2){animation-delay:3s}
+.anim:not(.rm) .l-blips circle:nth-of-type(3){animation-delay:6s}
+.anim:not(.rm) .rev :is(.l-seye,.l-h2,.l-lead,.l-misstxt,.l-bandh,.l-bandsub,.l-cta-big),
+.anim:not(.rm) .rev :is(.l-grid,.l-steps,.l-facts)>*,
+.anim:not(.rm) .rev.l-stats>*{opacity:0; transform:translateY(18px);
+  transition:opacity .6s cubic-bezier(.2,.7,.3,1), transform .6s cubic-bezier(.2,.7,.3,1)}
+.anim:not(.rm) .rev.on :is(.l-seye,.l-h2,.l-lead,.l-misstxt,.l-bandh,.l-bandsub,.l-cta-big),
+.anim:not(.rm) .rev.on :is(.l-grid,.l-steps,.l-facts)>*,
+.anim:not(.rm) .rev.on.l-stats>*{opacity:1; transform:none}
+.anim:not(.rm) .rev.on .l-h2{transition-delay:.06s}
+.anim:not(.rm) .rev.on :is(.l-lead,.l-misstxt,.l-bandsub){transition-delay:.12s}
+.anim:not(.rm) .rev.on .l-cta-big{transition-delay:.18s}
+.anim:not(.rm) .rev.on :is(.l-grid,.l-steps,.l-facts)>:nth-child(1),.anim:not(.rm) .rev.on.l-stats>:nth-child(1){transition-delay:.14s}
+.anim:not(.rm) .rev.on :is(.l-grid,.l-steps,.l-facts)>:nth-child(2),.anim:not(.rm) .rev.on.l-stats>:nth-child(2){transition-delay:.20s}
+.anim:not(.rm) .rev.on :is(.l-grid,.l-steps,.l-facts)>:nth-child(3),.anim:not(.rm) .rev.on.l-stats>:nth-child(3){transition-delay:.26s}
+.anim:not(.rm) .rev.on :is(.l-grid,.l-steps,.l-facts)>:nth-child(4),.anim:not(.rm) .rev.on.l-stats>:nth-child(4){transition-delay:.32s}
+.anim:not(.rm) .rev.on :is(.l-grid,.l-steps,.l-facts)>:nth-child(5){transition-delay:.38s}
+.anim:not(.rm) .rev.on :is(.l-grid,.l-steps,.l-facts)>:nth-child(6){transition-delay:.44s}
+.anim:not(.rm) .rev.on :is(.l-grid,.l-steps,.l-facts)>:nth-child(7){transition-delay:.50s}
+.anim:not(.rm) .rev.on :is(.l-grid,.l-steps,.l-facts)>:nth-child(8){transition-delay:.56s}
+.anim:not(.rm) .rev.on :is(.l-grid,.l-steps,.l-facts)>:nth-child(9){transition-delay:.62s}
+.anim:not(.rm) .rev.on :is(.l-grid,.l-steps,.l-facts)>:nth-child(10){transition-delay:.68s}
+.l-tick{display:inline-flex; align-items:center; gap:9px; margin-top:16px; max-width:100%;
+  padding:8px 14px; border-radius:999px; border:1px solid #e3e9f3; background:#fff; cursor:pointer;
+  font:inherit; font-size:12.5px; color:#3d4a63; box-shadow:0 4px 14px rgba(20,30,60,.05); transition:.2s}
+.l-tick:hover{border-color:#17b6a4; transform:translateY(-1px); box-shadow:0 8px 20px rgba(23,182,164,.14)}
+.l-tick[hidden]{display:none}
+.l-tick-dot{width:7px; height:7px; border-radius:50%; background:#17b6a4; flex-shrink:0}
+.anim:not(.rm) .l-tick-dot{animation:tickPulse 2.4s ease-out infinite}
+#lTickTxt{white-space:nowrap; overflow:hidden; text-overflow:ellipsis; transition:opacity .26s}
+#lTickTxt.out{opacity:0}
+.l-links .ltab{position:relative}
+.l-links .ltab::after{content:""; position:absolute; left:0; right:100%; bottom:-2px; height:2px;
+  border-radius:2px; background:linear-gradient(90deg,#17b6a4,#6aa9f0); transition:right .28s cubic-bezier(.2,.7,.3,1)}
+.l-links .ltab:not(.on):hover::after{right:0}
+.l-cta{position:relative; overflow:hidden}
+.l-cta::after{content:""; position:absolute; top:0; left:-70%; width:45%; height:100%; pointer-events:none;
+  background:linear-gradient(105deg, transparent, rgba(255,255,255,.55), transparent); transform:skewX(-18deg); transition:left .55s ease}
+.l-cta:hover::after{left:125%}
+.fav-n.pop{animation:favPop .45s cubic-bezier(.34,1.56,.5,1)}
+@media(max-width:900px){ .l-hero::before{width:300px;height:300px;left:-90px} .l-hero::after{width:280px;height:280px;right:-70px} }
 </style>
 </head>
 <body>
@@ -443,17 +640,21 @@ canvas{position:fixed; inset:0; display:block}
 
 <div class="landing" id="landing">
   <nav class="l-nav">
-    <div class="l-brand"><span class="l-mark"></span>Azərbaycan Əmək Atlası</div>
+    <div class="l-brand"><span class="l-mark"></span>Azərbaycan Karyera Bələdçisi</div>
     <div class="l-links">
       <a class="ltab on" data-page="home"><span data-i="lNavHome">Home</span></a>
-      <a class="ltab" data-page="search"><span data-i="lNavSearch">Search</span></a>
-      <a class="ltab" data-page="match"><span data-i="lNavMatch">Find your fit</span></a>
-      <a class="ltab" data-page="compare"><span data-i="lNavCompare">Compare</span></a>
-      <a class="ltab" data-page="map"><span data-i="lNavMap">Map</span></a>
-      <a class="ltab" data-page="tools"><span data-i="lNavTools">Tools</span></a>
+      <div class="l-dd" id="lDd">
+        <button class="l-dd-btn" id="lDdBtn"><span data-i="lNavMenu">Menu</span><span class="l-dd-caret">▾</span></button>
+        <div class="l-dd-menu">
+          <a class="ltab l-dd-item" data-page="search"><span data-i="lNavSearch">Search</span></a>
+          <a class="ltab l-dd-item" data-page="match"><span data-i="lNavMatch">Find your fit</span></a>
+          <a class="ltab l-dd-item" data-page="compare"><span data-i="lNavCompare">Compare</span></a>
+          <a class="ltab l-dd-item" data-page="tools"><span data-i="lNavTools">Tools</span></a>
+        </div>
+      </div>
     </div>
     <div class="l-right">
-      <button class="l-fav" id="favBtn">♥ <span id="favCount">0</span></button>
+      <button class="l-fav" id="favBtn"><span class="fav-i">♥</span><span data-i="lFav">Saved</span><span class="fav-n" id="favCount">0</span></button>
       <div class="l-lang" id="lLang"><button data-l="az">AZ</button><button data-l="ru" class="on">RU</button><button data-l="en">EN</button></div>
       <button class="l-cta lcta-open" data-i="lOpen">Open the map</button>
     </div>
@@ -470,14 +671,15 @@ canvas{position:fixed; inset:0; display:block}
         <button class="l-cta lcta-open" data-i="lOpen">Open the map</button>
         <a class="l-ghost lnav" data-to="s-how" data-i="lHowCta">How it works</a>
       </div>
+      <button class="l-tick" id="lTick" type="button" hidden><span class="l-tick-dot"></span><span id="lTickTxt"></span></button>
       <div class="l-disc" data-i="lDisc">Data is currently illustrative.</div>
     </div>
     <div class="l-hero-art"><svg class="l-art-svg" viewBox="0 0 480 380" xmlns="http://www.w3.org/2000/svg">
   <defs><filter id="sh" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="10" stdDeviation="16" flood-color="#1b2a4e" flood-opacity="0.10"/></filter></defs>
-  <circle cx="70" cy="70" r="46" fill="#5ec8b8" opacity=".14"/><circle cx="430" cy="120" r="60" fill="#9b8cf0" opacity=".12"/><circle cx="400" cy="330" r="40" fill="#f0b65e" opacity=".14"/>
+  <g class="l-blips"><circle cx="70" cy="70" r="46" fill="#5ec8b8" opacity=".14"/><circle cx="430" cy="120" r="60" fill="#9b8cf0" opacity=".12"/><circle cx="400" cy="330" r="40" fill="#f0b65e" opacity=".14"/></g>
   <g filter="url(#sh)"><rect x="60" y="70" width="320" height="220" rx="18" fill="#ffffff"/></g>
   <text x="84" y="104" font-family="Inter,sans-serif" font-size="13" font-weight="600" fill="#16203a">Maaş · sektor üzrə</text>
-  <g>
+  <g class="l-bars">
     <rect x="86" y="170" width="30" height="78" rx="5" fill="#6aa9f0"/>
     <rect x="128" y="146" width="30" height="102" rx="5" fill="#5ec8b8"/>
     <rect x="170" y="186" width="30" height="62" rx="5" fill="#9b8cf0"/>
@@ -485,14 +687,14 @@ canvas{position:fixed; inset:0; display:block}
     <rect x="254" y="158" width="30" height="90" rx="5" fill="#6cc99a"/>
     <rect x="296" y="200" width="30" height="48" rx="5" fill="#ef8fb0"/>
   </g>
-  <polyline points="101,150 143,128 185,166 227,116 269,140 311,182" fill="none" stroke="#16203a" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" opacity=".55"/>
-  <g fill="#16203a" opacity=".55"><circle cx="101" cy="150" r="3"/><circle cx="143" cy="128" r="3"/><circle cx="185" cy="166" r="3"/><circle cx="227" cy="116" r="3"/><circle cx="269" cy="140" r="3"/><circle cx="311" cy="182" r="3"/></g>
-  <g filter="url(#sh)"><rect x="300" y="40" width="150" height="74" rx="14" fill="#ffffff"/></g>
+  <polyline class="l-line" pathLength="1" points="101,150 143,128 185,166 227,116 269,140 311,182" fill="none" stroke="#16203a" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" opacity=".55"/>
+  <g class="l-dots" fill="#16203a" opacity=".55"><circle cx="101" cy="150" r="3"/><circle cx="143" cy="128" r="3"/><circle cx="185" cy="166" r="3"/><circle cx="227" cy="116" r="3"/><circle cx="269" cy="140" r="3"/><circle cx="311" cy="182" r="3"/></g>
+  <g class="l-float f2"><g filter="url(#sh)"><rect x="300" y="40" width="150" height="74" rx="14" fill="#ffffff"/></g>
   <circle cx="328" cy="77" r="13" fill="none" stroke="#5ec8b8" stroke-width="6"/><path d="M328 64 a13 13 0 0 1 11 19" fill="none" stroke="#f0b65e" stroke-width="6"/>
-  <rect x="352" y="62" width="80" height="9" rx="4.5" fill="#dfe6f2"/><rect x="352" y="80" width="56" height="9" rx="4.5" fill="#eaeff7"/>
-  <g filter="url(#sh)"><rect x="40" y="250" width="150" height="74" rx="14" fill="#ffffff"/></g>
+  <rect x="352" y="62" width="80" height="9" rx="4.5" fill="#dfe6f2"/><rect x="352" y="80" width="56" height="9" rx="4.5" fill="#eaeff7"/></g>
+  <g class="l-float f3"><g filter="url(#sh)"><rect x="40" y="250" width="150" height="74" rx="14" fill="#ffffff"/></g>
   <circle cx="66" cy="280" r="7" fill="#6aa9f0"/><rect x="82" y="274" width="92" height="9" rx="4.5" fill="#dfe6f2"/>
-  <circle cx="66" cy="302" r="7" fill="#9b8cf0"/><rect x="82" y="296" width="70" height="9" rx="4.5" fill="#eaeff7"/>
+  <circle cx="66" cy="302" r="7" fill="#9b8cf0"/><rect x="82" y="296" width="70" height="9" rx="4.5" fill="#eaeff7"/></g>
 </svg></div>
   </header>
 
@@ -503,17 +705,7 @@ canvas{position:fixed; inset:0; display:block}
     <div class="l-stat"><div class="l-statn" data-i="lS4n">3</div><div class="l-statl" data-i="lS4l">languages</div></div>
   </div>
 
-  <section class="l-sec l-read" id="s-read">
-    <div class="l-seye" data-i="lReadEye">How to read the map</div>
-    <h2 class="l-h2" data-i="lReadTitle">The universe becomes useful once you know the signals</h2>
-    <p class="l-lead" data-i="lReadSub">Each visual cue answers a practical labour-market question.</p>
-    <div class="l-read-grid">
-      <div class="l-read-card"><div class="l-read-icon" style="background:linear-gradient(135deg,#17b6a4,#3aa0d8)">01</div><h3 data-i="lR1t">Star size</h3><p data-i="lR1d">Larger stars represent more open roles and stronger visible demand.</p></div>
-      <div class="l-read-card"><div class="l-read-icon" style="background:linear-gradient(135deg,#f0a23b,#f06f59)">02</div><h3 data-i="lR2t">Glow</h3><p data-i="lR2d">Brighter stars point to higher median pay and stronger salary signals.</p></div>
-      <div class="l-read-card"><div class="l-read-icon" style="background:linear-gradient(135deg,#8f70ef,#56b3f5)">03</div><h3 data-i="lR3t">Links</h3><p data-i="lR3d">Lines reveal nearby careers and shared skills for possible transitions.</p></div>
-      <div class="l-read-card"><div class="l-read-icon" style="background:linear-gradient(135deg,#ef72a8,#6cc99a)">04</div><h3 data-i="lR4t">Lenses</h3><p data-i="lR4d">Switch lenses to compare sectors, salaries, languages, careers and time.</p></div>
-    </div>
-  </section>
+  
 
   <section class="l-sec" id="s-tools">
     <div class="l-seye" data-i="lToolsEye">What you get</div>
@@ -582,7 +774,7 @@ canvas{position:fixed; inset:0; display:block}
   </section>
 
   <footer class="l-foot">
-    <span class="l-foot-brand"><span class="l-mark"></span>Azərbaycan Əmək Atlası</span>
+    <span class="l-foot-brand"><span class="l-mark"></span>Azərbaycan Karyera Bələdçisi</span>
     <span class="l-footnote" data-i="lFootNote">Non-commercial initiative · illustrative data · 2026</span>
   </footer>
   </div><!--/page-home-->
@@ -777,7 +969,7 @@ canvas{position:fixed; inset:0; display:block}
 <div class="ui">
   <div class="brand" id="brand">
     <div class="eye"><span class="live"></span><span data-i="brand">Baku Labour Observatory · prototype</span></div>
-    <h1>Observable Universe of Work</h1>
+    <h1 data-i="mapTitle">Observable Universe of Work</h1>
     <div class="tag" data-i="tag">Azerbaijan's labour market — every star is a profession</div>
   </div>
 
@@ -785,13 +977,15 @@ canvas{position:fixed; inset:0; display:block}
   <div class="back" id="back" data-i="back">← Back to the universe</div>
 
   <div class="langsw" id="langsw"><button data-l="az">AZ</button><button data-l="ru" class="on">RU</button><button data-l="en">EN</button></div>
+  <div class="msearch" id="msearch"><input id="msInput" type="text" data-iph="lSearchPh" placeholder="" autocomplete="off" aria-label="Search"><div class="ms-res" id="msRes"></div></div>
   <div class="legend" id="legend"></div>
   <aside class="detail" id="detail">
+    <button class="d-fav" id="dFav" aria-label="" aria-pressed="false">♡</button>
     <div class="d-sec" id="dSec"><i id="dDot"></i><span id="dSecName">—</span></div>
     <div class="d-name" id="dName">—</div>
     <div class="d-en" id="dEn">—</div>
     <div class="d-hero">
-      <div class="d-hstat"><div class="l" data-i="pay">Median pay</div><div class="v" id="dSal">0</div><div class="u">AZN / month</div></div>
+      <div class="d-hstat"><div class="l" data-i="pay">Median pay</div><div class="v" id="dSal">0</div><div class="u" data-i="unMonth">AZN / month</div></div>
       <div class="d-hstat"><div class="l" data-i="open">Open roles</div><div class="v" id="dCnt">0</div><div class="u" id="dDem">—</div></div>
     </div>
     <div class="d-langs" id="dLangs"></div>
@@ -806,27 +1000,50 @@ canvas{position:fixed; inset:0; display:block}
 
   <div class="insight" id="insight"></div>
 
+  <div class="lenscap" id="lenscap"></div>
   <div class="timebar" id="timebar">
-    <button class="play" id="play">▶</button>
+    <button class="play" id="play" aria-label="Play / Pause">▶</button>
     <input type="range" id="yr" min="2019" max="2027" step="1" value="2027">
     <div class="yr mono" id="yrLabel">2027</div>
   </div>
 
+  <div class="zoomctl" id="zoomctl"><button id="zoomIn" type="button">+</button><button id="zoomOut" type="button">−</button><button id="zoomReset" type="button">↺</button></div>
   <div class="dock" id="dock"></div>
   <div class="note" data-i="note">Illustrative data · real pipeline plugs in later</div>
 </div>
 
 <div class="gate" id="gate">
-  <div>
-    <div class="ge" data-i="gate_eye">Enter · the universe of work</div>
-    <h2 data-ihtml="gate_h2">Every vacancy is a photon.<br>Millions of them build a cosmos.</h2>
-    <p data-i="gate_p">Azerbaijan's labour market as a living map. Switch the lens and the same universe opens in a different physics — the gravity of demand, the climate of pay, the tides of language, the currents of careers, the motion of time.</p>
-    <button class="enter" id="enter" data-i="enter">Enter the universe</button>
+  <div class="gate-hub">
+    <div class="gh-head">
+      <div class="glang" id="gLang"><button data-l="az">AZ</button><button data-l="ru" class="on">RU</button><button data-l="en">EN</button></div>
+      <div class="ge" data-i="gate_eye">Enter · the universe of work</div>
+      <h2 class="gh-h2" data-i="ghTitle">Two ways to read the market</h2>
+      <p class="gh-sub" data-i="ghSub">Left — Azerbaijan by region. Right — professions as a universe.</p>
+    </div>
+    <div class="gh-cols">
+      <div class="gh-col gh-geo">
+        <div class="gh-badge gh-badge-soon" data-i="ghSoon">coming soon</div>
+        <h3 class="gh-col-t" data-i="ghGeoT">Azerbaijan map</h3>
+        <p class="gh-col-d" data-i="ghGeoD">Vacancies by region — appearing with real data.</p>
+        <div class="gh-map"><svg viewBox="0 0 420 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Azerbaijan"><path class="gh-sea" d="M300 0 L420 0 L420 300 L300 300 Q352 240 340 180 Q362 150 350 92 Q330 40 300 0 Z"/><path class="gh-land" d="M56 150 L58 108 L92 70 L155 56 L232 70 L296 94 L336 146 L356 144 Q394 146 398 166 Q396 180 366 178 L338 168 L300 210 L240 240 L180 240 L110 222 L62 186 Z"/><path class="gh-land" d="M48 246 Q60 236 82 244 Q96 252 88 268 Q72 278 56 270 Q44 260 48 246 Z"/><circle class="gh-city" cx="372" cy="166" r="4"/><circle class="gh-city" cx="352" cy="150" r="3"/><circle class="gh-city" cx="120" cy="142" r="3.5"/><circle class="gh-city" cx="178" cy="120" r="3"/><circle class="gh-city" cx="165" cy="96" r="3"/><circle class="gh-city" cx="250" cy="228" r="3.5"/><circle class="gh-city" cx="72" cy="256" r="3"/><g><circle class="gh-bub" cx="372" cy="146" r="12"/><text class="gh-bubt" x="372" y="149">—</text></g><g><circle class="gh-bub" cx="120" cy="122" r="12"/><text class="gh-bubt" x="120" y="125">—</text></g><g><circle class="gh-bub" cx="250" cy="208" r="11"/><text class="gh-bubt" x="250" y="211">—</text></g><text class="gh-clab" x="380" y="180">Bakı</text><text class="gh-clab" x="88" y="146">Gəncə</text></svg></div>
+      </div>
+      <div class="gh-col gh-uni">
+        <h3 class="gh-col-t" data-i="ghUniT">Universe of professions</h3>
+        <p class="gh-col-d" data-i="ghUniD">Each profession is a star. Its signals:</p>
+        <div class="gh-sig">
+          <div class="gh-sig-row"><span class="gh-dot gh-d1"></span><span><b data-i="lR1t">Star size</b> — <span data-i="lR1d">demand</span></span></div>
+          <div class="gh-sig-row"><span class="gh-dot gh-d2"></span><span><b data-i="lR2t">Glow</b> — <span data-i="lR2d">pay</span></span></div>
+          <div class="gh-sig-row"><span class="gh-dot gh-d3"></span><span><b data-i="lR3t">Links</b> — <span data-i="lR3d">related</span></span></div>
+          <div class="gh-sig-row"><span class="gh-dot gh-d4"></span><span><b data-i="lR4t">Lenses</b> — <span data-i="lR4d">compare</span></span></div>
+        </div>
+        <button class="enter" id="enter" data-i="enter">Enter the universe</button>
+      </div>
+    </div>
   </div>
 </div>
 
 <script>
-const LANDS={"az": {"lNavTools": "Alətlər", "lNavData": "Məlumat", "lNavAud": "Kimlər üçün", "lNavHow": "Necə işləyir", "lNavAbout": "Haqqında", "lOpen": "Xəritəni aç", "lHowCta": "Necə işləyir", "lEye": "Qeyri-kommersiya təşəbbüsü", "lTitle": "Azərbaycan əmək bazarı üçün açıq məlumat platforması", "lSub": "9 sektor üzrə 50-dən çox peşə üçün median maaşlar, açıq vakansiyalar, tələb olunan bacarıqlar və təcrübə — bir yerdə.", "lBody": "Pulsuz, reklamsız və satışsız. Tələbələrə istiqamət seçməyə, mütəxəssislərə növbəti addımı planlaşdırmağa, tədqiqatçılara isə real məlumatla bazarı öyrənməyə kömək üçün yaradılıb.", "lDisc": "Məlumatlar hazırda illüstrativdir — real toplama prosesi hazırlanır.", "lS1n": "9", "lS1l": "sektor", "lS2n": "40+", "lS2l": "peşə", "lS3n": "1000+", "lS3l": "təhlil edilmiş vakansiya", "lS4n": "3", "lS4l": "dil", "lToolsEye": "Nə əldə edirsiniz", "lToolsTitle": "Bazarı anlamaq üçün praktik alətlər", "lToolsSub": "Hər peşə və sektor müqayisə edə, filtrləyə və araşdıra biləcəyiniz aydın göstəricilərə bölünür.", "lT1t": "Maaşlar", "lT1d": "Hər peşə üçün median aylıq maaşı və onun junior-dan lead-ə qədər artımını görün. Rolları müqayisə edin və ən yüksək maaşlıları tapın.", "lT2t": "Tələbat və vakansiyalar", "lT2d": "Neçə vəzifənin açıq olduğunu və hansı peşələrin daha sürətli artdığını izləyin ki, işin harada olduğunu görəsiniz.", "lT3t": "Tələb olunan bacarıqlar", "lT3d": "İşəgötürənlərin hər peşədə ən çox istədiyi bacarıqları və hansıların sahələr arasında keçidə imkan verdiyini öyrənin.", "lT4t": "Təcrübə tələbləri", "lT4d": "Hər rolun nə qədər təcrübə gözlədiyini və başlanğıc səviyyəli vakansiyaların payını görün — yeni başlayanlar üçün faydalıdır.", "lT5t": "Dil tələbləri", "lT5d": "İngilis və rus dillərinin peşə və sektor üzrə nə qədər tələb olunduğunu görün.", "lT6t": "Karyera yolları", "lT6d": "Hansı peşələrin qonşu olduğunu və aralarındakı tipik keçidləri araşdırın.", "lT7t": "Sektor müqayisəsi", "lT7d": "Bütöv sahələri — IT, maliyyə, tikinti, səhiyyə və s. — maaş, tələbat və bacarıqlara görə müqayisə edin.", "lT8t": "Zaman üzrə trendlər", "lT8d": "Peşələrə tələbatın illər üzrə necə dəyişdiyini və hansı yeni rolların yarandığını izləyin.", "lT9t": "Peşə profilləri", "lT9d": "İstənilən peşəni açın: maaş, tələbat, əsas bacarıqlar, karyera pilləkəni, nümunə işəgötürənlər və oxşar rollar.", "lT10t": "İnteraktiv xəritə", "lT10d": "Hər şeyi vizual olaraq xəritə kimi araşdırın: hər peşə öz bacarıqları və qonşu karyeralarla bağlıdır.", "lDataEye": "Məlumat və metodologiya", "lDataTitle": "Rəqəmlər haradan gəlir", "lDataBody": "Platforma Azərbaycanda açıq şəkildə yerləşdirilən vakansiyalar əsasında qurulur. Hər vakansiyadan peşəni, sektoru, maaşı, tələb olunan bacarıqları, təcrübəni və dilləri oxuyur, sonra minlərlə vakansiyanı gördüyünüz göstəricilərə birləşdiririk. Real toplama tamamlanana qədər göstərilən rəqəmlər illüstrativdir.", "lDataSrc": "Mənbə", "lDataSrcV": "Açıq vakansiyalar", "lDataCov": "Əhatə", "lDataCovV": "9 sektor, 40+ peşə", "lDataInd": "Göstəricilər", "lDataIndV": "Maaş, tələbat, bacarıq, təcrübə, dil", "lDataUpd": "Yeniləmələr", "lDataUpdV": "Müntəzəm (planlaşdırılır)", "lAudEye": "Kimlər üçün", "lAudTitle": "Üç qrup insan üçün", "lA1t": "Tələbələr və məzunlar", "lA1d": "Nə oxumaq və ya hansı peşəyə can atmaq qərarı? Hansı peşələrin həqiqətən tələb olunduğunu, nə qədər ödədiyini, hansı bacarıq və təcrübə tələb etdiyini — qərar verməzdən əvvəl görün.", "lA2t": "Mütəxəssislər", "lA2d": "Maaş artımı və ya iş dəyişikliyi haqqında düşünürsünüz? Maaşınızı bazarla müqayisə edin, hansı bacarıqların yeni qapılar açacağını görün və keçə biləcəyiniz qonşu rolları tapın.", "lA3t": "Tədqiqatçılar və müəllimlər", "lA3d": "Əmək bazarı haqqında real rəqəmlər lazımdır? Maaş, tələbat, bacarıq və trendlər üzrə strukturlaşdırılmış göstəriciləri təhlil, tədris proqramları və ya siyasət üçün istifadə edin.", "lHowEye": "Necə işləyir", "lHowTitle": "Vakansiyalardan aydın göstəricilərə", "lH1t": "Toplama", "lH1d": "Azərbaycan iş saytlarından açıq vakansiyaları toplayırıq.", "lH2t": "Çıxarış", "lH2d": "Hər elandan peşəni, maaşı, bacarıqları, təcrübəni və dilləri oxuyuruq.", "lH3t": "Birləşdirmə", "lH3d": "Minlərlə elan peşə və sektor üzrə medianlara, paylara və trendlərə çevrilir.", "lH4t": "Araşdırma", "lH4d": "Bütün bunları qrafiklər, profillər və interaktiv xəritə kimi araşdırırsınız.", "lMissEye": "Layihə haqqında", "lMissTitle": "Pulsuz, müstəqil və aydınlıq üçün", "lMissBody": "Bu, qeyri-kommersiya təşəbbüsüdür — satılan bir şey yoxdur, hesab yaratmaq lazım deyil və reklam yoxdur. Məqsəd sadəcə Azərbaycan əmək bazarını hamı üçün daha aydın etməkdir: yol seçən tələbələr, növbəti addımı planlaşdıran mütəxəssislər və etibarlı rəqəmlərə ehtiyacı olan tədqiqatçılar üçün.", "lBandTitle": "Əmək bazarını araşdırmağa başlayın", "lBandSub": "İnteraktiv xəritəni açın və istənilən peşə, bacarıq və ya sektora keçin.", "lFootNote": "Qeyri-kommersiya təşəbbüsü · illüstrativ data · 2026", "lHome": "Ana səhifə"}, "ru": {"lNavTools": "Инструменты", "lNavData": "Данные", "lNavAud": "Для кого", "lNavHow": "Как работает", "lNavAbout": "О проекте", "lOpen": "Открыть карту", "lHowCta": "Как это работает", "lEye": "Некоммерческая инициатива", "lTitle": "Открытая платформа данных о рынке труда Азербайджана", "lSub": "Медианные зарплаты, открытые вакансии, требуемые навыки и опыт для 40+ профессий в 9 секторах — в одном месте.", "lBody": "Бесплатно, без рекламы и без продаж. Создано, чтобы помочь студентам выбрать направление, специалистам спланировать следующий шаг, а исследователям изучать рынок на реальных данных.", "lDisc": "Данные пока иллюстративные — реальный сбор в разработке.", "lS1n": "9", "lS1l": "секторов", "lS2n": "40+", "lS2l": "профессий", "lS3n": "1000+", "lS3l": "проанализированных вакансий", "lS4n": "3", "lS4l": "языка", "lToolsEye": "Что вы получаете", "lToolsTitle": "Практичные инструменты для понимания рынка", "lToolsSub": "Каждая профессия и сектор разложены на понятные показатели, которые можно сравнивать, фильтровать и исследовать.", "lT1t": "Зарплаты", "lT1d": "Смотрите медианную месячную оплату по профессиям и её рост от джуниора до лида. Сравнивайте роли и находите самые оплачиваемые.", "lT2t": "Спрос и вакансии", "lT2d": "Отслеживайте, сколько позиций открыто и какие профессии растут быстрее всего, чтобы видеть, где есть работа.", "lT3t": "Востребованные навыки", "lT3d": "Узнайте, какие навыки работодатели требуют чаще всего и какие позволяют переходить между отраслями.", "lT4t": "Требования к опыту", "lT4d": "Смотрите, сколько опыта ждёт каждая роль и какова доля вакансий для начинающих — полезно в начале пути.", "lT5t": "Требования к языкам", "lT5d": "Смотрите, как часто требуются английский и русский — по профессиям и секторам.", "lT6t": "Карьерные пути", "lT6d": "Изучайте, какие профессии соседствуют и типичные переходы между ними.", "lT7t": "Сравнение секторов", "lT7d": "Сравнивайте целые отрасли — IT, финансы, строительство, медицину и другие — по оплате, спросу и навыкам.", "lT8t": "Тренды по времени", "lT8d": "Наблюдайте, как менялся спрос на профессии по годам и какие появляются новые.", "lT9t": "Профили профессий", "lT9d": "Откройте любую профессию: оплата, спрос, ключевые навыки, карьерная лестница, примеры работодателей и похожие роли.", "lT10t": "Интерактивная карта", "lT10d": "Исследуйте всё визуально как карту, где каждая профессия связана со своими навыками и соседними карьерами.", "lDataEye": "Данные и методология", "lDataTitle": "Откуда берутся цифры", "lDataBody": "Платформа строится на публично размещённых вакансиях в Азербайджане. По каждой вакансии мы считываем профессию, сектор, зарплату, требуемые навыки, опыт и языки, затем объединяем тысячи из них в показатели, которые вы видите. Пока реальный сбор дорабатывается, показанные цифры иллюстративны.", "lDataSrc": "Источник", "lDataSrcV": "Публичные вакансии", "lDataCov": "Охват", "lDataCovV": "9 секторов, 40+ профессий", "lDataInd": "Показатели", "lDataIndV": "Оплата, спрос, навыки, опыт, языки", "lDataUpd": "Обновления", "lDataUpdV": "Регулярные (план)", "lAudEye": "Для кого", "lAudTitle": "Создано для трёх типов людей", "lA1t": "Студенты и выпускники", "lA1d": "Выбираете, что изучать или к какой профессии стремиться? Узнайте, какие профессии реально востребованы, сколько платят и какие навыки и опыт нужны — до того, как решите.", "lA2t": "Специалисты", "lA2d": "Думаете о повышении или смене работы? Сравните свою зарплату с рынком, узнайте, какие навыки откроют новые двери, и найдите смежные роли для перехода.", "lA3t": "Исследователи и преподаватели", "lA3d": "Нужны реальные цифры о рынке труда? Используйте структурированные показатели по оплате, спросу, навыкам и трендам для анализа, программ или политики.", "lHowEye": "Как это работает", "lHowTitle": "От вакансий к понятным показателям", "lH1t": "Сбор", "lH1d": "Мы собираем публичные вакансии с азербайджанских job-сайтов.", "lH2t": "Извлечение", "lH2d": "Из каждой вакансии считываем профессию, зарплату, навыки, опыт и языки.", "lH3t": "Агрегация", "lH3d": "Тысячи вакансий превращаются в медианы, доли и тренды по профессиям и секторам.", "lH4t": "Исследование", "lH4d": "Вы изучаете всё это как графики, профили и интерактивную карту.", "lMissEye": "О проекте", "lMissTitle": "Бесплатно, независимо и ради ясности", "lMissBody": "Это некоммерческая инициатива — здесь нечего покупать, не нужно создавать аккаунты и нет рекламы. Цель — просто сделать рынок труда Азербайджана понятнее для всех: студентов, выбирающих путь, специалистов, планирующих следующий шаг, и исследователей, которым нужны надёжные цифры.", "lBandTitle": "Начните исследовать рынок труда", "lBandSub": "Откройте интерактивную карту и погрузитесь в любую профессию, навык или сектор.", "lFootNote": "Некоммерческая инициатива · иллюстративные данные · 2026", "lHome": "На главную"}, "en": {"lNavTools": "Tools", "lNavData": "Data", "lNavAud": "Who it's for", "lNavHow": "How it works", "lNavAbout": "About", "lOpen": "Open the map", "lHowCta": "How it works", "lEye": "Non-commercial initiative", "lTitle": "An open data platform for Azerbaijan's labour market", "lSub": "Median salaries, open vacancies, required skills and experience for 40+ professions across 9 sectors — in one place.", "lBody": "Free to use, with no ads and nothing to sell. Built to help students choose a direction, professionals plan their next move, and researchers study the market with real data.", "lDisc": "Data is currently illustrative — the live collection pipeline is in development.", "lS1n": "9", "lS1l": "sectors", "lS2n": "40+", "lS2l": "professions", "lS3n": "1000+", "lS3l": "vacancies analysed", "lS4n": "3", "lS4l": "languages", "lToolsEye": "What you get", "lToolsTitle": "Practical tools for understanding the market", "lToolsSub": "Every profession and sector is broken down into clear indicators you can compare, filter and explore.", "lT1t": "Salary explorer", "lT1d": "See median monthly pay per profession and how it grows from junior to lead. Compare roles and find the best-paid ones.", "lT2t": "Demand & open roles", "lT2d": "Track how many positions are open and which professions are growing fastest, so you can focus where the jobs are.", "lT3t": "Skills in demand", "lT3d": "Find the skills employers ask for most in each profession, and which skills let you move between fields.", "lT4t": "Experience requirements", "lT4d": "See how much experience each role expects and the share of entry-level openings — useful when you're starting out.", "lT5t": "Language requirements", "lT5d": "See how often English and Russian are required, by profession and by sector.", "lT6t": "Career paths", "lT6d": "Explore which professions are adjacent and the typical transitions between them.", "lT7t": "Sector comparison", "lT7d": "Compare whole industries — IT, finance, construction, healthcare and more — by pay, demand and skills.", "lT8t": "Trends over time", "lT8d": "Watch how demand for professions has shifted over the years and which roles are emerging.", "lT9t": "Profession profiles", "lT9d": "Open any profession for a detailed card: pay, demand, top skills, career ladder, example employers and similar roles.", "lT10t": "Interactive map", "lT10d": "Explore everything visually as a map where each profession is connected to its skills and neighbouring careers.", "lDataEye": "Data & methodology", "lDataTitle": "Where the numbers come from", "lDataBody": "The platform is built from publicly posted job vacancies in Azerbaijan. For each vacancy we read the profession, sector, salary, required skills, experience and languages, then combine thousands of them into the indicators you see. While the live pipeline is being finished, the figures shown are illustrative.", "lDataSrc": "Source", "lDataSrcV": "Public vacancies", "lDataCov": "Coverage", "lDataCovV": "9 sectors, 40+ professions", "lDataInd": "Indicators", "lDataIndV": "Pay, demand, skills, experience, languages", "lDataUpd": "Updates", "lDataUpdV": "Regular (planned)", "lAudEye": "Who it's for", "lAudTitle": "Made for three kinds of people", "lA1t": "Students & school-leavers", "lA1d": "Choosing what to study or which career to aim for? See which professions are actually in demand, what they pay, and what skills and experience they need — before you commit.", "lA2t": "Professionals", "lA2d": "Thinking about a raise or a switch? Benchmark your salary against the market, see which skills would open new doors, and find adjacent roles you could move into.", "lA3t": "Researchers & educators", "lA3d": "Need real numbers on the labour market? Use structured indicators on pay, demand, skills and trends for analysis, curricula or policy.", "lHowEye": "How it works", "lHowTitle": "From job ads to clear indicators", "lH1t": "Collect", "lH1d": "We gather publicly posted vacancies from Azerbaijani job sites.", "lH2t": "Extract", "lH2d": "From each ad we read the profession, salary, skills, experience and languages.", "lH3t": "Aggregate", "lH3d": "Thousands of ads become medians, shares and trends per profession and sector.", "lH4t": "Explore", "lH4d": "You browse it all as charts, profiles and an interactive map.", "lMissEye": "About the project", "lMissTitle": "Free, independent, and built for clarity", "lMissBody": "This is a non-commercial initiative — there's nothing to buy, no accounts to create, and no ads. The aim is simply to make Azerbaijan's labour market easier to understand for everyone: students deciding where to head, professionals planning their next step, and researchers who need reliable numbers.", "lBandTitle": "Start exploring the labour market", "lBandSub": "Open the interactive map and dive into any profession, skill or sector.", "lFootNote": "Non-commercial initiative · illustrative data · 2026", "lHome": "Home"}};
+const LANDS={"az": {"lNavTools": "Alətlər", "lNavData": "Məlumat", "lNavAud": "Kimlər üçün", "lNavHow": "Necə işləyir", "lNavAbout": "Haqqında", "lOpen": "Xəritəni aç", "lHowCta": "Necə işləyir", "lEye": "Qeyri-kommersiya təşəbbüsü", "lTitle": "Azərbaycan əmək bazarı üçün açıq məlumat platforması", "lSub": "9 sektor üzrə 40-dan çox peşə üçün median maaşlar, açıq vakansiyalar, tələb olunan bacarıqlar və təcrübə — bir yerdə.", "lBody": "Pulsuz, reklamsız və satışsız. Tələbələrə istiqamət seçməyə, mütəxəssislərə növbəti addımı planlaşdırmağa, tədqiqatçılara isə real məlumatla bazarı öyrənməyə kömək üçün yaradılıb.", "lDisc": "Məlumatlar hazırda illüstrativdir — real toplama prosesi hazırlanır.", "lS1n": "9", "lS1l": "sektor", "lS2n": "40+", "lS2l": "peşə", "lS3n": "1000+", "lS3l": "təhlil edilmiş vakansiya", "lS4n": "3", "lS4l": "dil", "lToolsEye": "Nə əldə edirsiniz", "lToolsTitle": "Bazarı anlamaq üçün praktik alətlər", "lToolsSub": "Hər peşə və sektor müqayisə edə, filtrləyə və araşdıra biləcəyiniz aydın göstəricilərə bölünür.", "lT1t": "Maaşlar", "lT1d": "Hər peşə üçün median aylıq maaşı və onun junior-dan lead-ə qədər artımını görün. Rolları müqayisə edin və ən yüksək maaşlıları tapın.", "lT2t": "Tələbat və vakansiyalar", "lT2d": "Neçə vəzifənin açıq olduğunu və hansı peşələrin daha sürətli artdığını izləyin ki, işin harada olduğunu görəsiniz.", "lT3t": "Tələb olunan bacarıqlar", "lT3d": "İşəgötürənlərin hər peşədə ən çox istədiyi bacarıqları və hansıların sahələr arasında keçidə imkan verdiyini öyrənin.", "lT4t": "Təcrübə tələbləri", "lT4d": "Hər rolun nə qədər təcrübə gözlədiyini və başlanğıc səviyyəli vakansiyaların payını görün — yeni başlayanlar üçün faydalıdır.", "lT5t": "Dil tələbləri", "lT5d": "İngilis və rus dillərinin peşə və sektor üzrə nə qədər tələb olunduğunu görün.", "lT6t": "Karyera yolları", "lT6d": "Hansı peşələrin qonşu olduğunu və aralarındakı tipik keçidləri araşdırın.", "lT7t": "Sektor müqayisəsi", "lT7d": "Bütöv sahələri — IT, maliyyə, tikinti, səhiyyə və s. — maaş, tələbat və bacarıqlara görə müqayisə edin.", "lT8t": "Zaman üzrə trendlər", "lT8d": "Peşələrə tələbatın illər üzrə necə dəyişdiyini və hansı yeni rolların yarandığını izləyin.", "lT9t": "Peşə profilləri", "lT9d": "İstənilən peşəni açın: maaş, tələbat, əsas bacarıqlar, karyera pilləkəni, nümunə işəgötürənlər və oxşar rollar.", "lT10t": "İnteraktiv xəritə", "lT10d": "Hər şeyi vizual olaraq xəritə kimi araşdırın: hər peşə öz bacarıqları və qonşu karyeralarla bağlıdır.", "lDataEye": "Məlumat və metodologiya", "lDataTitle": "Rəqəmlər haradan gəlir", "lDataBody": "Platforma Azərbaycanda açıq şəkildə yerləşdirilən vakansiyalar əsasında qurulur. Hər vakansiyadan peşəni, sektoru, maaşı, tələb olunan bacarıqları, təcrübəni və dilləri oxuyur, sonra minlərlə vakansiyanı gördüyünüz göstəricilərə birləşdiririk. Real toplama tamamlanana qədər göstərilən rəqəmlər illüstrativdir.", "lDataSrc": "Mənbə", "lDataSrcV": "Açıq vakansiyalar", "lDataCov": "Əhatə", "lDataCovV": "9 sektor, 40+ peşə", "lDataInd": "Göstəricilər", "lDataIndV": "Maaş, tələbat, bacarıq, təcrübə, dil", "lDataUpd": "Yeniləmələr", "lDataUpdV": "Müntəzəm (planlaşdırılır)", "lAudEye": "Kimlər üçün", "lAudTitle": "Üç qrup insan üçün", "lA1t": "Tələbələr və məzunlar", "lA1d": "Nə oxumaq və ya hansı peşəyə can atmaq qərarı? Hansı peşələrin həqiqətən tələb olunduğunu, nə qədər ödədiyini, hansı bacarıq və təcrübə tələb etdiyini — qərar verməzdən əvvəl görün.", "lA2t": "Mütəxəssislər", "lA2d": "Maaş artımı və ya iş dəyişikliyi haqqında düşünürsünüz? Maaşınızı bazarla müqayisə edin, hansı bacarıqların yeni qapılar açacağını görün və keçə biləcəyiniz qonşu rolları tapın.", "lA3t": "Tədqiqatçılar və müəllimlər", "lA3d": "Əmək bazarı haqqında real rəqəmlər lazımdır? Maaş, tələbat, bacarıq və trendlər üzrə strukturlaşdırılmış göstəriciləri təhlil, tədris proqramları və ya siyasət üçün istifadə edin.", "lHowEye": "Necə işləyir", "lHowTitle": "Vakansiyalardan aydın göstəricilərə", "lH1t": "Toplama", "lH1d": "Azərbaycan iş saytlarından açıq vakansiyaları toplayırıq.", "lH2t": "Çıxarış", "lH2d": "Hər elandan peşəni, maaşı, bacarıqları, təcrübəni və dilləri oxuyuruq.", "lH3t": "Birləşdirmə", "lH3d": "Minlərlə elan peşə və sektor üzrə medianlara, paylara və trendlərə çevrilir.", "lH4t": "Araşdırma", "lH4d": "Bütün bunları qrafiklər, profillər və interaktiv xəritə kimi araşdırırsınız.", "lMissEye": "Layihə haqqında", "lMissTitle": "Pulsuz, müstəqil və aydınlıq üçün", "lMissBody": "Bu, qeyri-kommersiya təşəbbüsüdür — satılan bir şey yoxdur, hesab yaratmaq lazım deyil və reklam yoxdur. Məqsəd sadəcə Azərbaycan əmək bazarını hamı üçün daha aydın etməkdir: yol seçən tələbələr, növbəti addımı planlaşdıran mütəxəssislər və etibarlı rəqəmlərə ehtiyacı olan tədqiqatçılar üçün.", "lBandTitle": "Əmək bazarını araşdırmağa başlayın", "lBandSub": "İnteraktiv xəritəni açın və istənilən peşə, bacarıq və ya sektora keçin.", "lFootNote": "Qeyri-kommersiya təşəbbüsü · illüstrativ data · 2026", "lHome": "Ana səhifə"}, "ru": {"lNavTools": "Инструменты", "lNavData": "Данные", "lNavAud": "Для кого", "lNavHow": "Как работает", "lNavAbout": "О проекте", "lOpen": "Открыть карту", "lHowCta": "Как это работает", "lEye": "Некоммерческая инициатива", "lTitle": "Открытая платформа данных о рынке труда Азербайджана", "lSub": "Медианные зарплаты, открытые вакансии, требуемые навыки и опыт для 40+ профессий в 9 секторах — в одном месте.", "lBody": "Бесплатно, без рекламы и без продаж. Создано, чтобы помочь студентам выбрать направление, специалистам спланировать следующий шаг, а исследователям изучать рынок на реальных данных.", "lDisc": "Данные пока иллюстративные — реальный сбор в разработке.", "lS1n": "9", "lS1l": "секторов", "lS2n": "40+", "lS2l": "профессий", "lS3n": "1000+", "lS3l": "проанализированных вакансий", "lS4n": "3", "lS4l": "языка", "lToolsEye": "Что вы получаете", "lToolsTitle": "Практичные инструменты для понимания рынка", "lToolsSub": "Каждая профессия и сектор разложены на понятные показатели, которые можно сравнивать, фильтровать и исследовать.", "lT1t": "Зарплаты", "lT1d": "Смотрите медианную месячную оплату по профессиям и её рост от джуниора до лида. Сравнивайте роли и находите самые оплачиваемые.", "lT2t": "Спрос и вакансии", "lT2d": "Отслеживайте, сколько позиций открыто и какие профессии растут быстрее всего, чтобы видеть, где есть работа.", "lT3t": "Востребованные навыки", "lT3d": "Узнайте, какие навыки работодатели требуют чаще всего и какие позволяют переходить между отраслями.", "lT4t": "Требования к опыту", "lT4d": "Смотрите, сколько опыта ждёт каждая роль и какова доля вакансий для начинающих — полезно в начале пути.", "lT5t": "Требования к языкам", "lT5d": "Смотрите, как часто требуются английский и русский — по профессиям и секторам.", "lT6t": "Карьерные пути", "lT6d": "Изучайте, какие профессии соседствуют и типичные переходы между ними.", "lT7t": "Сравнение секторов", "lT7d": "Сравнивайте целые отрасли — IT, финансы, строительство, медицину и другие — по оплате, спросу и навыкам.", "lT8t": "Тренды по времени", "lT8d": "Наблюдайте, как менялся спрос на профессии по годам и какие появляются новые.", "lT9t": "Профили профессий", "lT9d": "Откройте любую профессию: оплата, спрос, ключевые навыки, карьерная лестница, примеры работодателей и похожие роли.", "lT10t": "Интерактивная карта", "lT10d": "Исследуйте всё визуально как карту, где каждая профессия связана со своими навыками и соседними карьерами.", "lDataEye": "Данные и методология", "lDataTitle": "Откуда берутся цифры", "lDataBody": "Платформа строится на публично размещённых вакансиях в Азербайджане. По каждой вакансии мы считываем профессию, сектор, зарплату, требуемые навыки, опыт и языки, затем объединяем тысячи из них в показатели, которые вы видите. Пока реальный сбор дорабатывается, показанные цифры иллюстративны.", "lDataSrc": "Источник", "lDataSrcV": "Публичные вакансии", "lDataCov": "Охват", "lDataCovV": "9 секторов, 40+ профессий", "lDataInd": "Показатели", "lDataIndV": "Оплата, спрос, навыки, опыт, языки", "lDataUpd": "Обновления", "lDataUpdV": "Регулярные (план)", "lAudEye": "Для кого", "lAudTitle": "Создано для трёх типов людей", "lA1t": "Студенты и выпускники", "lA1d": "Выбираете, что изучать или к какой профессии стремиться? Узнайте, какие профессии реально востребованы, сколько платят и какие навыки и опыт нужны — до того, как решите.", "lA2t": "Специалисты", "lA2d": "Думаете о повышении или смене работы? Сравните свою зарплату с рынком, узнайте, какие навыки откроют новые двери, и найдите смежные роли для перехода.", "lA3t": "Исследователи и преподаватели", "lA3d": "Нужны реальные цифры о рынке труда? Используйте структурированные показатели по оплате, спросу, навыкам и трендам для анализа, программ или политики.", "lHowEye": "Как это работает", "lHowTitle": "От вакансий к понятным показателям", "lH1t": "Сбор", "lH1d": "Мы собираем публичные вакансии с азербайджанских job-сайтов.", "lH2t": "Извлечение", "lH2d": "Из каждой вакансии считываем профессию, зарплату, навыки, опыт и языки.", "lH3t": "Агрегация", "lH3d": "Тысячи вакансий превращаются в медианы, доли и тренды по профессиям и секторам.", "lH4t": "Исследование", "lH4d": "Вы изучаете всё это как графики, профили и интерактивную карту.", "lMissEye": "О проекте", "lMissTitle": "Бесплатно, независимо и ради ясности", "lMissBody": "Это некоммерческая инициатива — здесь нечего покупать, не нужно создавать аккаунты и нет рекламы. Цель — просто сделать рынок труда Азербайджана понятнее для всех: студентов, выбирающих путь, специалистов, планирующих следующий шаг, и исследователей, которым нужны надёжные цифры.", "lBandTitle": "Начните исследовать рынок труда", "lBandSub": "Откройте интерактивную карту и погрузитесь в любую профессию, навык или сектор.", "lFootNote": "Некоммерческая инициатива · иллюстративные данные · 2026", "lHome": "На главную"}, "en": {"lNavTools": "Tools", "lNavData": "Data", "lNavAud": "Who it's for", "lNavHow": "How it works", "lNavAbout": "About", "lOpen": "Open the map", "lHowCta": "How it works", "lEye": "Non-commercial initiative", "lTitle": "An open data platform for Azerbaijan's labour market", "lSub": "Median salaries, open vacancies, required skills and experience for 40+ professions across 9 sectors — in one place.", "lBody": "Free to use, with no ads and nothing to sell. Built to help students choose a direction, professionals plan their next move, and researchers study the market with real data.", "lDisc": "Data is currently illustrative — the live collection pipeline is in development.", "lS1n": "9", "lS1l": "sectors", "lS2n": "40+", "lS2l": "professions", "lS3n": "1000+", "lS3l": "vacancies analysed", "lS4n": "3", "lS4l": "languages", "lToolsEye": "What you get", "lToolsTitle": "Practical tools for understanding the market", "lToolsSub": "Every profession and sector is broken down into clear indicators you can compare, filter and explore.", "lT1t": "Salary explorer", "lT1d": "See median monthly pay per profession and how it grows from junior to lead. Compare roles and find the best-paid ones.", "lT2t": "Demand & open roles", "lT2d": "Track how many positions are open and which professions are growing fastest, so you can focus where the jobs are.", "lT3t": "Skills in demand", "lT3d": "Find the skills employers ask for most in each profession, and which skills let you move between fields.", "lT4t": "Experience requirements", "lT4d": "See how much experience each role expects and the share of entry-level openings — useful when you're starting out.", "lT5t": "Language requirements", "lT5d": "See how often English and Russian are required, by profession and by sector.", "lT6t": "Career paths", "lT6d": "Explore which professions are adjacent and the typical transitions between them.", "lT7t": "Sector comparison", "lT7d": "Compare whole industries — IT, finance, construction, healthcare and more — by pay, demand and skills.", "lT8t": "Trends over time", "lT8d": "Watch how demand for professions has shifted over the years and which roles are emerging.", "lT9t": "Profession profiles", "lT9d": "Open any profession for a detailed card: pay, demand, top skills, career ladder, example employers and similar roles.", "lT10t": "Interactive map", "lT10d": "Explore everything visually as a map where each profession is connected to its skills and neighbouring careers.", "lDataEye": "Data & methodology", "lDataTitle": "Where the numbers come from", "lDataBody": "The platform is built from publicly posted job vacancies in Azerbaijan. For each vacancy we read the profession, sector, salary, required skills, experience and languages, then combine thousands of them into the indicators you see. While the live pipeline is being finished, the figures shown are illustrative.", "lDataSrc": "Source", "lDataSrcV": "Public vacancies", "lDataCov": "Coverage", "lDataCovV": "9 sectors, 40+ professions", "lDataInd": "Indicators", "lDataIndV": "Pay, demand, skills, experience, languages", "lDataUpd": "Updates", "lDataUpdV": "Regular (planned)", "lAudEye": "Who it's for", "lAudTitle": "Made for three kinds of people", "lA1t": "Students & school-leavers", "lA1d": "Choosing what to study or which career to aim for? See which professions are actually in demand, what they pay, and what skills and experience they need — before you commit.", "lA2t": "Professionals", "lA2d": "Thinking about a raise or a switch? Benchmark your salary against the market, see which skills would open new doors, and find adjacent roles you could move into.", "lA3t": "Researchers & educators", "lA3d": "Need real numbers on the labour market? Use structured indicators on pay, demand, skills and trends for analysis, curricula or policy.", "lHowEye": "How it works", "lHowTitle": "From job ads to clear indicators", "lH1t": "Collect", "lH1d": "We gather publicly posted vacancies from Azerbaijani job sites.", "lH2t": "Extract", "lH2d": "From each ad we read the profession, salary, skills, experience and languages.", "lH3t": "Aggregate", "lH3d": "Thousands of ads become medians, shares and trends per profession and sector.", "lH4t": "Explore", "lH4d": "You browse it all as charts, profiles and an interactive map.", "lMissEye": "About the project", "lMissTitle": "Free, independent, and built for clarity", "lMissBody": "This is a non-commercial initiative — there's nothing to buy, no accounts to create, and no ads. The aim is simply to make Azerbaijan's labour market easier to understand for everyone: students deciding where to head, professionals planning their next step, and researchers who need reliable numbers.", "lBandTitle": "Start exploring the labour market", "lBandSub": "Open the interactive map and dive into any profession, skill or sector.", "lFootNote": "Non-commercial initiative · illustrative data · 2026", "lHome": "Home"}};
 
 "use strict";
 /* ============================================================ DATA ============ */
@@ -917,12 +1134,15 @@ const cv = document.getElementById('sky');
 const ctx = cv.getContext('2d', {alpha:false});
 let CW=0, CH=0, DPR=1;
 function resize(){
+  const _had = CW>0 && CH>0;
+  const _ratio = _had ? cam.tzoom/(Math.min(CW,CH)/(WORLD_R*2.15)) : 1;
   DPR = Math.min(2, window.devicePixelRatio||1);
   CW = window.innerWidth; CH = window.innerHeight;
   cv.width = CW*DPR; cv.height = CH*DPR;
   cv.style.width = CW+'px'; cv.style.height = CH+'px';
   ctx.setTransform(DPR,0,0,DPR,0,0);
   fitCamera();
+  if(_had){ const f=fitZoomFor(); cam.tzoom=clamp(f*_ratio, f*0.5, f*8); cam.zoom=cam.tzoom; }
 }
 
 /* pre-rendered glow sprites (one soft star per sector colour + white) */
@@ -993,6 +1213,7 @@ STARS.forEach(a=>{
 
 /* ============================================================ CAMERA ========== */
 const cam={x:0,y:0,zoom:1, tx:0,ty:0,tzoom:1};
+const SKILLSET=new Set(); STARS.forEach(s=>s.skills.forEach(k=>SKILLSET.add(k)));
 const WORLD_R=760;
 function fitCamera(){ const z=Math.min(CW,CH)/(WORLD_R*2.15); cam.zoom=cam.tzoom=z; }
 function S(wx,wy){ return [ (wx-cam.x)*cam.zoom + CW/2, (wy-cam.y)*cam.zoom + CH/2 ]; }
@@ -1007,12 +1228,12 @@ function layout(mode){
   const secAng = i => (i/SEC.length)*Math.PI*2 - Math.PI/2;
   STARS.forEach(s=>{ s.col=SEC[s.sec].c.slice(); s.tsize=s.baseSize; });
 
-  if(mode==='galaxy' || mode==='careers'){
+  if(mode==='galaxy'){
     // sector clusters around the centre, loose blobs (constellations)
     STARS.forEach(s=>{
-      const a=secAng(s.sec), R=430;
+      const a=secAng(s.sec), R=500;
       const cx=Math.cos(a)*R, cy=Math.sin(a)*R*0.82;
-      s.tx=cx+gauss()*120; s.ty=cy+gauss()*120;
+      s.tx=cx+gauss()*155; s.ty=cy+gauss()*155;
     });
   } else if(mode==='demand'){
     // gravity well: high demand sinks toward centre
@@ -1034,16 +1255,25 @@ function layout(mode){
     // language sea-level: English-required submerged (low), Azerbaijani dry (high)
     STARS.forEach(s=>{
       s.ty=mapv(clamp(s.enp,0,90),0,90,-330,330);
-      s.tx=mapv(s.i%9,0,8,-680,680)+gauss()*30;
+      s.tx=mapv(clamp(s.rup,0,90),0,90,-680,680)+gauss()*22;
       const sub=clamp(mapv(s.enp,10,80,0,1),0,1);
       s.col=[ lerp(SEC[s.sec].c[0],70,sub), lerp(SEC[s.sec].c[1],150,sub*.6), lerp(SEC[s.sec].c[2],240,sub) ];
     });
+  } else if(mode==='careers'){
+    // career entry: x = experience required (left = no experience), y = sector lane
+    STARS.forEach(s=>{
+      const yr=parseInt(s.exp)||0;
+      s.tx=mapv(clamp(yr,0,6),0,6,-650,650)+gauss()*18;
+      s.ty=mapv(s.sec,0,SEC.length-1,-330,330)+gauss()*24;
+    });
   } else if(mode==='time'){
-    STARS.forEach(s=>{ const a=secAng(s.sec), R=430;
-      s.tx=Math.cos(a)*R+gauss()*120; s.ty=Math.sin(a)*R*0.82+gauss()*120;
-      s.tsize=s.baseSize*yearFactor(s,YEAR); });
+    STARS.forEach(s=>{ const a=secAng(s.sec), R=500;
+      s.tx=Math.cos(a)*R+gauss()*155; s.ty=Math.sin(a)*R*0.82+gauss()*155; });
   }
+  if(mode==='time') applyYearSizes();
 }
+function applyYearSizes(){ if(MODE!=='time')return;
+  STARS.forEach(s=>{ s.tsize=s.baseSize*clamp(yearFactor(s,YEAR),0.05,1.55); }); }
 
 /* ============================================================ INTERACTION ===== */
 let mouse={x:-9999,y:-9999}, hovered=null;
@@ -1066,10 +1296,69 @@ function pickNode(){
   return best;
 }
 cv.addEventListener('click',()=>{
+  if(dragMoved){ dragMoved=false; return; }
   if(VIEW==='universe'){ const s=hovered||pickStar(); if(s) enterSystem(s,true); }
   else if(VIEW==='skill'){ const s=hovered||pickFrom(skillMatches); if(s) enterSystem(s,true); }
   else { const node=hoverNode||pickNode(); if(node){ if(node.kind==='skill') enterSkill(node.name,true); else if(node.star) enterSystem(node.star,true); } }
 });
+
+/* ---- pan / zoom / gestures / motion prefs ---- */
+const RM = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+let LAND_ON = true;
+const ZMIN=()=>fitZoomFor()*0.5, ZMAX=()=>fitZoomFor()*8;
+function clampCam(){ cam.tzoom=clamp(cam.tzoom,ZMIN(),ZMAX()); cam.tx=clamp(cam.tx,-1600,1600); cam.ty=clamp(cam.ty,-1200,1200); }
+function zoomAt(mx,my,f){ const z1=cam.tzoom, z2=clamp(z1*f,ZMIN(),ZMAX());
+  const wx=cam.tx+(mx-CW/2)/z1, wy=cam.ty+(my-CH/2)/z1;
+  cam.tzoom=z2; cam.tx=wx-(mx-CW/2)/z2; cam.ty=wy-(my-CH/2)/z2; clampCam(); }
+cv.addEventListener('wheel',e=>{ if(LAND_ON)return; e.preventDefault();
+  zoomAt(e.clientX,e.clientY, Math.pow(1.0016, -e.deltaY)); },{passive:false});
+let dragMoved=false; const PTRS=new Map(); let pinchD=0;
+cv.addEventListener('pointerdown',e=>{ if(LAND_ON)return;
+  PTRS.set(e.pointerId,{x:e.clientX,y:e.clientY}); dragMoved=false;
+  if(PTRS.size===2){ const p=[...PTRS.values()]; pinchD=Math.hypot(p[0].x-p[1].x,p[0].y-p[1].y); }
+  if(cv.setPointerCapture) try{ cv.setPointerCapture(e.pointerId); }catch(err){} });
+cv.addEventListener('pointermove',e=>{ const pt=PTRS.get(e.pointerId); if(!pt)return;
+  const dx=e.clientX-pt.x, dy=e.clientY-pt.y;
+  if(PTRS.size===1){ if(Math.abs(dx)+Math.abs(dy)>4) dragMoved=true;
+    if(dragMoved){ cam.tx-=dx/cam.tzoom; cam.ty-=dy/cam.tzoom; cam.x=cam.tx; cam.y=cam.ty; clampCam(); }
+    pt.x=e.clientX; pt.y=e.clientY; }
+  else if(PTRS.size===2){ pt.x=e.clientX; pt.y=e.clientY; dragMoved=true;
+    const p=[...PTRS.values()]; const d=Math.hypot(p[0].x-p[1].x,p[0].y-p[1].y);
+    if(pinchD>0 && d>0) zoomAt((p[0].x+p[1].x)/2,(p[0].y+p[1].y)/2, d/pinchD);
+    pinchD=d; } });
+const endPtr=e=>{ PTRS.delete(e.pointerId); if(PTRS.size<2) pinchD=0; };
+cv.addEventListener('pointerup',endPtr); cv.addEventListener('pointercancel',endPtr);
+cv.addEventListener('dblclick',e=>{ if(LAND_ON||VIEW!=='universe')return; if(pickStar())return; zoomAt(e.clientX,e.clientY,1.6); });
+function resetView(){ cam.tx=0; cam.ty=0; cam.tzoom=fitZoomFor(); }
+window.addEventListener('keydown',e=>{ if(LAND_ON)return;
+  if(e.key==='Escape'){ if(VIEW!=='universe') backNav(); else resetView(); } });
+{ const zi=document.getElementById('zoomIn'), zo=document.getElementById('zoomOut'), zr=document.getElementById('zoomReset');
+  if(zi) zi.onclick=()=>zoomAt(CW/2,CH/2,1.35);
+  if(zo) zo.onclick=()=>zoomAt(CW/2,CH/2,1/1.35);
+  if(zr) zr.onclick=resetView; }
+{ const mi=document.getElementById('msInput'), mr=document.getElementById('msRes'), mbox=document.getElementById('msearch');
+  let msList=[], msSel=-1;
+  const msHide=()=>{ mr.classList.remove('on'); mr.innerHTML=''; msList=[]; msSel=-1; };
+  const msGo=s=>{ mi.value=''; msHide(); mi.blur(); enterSystem(s,true); };
+  mi.oninput=()=>{ const q=normStr(mi.value.trim()); msSel=-1;
+    if(q.length<2){ msHide(); return; }
+    msList=STARS.filter(s=>normStr(profLabel(s)+' '+s.en+' '+s.name).indexOf(q)>=0).slice(0,7);
+    mr.innerHTML=msList.length
+      ? msList.map((s,k)=>'<div class="ms-row" data-k="'+k+'"><span class="pc-dot" style="background:rgb('+SEC[s.sec].c.join(',')+')"></span>'+profLabel(s)+(rdy(s)?'<span class="ms-v">'+fmt(s.salary)+'</span>':'')+'</div>').join('')
+      : '<div class="ms-row ms-empty">'+T('lNoResults')+'</div>';
+    mr.classList.add('on');
+    mr.querySelectorAll('.ms-row[data-k]').forEach(r=>r.onclick=()=>msGo(msList[+r.getAttribute('data-k')])); };
+  mi.onkeydown=e=>{ e.stopPropagation();
+    if(e.key==='Escape'){ mi.value=''; msHide(); mi.blur(); }
+    else if(e.key==='Enter'){ if(msList.length) msGo(msSel>=0?msList[msSel]:msList[0]); }
+    else if(e.key==='ArrowDown'||e.key==='ArrowUp'){ e.preventDefault(); if(!msList.length)return;
+      msSel=(msSel+(e.key==='ArrowDown'?1:-1)+msList.length)%msList.length;
+      mr.querySelectorAll('.ms-row').forEach((r,k)=>r.classList.toggle('sel',k===msSel)); } };
+  document.addEventListener('click',e=>{ if(mbox && !mbox.contains(e.target)) msHide(); });
+  window.addEventListener('hashchange',msHide);
+  window.addEventListener('keydown',e=>{ if(LAND_ON)return;
+    const tg=e.target && e.target.tagName;
+    if(e.key==='/' && tg!=='INPUT' && tg!=='TEXTAREA' && tg!=='SELECT'){ e.preventDefault(); mi.focus(); } }); }
 function fitZoomFor(){ return Math.min(CW,CH)/(WORLD_R*2.15); }
 function profLabel(s){ return LG==='az'?s.name : LG==='ru'?(PROF_RU[s.en]||s.en) : s.en; }
 function dockVis(on){ const d=document.getElementById('dock'); d.style.opacity=on?'1':'0'; d.style.pointerEvents=on?'auto':'none';
@@ -1093,6 +1382,7 @@ function enterSystem(star, push){
   document.getElementById('brand').style.opacity=0; dockVis(false); hideInsight();
   if(push!==false) NAV.push({type:'system', star, label:profLabel(star)});
   renderCrumbs();
+  try{ if(!LAND_ON) history.replaceState(null,'','#map/prof-'+slugOf(star)); }catch(e){}
 }
 function enterSkill(skill, push){
   VIEW='skill'; focusSkill=skill; selected=null; lastHover=null; hoverNode=null;
@@ -1107,8 +1397,10 @@ function enterSkill(skill, push){
   document.getElementById('detail').classList.remove('show'); showInsight(skill);
   if(push!==false) NAV.push({type:'skill', skill, label:skTR(skill)});
   renderCrumbs();
+  try{ if(!LAND_ON) history.replaceState(null,'','#map/skill-'+encodeURIComponent(skill)); }catch(e){}
 }
 function exitToUniverse(resetNav){
+  try{ if(!LAND_ON) history.replaceState(null,'','#map'); }catch(e){}
   VIEW='universe'; selected=null; focusSkill=null; lastHover=null; hoverNode=null;
   SYS.length=0; NEIGH.length=0;
   cam.tx=0; cam.ty=0; cam.tzoom=fitZoomFor();
@@ -1156,9 +1448,9 @@ function layoutSkill(skill){
 
 /* ============================================================ DETAIL PANEL ==== */
 const LANG={
- az:{brand:'Bakı Əmək Rəsədxanası · prototip',tag:'Azərbaycan əmək bazarı — hər ulduz bir peşədir',back:'← Kainata qayıt',pay:'Median maaş',open:'Açıq vakansiya',bEn:'İngilis',bRu:'Rus',bRem:'Uzaqdan iş',skills:'Əsas bacarıqlar',hintDefault:'Ulduza toxun → peşə sistemi açılır',careersHint:'Ulduza toxun → karyera əlaqələri yansın',gate_eye:'Daxil ol · əmək kainatı',gate_h2:'Hər vakansiya bir fotondur.<br>Milyonlarla işıq bir kosmos qurur.',gate_p:'Azərbaycan əmək bazarı canlı xəritə kimi. Linzanı dəyiş — eyni kainat başqa fizikada açılır: tələbatın cazibəsi, maaşın iqlimi, dil tələbi, karyera axınları, zamanın hərəkəti.',enter:'Kainata gir',note:'İllüstrativ data · real boru kəməri sonra qoşulur',exp:['Təcrübə','təcrübəsiz'],err:'Kainat yüklənmədi: ',universe:'Kainat',profWord:'peşə',insTop:'Ən yüksək maaş',insMost:'Ən çox',insBridge:'Körpü',cardCareer:'Karyera yolu',cardFirms:'Şirkətlər',cardSimilar:'Oxşar peşələr',dem:['az tələbat','orta tələbat','yüksək tələbat'],lgTitle:'Sektorlar',lgAll:'Bütün sektorlar',lenses:[['Bürclər','sektorlar'],['Tələbat','cazibə'],['Maaş iqlimi','iqlim'],['Dillər','tələb'],['Karyera','əlaqələr'],['Zaman','2019–27']]},
- ru:{brand:'Бакинская обсерватория труда · прототип',tag:'Рынок труда Азербайджана — каждая звезда это профессия',back:'← Назад во вселенную',pay:'Медианная зарплата',open:'Открытые вакансии',bEn:'Английский',bRu:'Русский',bRem:'Удалёнка',skills:'Ключевые навыки',hintDefault:'Коснись звезды → откроется её система',careersHint:'Наведи на звезду → загорятся карьерные связи',gate_eye:'Войди · вселенная труда',gate_h2:'Каждая вакансия — фотон.<br>Миллионы из них образуют космос.',gate_p:'Рынок труда Азербайджана как живая карта. Меняй линзу — та же вселенная открывается в другой физике: гравитация спроса, климат зарплат, требования к языкам, потоки карьер, движение времени.',enter:'Войти во вселенную',note:'Иллюстративные данные · реальный конвейер подключим позже',exp:['Опыт','без опыта'],err:'Вселенная не загрузилась: ',universe:'Вселенная',profWord:'профессий',insTop:'Самые денежные',insMost:'Больше всего в',insBridge:'Мост',cardCareer:'Карьерный путь',cardFirms:'Компании',cardSimilar:'Похожие профессии',dem:['низкий спрос','средний спрос','высокий спрос'],lgTitle:'Секторы',lgAll:'Все секторы',lenses:[['Созвездия','секторы'],['Спрос','гравитация'],['Климат зарплат','климат'],['Языки','приливы'],['Карьера','связи'],['Время','2019–27']]},
- en:{brand:'Baku Labour Observatory · prototype',tag:"Azerbaijan's labour market — every star is a profession",back:'← Back to the universe',pay:'Median pay',open:'Open roles',bEn:'English',bRu:'Russian',bRem:'Remote',skills:'Key skills',hintDefault:'Click a star → enter its system',careersHint:'Hover a star → its career links light up',gate_eye:'Enter · the universe of work',gate_h2:'Every vacancy is a photon.<br>Millions of them build a cosmos.',gate_p:"Azerbaijan's labour market as a living map. Switch the lens and the same universe opens in a different physics — the gravity of demand, the climate of pay, language requirements, the currents of careers, the motion of time.",enter:'Enter the universe',note:'Illustrative data · real pipeline plugs in later',exp:['Experience','entry-level'],err:'Universe failed to load: ',universe:'Universe',profWord:'professions',insTop:'Top pay',insMost:'Most in',insBridge:'Bridge',cardCareer:'Career path',cardFirms:'Companies',cardSimilar:'Similar roles',dem:['niche','steady','high demand'],lgTitle:'Sectors',lgAll:'All sectors',lenses:[['Constellations','by sector'],['Demand','gravity well'],['Salary','pay climate'],['Languages','tides'],['Careers','links'],['Time','machine']]}
+ az:{brand:'Bakı Əmək Rəsədxanası · prototip',tag:'Azərbaycan əmək bazarı — hər ulduz bir peşədir',back:'← Kainata qayıt',pay:'Median maaş',open:'Açıq vakansiya',bEn:'İngilis',bRu:'Rus',bRem:'Uzaqdan iş',skills:'Əsas bacarıqlar',hintDefault:'Ulduza toxun → peşə sistemi açılır',careersHint:'Ulduza toxun → karyera əlaqələri yansın',gate_eye:'Daxil ol · əmək kainatı',gate_h2:'Hər vakansiya bir fotondur.<br>Milyonlarla işıq bir kosmos qurur.',gate_p:'Azərbaycan əmək bazarı canlı xəritə kimi. Linzanı dəyiş — eyni kainat başqa fizikada açılır: tələbatın cazibəsi, maaşın iqlimi, dil tələbi, karyera axınları, zamanın hərəkəti.',enter:'Kainata gir',note:'İllüstrativ data · real boru kəməri sonra qoşulur',exp:['Təcrübə','təcrübəsiz'],err:'Kainat yüklənmədi: ',universe:'Kainat',profWord:'peşə',insTop:'Ən yüksək maaş',insMost:'Ən çox',insBridge:'Körpü',cardCareer:'Karyera yolu',cardFirms:'Şirkətlər',cardSimilar:'Oxşar peşələr',dem:['az tələbat','orta tələbat','yüksək tələbat'],lgTitle:'Sektorlar',lgAll:'Bütün sektorlar',lenses:[['Bürclər','sektorlar'],['Tələbat','cazibə'],['Maaş iqlimi','iqlim'],['Dillər','tələb'],['Karyera','əlaqələr'],['Zaman','2019–27']],mapTitle:'Əmək bazarının kainatı',unMonth:'AZN / ay',hintSystem:'Peyklər — bacarıqlar, kənar planetlər — qonşu peşələr. Klik edin.'},
+ ru:{brand:'Бакинская обсерватория труда · прототип',tag:'Рынок труда Азербайджана — каждая звезда это профессия',back:'← Назад во вселенную',pay:'Медианная зарплата',open:'Открытые вакансии',bEn:'Английский',bRu:'Русский',bRem:'Удалёнка',skills:'Ключевые навыки',hintDefault:'Коснись звезды → откроется её система',careersHint:'Наведи на звезду → загорятся карьерные связи',gate_eye:'Войди · вселенная труда',gate_h2:'Каждая вакансия — фотон.<br>Миллионы из них образуют космос.',gate_p:'Рынок труда Азербайджана как живая карта. Меняй линзу — та же вселенная открывается в другой физике: гравитация спроса, климат зарплат, требования к языкам, потоки карьер, движение времени.',enter:'Войти во вселенную',note:'Иллюстративные данные · реальный конвейер подключим позже',exp:['Опыт','без опыта'],err:'Вселенная не загрузилась: ',universe:'Вселенная',profWord:'профессий',insTop:'Самые денежные',insMost:'Больше всего в',insBridge:'Мост',cardCareer:'Карьерный путь',cardFirms:'Компании',cardSimilar:'Похожие профессии',dem:['низкий спрос','средний спрос','высокий спрос'],lgTitle:'Секторы',lgAll:'Все секторы',lenses:[['Созвездия','секторы'],['Спрос','гравитация'],['Климат зарплат','климат'],['Языки','приливы'],['Карьера','связи'],['Время','2019–27']],mapTitle:'Вселенная рынка труда',unMonth:'AZN / мес',hintSystem:'Спутники — навыки, внешние планеты — соседние профессии. Кликайте.'},
+ en:{brand:'Baku Labour Observatory · prototype',tag:"Azerbaijan's labour market — every star is a profession",back:'← Back to the universe',pay:'Median pay',open:'Open roles',bEn:'English',bRu:'Russian',bRem:'Remote',skills:'Key skills',hintDefault:'Click a star → enter its system',careersHint:'Hover a star → its career links light up',gate_eye:'Enter · the universe of work',gate_h2:'Every vacancy is a photon.<br>Millions of them build a cosmos.',gate_p:"Azerbaijan's labour market as a living map. Switch the lens and the same universe opens in a different physics — the gravity of demand, the climate of pay, language requirements, the currents of careers, the motion of time.",enter:'Enter the universe',note:'Illustrative data · real pipeline plugs in later',exp:['Experience','entry-level'],err:'Universe failed to load: ',universe:'Universe',profWord:'professions',insTop:'Top pay',insMost:'Most in',insBridge:'Bridge',cardCareer:'Career path',cardFirms:'Companies',cardSimilar:'Similar roles',dem:['niche','steady','high demand'],lgTitle:'Sectors',lgAll:'All sectors',lenses:[['Constellations','by sector'],['Demand','gravity well'],['Salary','pay climate'],['Languages','tides'],['Careers','links'],['Time','machine']],mapTitle:'Observable Universe of Work',unMonth:'AZN / month',hintSystem:'Moons are skills, outer planets are neighbouring roles. Click them.'}
 };
 const PROF_RU={"Sales Manager":"Менеджер по продажам","Sales Representative":"Торговый представитель","Cashier":"Кассир","Store Manager":"Директор магазина","Marketing Specialist":"Маркетолог","E-commerce Manager":"Менеджер e-commerce","Software Developer":"Разработчик ПО","Frontend Developer":"Frontend-разработчик","DevOps Engineer":"DevOps-инженер","QA Engineer":"QA-инженер","Data Analyst":"Аналитик данных","ML Engineer":"ML-инженер","Prompt Engineer":"Prompt-инженер","Accountant":"Бухгалтер","Chief Accountant":"Главный бухгалтер","Financial Analyst":"Финансовый аналитик","Driver":"Водитель","Logistician":"Логист","Warehouse Keeper":"Кладовщик","Courier":"Курьер","Supply Specialist":"Специалист по снабжению","Mechanical Engineer":"Инженер-механик","Electrical Engineer":"Инженер-электрик","HSE Specialist":"Специалист по охране труда","Plant Operator":"Оператор установки","Geologist":"Геолог","Civil Engineer":"Инженер-строитель","Foreman":"Прораб","Architect":"Архитектор","Cost Estimator":"Сметчик","Construction Worker":"Строительный рабочий","Doctor":"Врач","Nurse":"Медсестра","Pharmacist":"Фармацевт","Dentist":"Стоматолог","Lab Technician":"Лаборант","Waiter":"Официант","Chef":"Повар","Hotel Administrator":"Администратор отеля","Barista":"Бариста","Guest Service Agent":"Агент гостевого сервиса","HR Specialist":"HR-специалист","Office Manager":"Офис-менеджер","Administrative Assistant":"Помощник администратора","Translator":"Переводчик","Receptionist":"Ресепшионист"};
 const SKILL_TR={"Danışıqlar":["Переговоры","Negotiation"],"Müştəri xidməti":["Клиентский сервис","Customer service"],"Ünsiyyət":["Коммуникация","Communication"],"Kassa":["Работа с кассой","Cash handling"],"Satış":["Продажи","Sales"],"Diqqət":["Внимательность","Attention to detail"],"Müştəri":["Работа с клиентами","Customer relations"],"İdarəetmə":["Управление","Management"],"İnventar":["Инвентаризация","Inventory"],"Analitika":["Аналитика","Analytics"],"Kontent":["Контент","Content"],"Logistika":["Логистика","Logistics"],"Vergi":["Налоги","Tax"],"Hesabat":["Отчётность","Reporting"],"Kredit":["Кредитование","Credit"],"Modelləşdirmə":["Моделирование","Modeling"],"Statistika":["Статистика","Statistics"],"Sürücülük":["Вождение","Driving"],"Naviqasiya":["Навигация","Navigation"],"Anbar":["Складской учёт","Warehousing"],"Təchizat":["Снабжение","Procurement"],"Mexanika":["Механика","Mechanics"],"Layihə":["Проектирование","Project design"],"Elektrik":["Электрика","Electrical"],"Təhlükəsizlik":["Охрана труда","Safety"],"Avadanlıq":["Оборудование","Equipment"],"Geologiya":["Геология","Geology"],"Analiz":["Анализ","Analysis"],"Smeta":["Сметы","Cost estimation"],"Briqada":["Бригадирство","Crew lead"],"Dizayn":["Дизайн","Design"],"Tikinti":["Строительство","Construction"],"Fiziki":["Физический труд","Physical work"],"Tibb":["Медицина","Medicine"],"Diaqnoz":["Диагностика","Diagnosis"],"Müalicə":["Лечение","Treatment"],"Qulluq":["Уход за пациентами","Patient care"],"Əczaçılıq":["Фармацевтика","Pharmacy"],"Stomatologiya":["Стоматология","Dentistry"],"Laboratoriya":["Лабораторная работа","Lab work"],"Xidmət":["Сервис","Service"],"Kulinariya":["Кулинария","Cooking"],"Menyu":["Меню","Menu"],"Gigiyena":["Гигиена","Hygiene"],"Qəhvə":["Кофе","Coffee"],"Dillər":["Языки","Languages"],"İşə qəbul":["Подбор персонала","Recruiting"],"Sənəd":["Документооборот","Documents"],"Telefon":["Телефон","Phone"],"İngilis":["Английский","English"],"Rus":["Русский","Russian"],"Tərcümə":["Перевод","Translation"],"Bank":["Банковское дело","Banking"]};
@@ -1171,6 +1463,11 @@ const LV=['Junior','Mid','Senior','Lead'], LADDER=[0.65,1.0,1.5,2.1];
 function r50(n){ return Math.round(n/50)*50; }
 function showDetail(s, full){
   const d=document.getElementById('detail'); d.classList.add('show'); const L=LANG[LG];
+  { const _fi=STARS.indexOf(s), _fb=document.getElementById('dFav');
+    if(_fb && _fi>=0){ const _on=FAV.has(_fi);
+      _fb.textContent=_on?'\u2665':'\u2661'; _fb.classList.toggle('on',_on);
+      _fb.setAttribute('aria-pressed',_on); _fb.setAttribute('aria-label',T('lFav'));
+      _fb.onclick=function(ev){ ev.stopPropagation(); toggleFav(_fi); showDetail(s, full); }; } }
   const c=SEC[s.sec].c; const col='rgb('+c.join(',')+')';
   document.getElementById('dDot').style.background=col;
   document.getElementById('dDot').style.boxShadow='0 0 10px '+col;
@@ -1180,8 +1477,11 @@ function showDetail(s, full){
   document.getElementById('dName').textContent=_pn;
   document.getElementById('dEn').textContent=_sn;
   if(rdy(s)){ animNum('dSal',s.salary); } else { var _ds=document.getElementById('dSal'); if(_ds) _ds.textContent=T('lSoon'); }
-  document.getElementById('dCnt').textContent='\u2014';
-  document.getElementById('dDem').textContent=T('lInDev');
+  var _dd=DEMAND[s.en];
+  if(_dd){ animNum('dCnt',_dd.n); var _tr=_dd.n>60?2:_dd.n>15?1:0;
+    document.getElementById('dDem').textContent=(LANG[LG].dem[_tr])+' \u00b7 '+T('lSrcLive'); }
+  else { var _dc=document.getElementById('dCnt'); _dc.dataset.v=0; _dc.textContent='\u2014';
+    document.getElementById('dDem').textContent=T('lInDev'); }
   document.getElementById('dLangs').innerHTML='<div class="d-lang" style="color:#9aa4ba">'+T('lInDev')+'</div>';
   const ch=document.getElementById('dChips'); ch.innerHTML='';
   s.skills.slice(0,5).forEach(function(sk){ const x=document.createElement('span'); x.className='chip'; x.textContent=skTR(sk); ch.appendChild(x); });
@@ -1191,7 +1491,7 @@ function showDetail(s, full){
   document.getElementById('dFirms').innerHTML=firms.map(function(f){return '<div class="row">'+f+'</div>';}).join('');
   const sim=(s.related||[]).slice(0,3);
   document.getElementById('dSimilar').innerHTML=sim.map(function(b){return '<div class="row">'+profLabel(b)+'</div>';}).join('');
-  document.getElementById('dHint').textContent = full ? T('lInDev') : L.hintDefault;
+  document.getElementById('dHint').textContent = full ? T('hintSystem') : L.hintDefault;
 }
 function secName(i){ return LG==='az'?SEC[i].n:LG==='ru'?SEC[i].r:SEC[i].e; }
 function showInsight(skill){
@@ -1221,11 +1521,11 @@ function buildDock(){
     b.onclick=()=>{ document.querySelectorAll('.lens').forEach(x=>x.classList.remove('on')); b.classList.add('on'); setMode(ln.id); };
     dock.appendChild(b); });
 }
-const LANDS2={"az":{"outTitle":"Böyüyən peşələr","outHint":"Tələbatı artan peşələrin işarələnməsi","outSoon":"trend: —","outNote":"Böyümə trendi vakansiya dinamikasından hesablanır — tezliklə hər peşədə görünəcək.","parTitle":"Valideyn və müəllim üçün","parHint":"Uşağa peşə seçimində necə kömək etmək olar","par_t1_h":"Dinlə, qərar vermə","par_t1_b":"Uşağın özü kəşf etsin — seçimi ona təlqin etmə.","par_t2_h":"Birlikdə araşdırın","par_t2_b":"Atlasdan tələbat və maaşlara birlikdə baxın.","par_t3_h":"«Pis» peşə yoxdur","par_t3_b":"Hər yolun dəyəri var — uyğunluğa fokuslan.","par_t4_h":"Marağı peşə ilə bağla","par_t4_b":"«Mənə nə uyğundur» testini birlikdə keçin.","parNote":"Müəllimlər üçün əlavə materiallar hazırlanır.","vidTitle":"Peşə videoları","vidHint":"Peşənin bir günü — qısa videolar","vidSoon":"video tezliklə","vidNote":"Peşələr üzrə videolar hazırlanır — tezliklə əlçatan olacaq.","vid_v1_n":"Proqramçı","vid_v2_n":"Həkim","vid_v3_n":"Müəllim","vid_v4_n":"Satıcı","vid_v5_n":"Aşpaz","vid_v6_n":"Mühəndis","futTitle":"Gələcəyin peşələri","futHint":"Yaranan və böyüyən peşələr","futDemand":"Tələbat","futWhen":"Yaranma","futNote":"Bunlar nümunə peşələrdir. Tələbat və proqnoz məlumatları toplanır — tezliklə.","fut_ai_n":"AI mühəndisi","fut_ai_d":"Süni intellekt sistemləri qurur","fut_data_n":"Data analitik","fut_data_d":"Verilərdən qərar çıxarır","fut_cyber_n":"Kibertəhlükəsizlik mütəxəssisi","fut_cyber_d":"Sistemləri hücumlardan qoruyur","fut_green_n":"Yaşıl enerji mühəndisi","fut_green_d":"Bərpa olunan enerji üzərində işləyir","fut_ux_n":"UX dizayner","fut_ux_d":"Rəqəmsal məhsulları rahat edir","fut_robo_n":"Robototexnika mühəndisi","fut_robo_d":"Robotları dizayn edir","eduTitle":"Təhsil yolu","eduHint":"Bu peşəyə hansı təhsil yolu aparır","eduStep":"Peşə","eduSector":"Sahə","eduColSpec":"İxtisas","eduColUni":"Universitet","eduColScore":"Keçid balı","eduColEmp":"Məzun məşğulluğu","eduNote":"İxtisas, universitet və məzun məşğulluğu məlumatları DİM və DMA məzun reytinqindən toplanır — tezliklə.","aiTitle":"AI karyera köməkçisi","aiHint":"Peşələr, maaşlar və təhsil haqqında soruş","aiWelcome":"Salam! Mən karyera köməkçisiyəm. Hələ hazırlanıram, amma tezliklə suallarına cavab verəcəyəm.","aiStub":"Bu köməkçi hazırlanır — tezliklə real cavablar verəcək.","aiPh":"Sualını yaz...","aiSendL":"Göndər","aiSug1":"Ən çox tələb olunan peşələr hansılardır?","aiSug2":"Proqramçı nə qədər qazanır?","aiSug3":"Həkim olmaq üçün hara oxumalıyam?","sgTitle":"Bacarıq boşluğu","sgHint":"Hədəf peşəni seç və bacarıqlarını qeyd et — nəyin çatışmadığını gör","sgStep1":"1. Hədəf peşə","sgStep2":"2. Sənin bacarıqların","sgBtn":"Müqayisə et","sgYours":"Sənin bacarıqların","sgNeed":"Peşə üçün lazımdır","sgMiss":"Çatışmır","sgSoon":"məlumat hazırlanır","sgNoneSel":"bacarıq seçilməyib","sgNote":"Peşələr üzrə tələb olunan bacarıqlar elanlardan toplanır — tezliklə əlçatan olacaq.","lNavTools":"İmkanlar","tHubT":"İmkanlar","tHubS":"Atlasın bütün alətləri — işləyənlər və hazırlananlar","tGrpLive":"İşləyir","tGrpDev":"Hazırlanır","tGrpPlan":"Planlaşdırılır","tBadgeLive":"hazır","tBadgeDev":"hazırlanır","tBadgePlan":"planlaşdırılır","t_search_t":"Peşə axtarışı","t_search_d":"Bütün peşələri filtrlə və araşdır","t_match_t":"Mənə nə uyğundur","t_match_d":"Maraqlarına görə peşə tövsiyəsi","t_compare_t":"Müqayisə","t_compare_d":"İki peşəni yan-yana tutuşdur","t_favorites_t":"Seçilmişlər","t_favorites_d":"Bəyəndiyin peşələri yadda saxla","t_map_t":"Peşələr xəritəsi","t_map_d":"Peşələri kosmik xəritədə kəşf et","t_demand_t":"Tələbat və trend","t_demand_d":"Hər peşə üzrə canlı vakansiya sayı və dinamika","t_skills_t":"Tələb olunan bacarıqlar","t_skills_d":"Elanlardan çıxarılan ən çox istənilən bacarıqlar","t_salary_t":"Maaş diapazonu","t_salary_d":"Sahə və region üzrə maaş aralığı","t_edu_t":"Təhsil yolu","t_edu_d":"Hansı ixtisas bu peşəyə aparır və məzun məşğulluğu","t_skillgap_t":"Bacarıq boşluğu","t_skillgap_d":"Bacarıqlarını seç — çatışmayanları gör","t_outlook_t":"Böyüyən peşələr","t_outlook_d":"Tələbatı artan peşələrin işarələnməsi","t_parents_t":"Valideyn və müəllim üçün","t_parents_d":"Uşaqla peşə seçimi haqqında danışmaq üçün bələdçi","t_ai_t":"AI karyera köməkçisi","t_ai_d":"Suallarına cavab verən ağıllı köməkçi","t_video_t":"Peşə videoları","t_video_d":"Peşənin bir günü — qısa video","t_future_t":"Gələcəyin peşələri","t_future_d":"Yaranan və yox olan peşələr","lNavHome":"Ana səhifə","lNavSearch":"Peşə axtarışı","lNavMatch":"Mənə nə uyğundur","lNavCompare":"Müqayisə","lSearchTitle":"Peşə tapın","lSearchHint":"Adı yazın, məsələn «mühasib»","lSearchPh":"Peşə axtar…","lSearchAll":"Bütün sektorlar","lNoResults":"Heç nə tapılmadı","lMore":"Ətraflı","lMedian":"median","lApprox":"ayda, təxmini","lSrcLive":"canlı vakansiyalara görə","lSrcEst":"sahə üzrə təxmini","lSoon":"tezliklə","lInDev":"hazırlanır","lOpenRoles":"vakansiya","lBack":"← Geri","lOnMap":"Xəritədə göstər","lShare":"Paylaş","lShared":"Keçid kopyalandı","lFav":"Saxla","lExp":"Təcrübə","lEntry":"təcrübəsiz","lLangReq":"Dil tələbləri","lSimilar":"Oxşar peşələr","lMatchTitle":"Sizə nə uyğundur?","lMatchHint":"Sizi maraqlandıran və ya bacardığınızı seçin — uyğun peşələri göstərək.","lMatchSectors":"Maraqlı sahələr","lMatchSkills":"Bacardıqlarınız","lMatchBtn":"Peşələri göstər","lMatchReason":"Uyğunluq:","lMatchEmpty":"Yuxarıdan ən azı bir seçim edin","lMatchExp":"Yeni başlayıram (təcrübəsiz)","lCompareTitle":"İki peşəni müqayisə edin","lCompareHint":"Fərqi görmək üçün iki peşə seçin.","lComparePick":"Peşə seçin","lcSector":"Sektor","lcPay":"Median maaş","lcOpen":"Açıq vakansiya","lcEng":"İngilis dili","lcRus":"Rus dili","lcRem":"Uzaqdan iş","lcExp":"Təcrübə","lcEntry":"Təcrübəsiz","lcSkills":"Əsas bacarıqlar","lFavTitle":"Seçilmişlər","lFavEmpty":"Saxlanmış peşələr burada görünəcək. İstənilən peşədə ♥ basın."},"ru":{"outTitle":"Растущие профессии","outHint":"Отметки профессий с растущим спросом","outSoon":"тренд: —","outNote":"Тренд роста рассчитывается из динамики вакансий — скоро появится у каждой профессии.","parTitle":"Для родителей и педагогов","parHint":"Как помочь ребёнку с выбором профессии","par_t1_h":"Слушай, а не решай","par_t1_b":"Дай ребёнку исследовать самому — не навязывай выбор.","par_t2_h":"Изучайте вместе","par_t2_b":"Смотрите спрос и зарплаты в атласе вместе.","par_t3_h":"Нет «плохих» профессий","par_t3_b":"У каждого пути своя ценность — смотрите на соответствие.","par_t4_h":"Свяжи интерес с профессией","par_t4_b":"Пройдите тест «что мне подходит» вместе.","parNote":"Дополнительные материалы для педагогов готовятся.","vidTitle":"Видео о профессиях","vidHint":"Один день профессии — короткие видео","vidSoon":"видео скоро","vidNote":"Видео по профессиям готовятся — скоро будут доступны.","vid_v1_n":"Программист","vid_v2_n":"Врач","vid_v3_n":"Учитель","vid_v4_n":"Продавец","vid_v5_n":"Повар","vid_v6_n":"Инженер","futTitle":"Профессии будущего","futHint":"Появляющиеся и растущие профессии","futDemand":"Спрос","futWhen":"Появление","futNote":"Это примерные профессии. Данные о спросе и прогнозе собираются — скоро.","fut_ai_n":"AI-инженер","fut_ai_d":"Создаёт системы ИИ","fut_data_n":"Дата-аналитик","fut_data_d":"Извлекает решения из данных","fut_cyber_n":"Специалист по кибербезопасности","fut_cyber_d":"Защищает системы от атак","fut_green_n":"Инженер зелёной энергетики","fut_green_d":"Работает с возобновляемой энергией","fut_ux_n":"UX-дизайнер","fut_ux_d":"Делает цифровые продукты удобными","fut_robo_n":"Инженер робототехники","fut_robo_d":"Проектирует роботов","eduTitle":"Образовательный путь","eduHint":"Какой образовательный путь ведёт к этой профессии","eduStep":"Профессия","eduSector":"Сфера","eduColSpec":"Специальность","eduColUni":"Вуз","eduColScore":"Проходной балл","eduColEmp":"Трудоустройство выпускников","eduNote":"Данные о специальностях, вузах и трудоустройстве выпускников собираются из DİM и рейтинга выпускников DMA — скоро.","aiTitle":"AI карьерный помощник","aiHint":"Спрашивай о профессиях, зарплатах и образовании","aiWelcome":"Привет! Я карьерный помощник. Пока в разработке, но скоро отвечу на твои вопросы.","aiStub":"Этот помощник в разработке — скоро будет давать настоящие ответы.","aiPh":"Напиши свой вопрос...","aiSendL":"Отправить","aiSug1":"Какие профессии самые востребованные?","aiSug2":"Сколько зарабатывает программист?","aiSug3":"Где учиться, чтобы стать врачом?","sgTitle":"Пробел в навыках","sgHint":"Выбери целевую профессию и отметь свои навыки — увидишь, чего не хватает","sgStep1":"1. Целевая профессия","sgStep2":"2. Твои навыки","sgBtn":"Сравнить","sgYours":"Твои навыки","sgNeed":"Нужно для профессии","sgMiss":"Чего не хватает","sgSoon":"данные готовятся","sgNoneSel":"навыки не выбраны","sgNote":"Требуемые навыки по профессиям собираются из объявлений — скоро будут доступны.","lNavTools":"Возможности","tHubT":"Возможности","tHubS":"Все инструменты атласа — готовые и в разработке","tGrpLive":"Уже работает","tGrpDev":"В разработке","tGrpPlan":"Планируется","tBadgeLive":"готово","tBadgeDev":"в разработке","tBadgePlan":"планируется","t_search_t":"Поиск профессий","t_search_d":"Фильтруй и изучай все профессии","t_match_t":"Что мне подходит","t_match_d":"Подбор профессии по интересам","t_compare_t":"Сравнение","t_compare_d":"Сравни две профессии рядом","t_favorites_t":"Избранное","t_favorites_d":"Сохраняй понравившиеся профессии","t_map_t":"Карта профессий","t_map_d":"Профессии как планеты на карте","t_demand_t":"Спрос и тренд","t_demand_d":"Живое число вакансий и динамика по профессии","t_skills_t":"Востребованные навыки","t_skills_d":"Самые частые навыки из объявлений","t_salary_t":"Зарплатные диапазоны","t_salary_d":"Зарплата по отрасли и региону","t_edu_t":"Образовательный путь","t_edu_d":"Какая специальность ведёт к профессии и трудоустройство выпускников","t_skillgap_t":"Пробел в навыках","t_skillgap_d":"Укажи свои навыки — увидишь, чего не хватает","t_outlook_t":"Растущие профессии","t_outlook_d":"Отметки профессий с растущим спросом","t_parents_t":"Для родителей и педагогов","t_parents_d":"Гайд: как обсудить выбор профессии с ребёнком","t_ai_t":"AI карьерный помощник","t_ai_d":"Помощник, отвечающий на твои вопросы","t_video_t":"Видео о профессиях","t_video_d":"Один день профессии — короткое видео","t_future_t":"Профессии будущего","t_future_d":"Появляющиеся и исчезающие профессии","lNavHome":"Главная","lNavSearch":"Поиск профессий","lNavMatch":"Что мне подходит","lNavCompare":"Сравнение","lSearchTitle":"Найдите профессию","lSearchHint":"Введите название, например «бухгалтер»","lSearchPh":"Поиск профессии…","lSearchAll":"Все секторы","lNoResults":"Ничего не найдено","lMore":"Подробнее","lMedian":"медиана","lApprox":"ориентир, ₼/ай","lSrcLive":"по живым вакансиям","lSrcEst":"оценка по отрасли","lSoon":"скоро","lInDev":"в разработке","lOpenRoles":"вакансий","lBack":"← Назад","lOnMap":"Показать на карте","lShare":"Поделиться","lShared":"Ссылка скопирована","lFav":"В избранное","lExp":"Опыт","lEntry":"без опыта","lLangReq":"Требования к языкам","lSimilar":"Похожие профессии","lMatchTitle":"Что вам подходит?","lMatchHint":"Отметьте, что вам интересно или что вы умеете — и мы покажем подходящие профессии.","lMatchSectors":"Интересные сферы","lMatchSkills":"Навыки, которые у вас есть","lMatchBtn":"Показать профессии","lMatchReason":"Подходит по:","lMatchEmpty":"Выберите хотя бы один пункт выше","lMatchExp":"Я только начинаю (без опыта)","lCompareTitle":"Сравните две профессии","lCompareHint":"Выберите две профессии, чтобы увидеть разницу.","lComparePick":"Выберите профессию","lcSector":"Сектор","lcPay":"Медианная зарплата","lcOpen":"Открытые вакансии","lcEng":"Английский","lcRus":"Русский","lcRem":"Удалёнка","lcExp":"Опыт","lcEntry":"Без опыта","lcSkills":"Ключевые навыки","lFavTitle":"Избранное","lFavEmpty":"Здесь появятся сохранённые профессии. Нажмите ♥ на любой профессии."},"en":{"outTitle":"Growing professions","outHint":"Flags for professions with rising demand","outSoon":"trend: —","outNote":"Growth trend is computed from vacancy dynamics — coming to each profession soon.","parTitle":"For parents & counselors","parHint":"How to help a child choose a career","par_t1_h":"Listen, don't decide","par_t1_b":"Let your child explore — don't impose a choice.","par_t2_h":"Explore together","par_t2_b":"Look at demand and salaries in the atlas together.","par_t3_h":"No 'bad' professions","par_t3_b":"Every path has value — focus on fit.","par_t4_h":"Connect interest to a job","par_t4_b":"Take the 'find your fit' test together.","parNote":"Additional materials for counselors are coming.","vidTitle":"Career videos","vidHint":"A day in the life — short videos","vidSoon":"video coming soon","vidNote":"Profession videos are being produced — coming soon.","vid_v1_n":"Developer","vid_v2_n":"Doctor","vid_v3_n":"Teacher","vid_v4_n":"Salesperson","vid_v5_n":"Chef","vid_v6_n":"Engineer","futTitle":"Future professions","futHint":"Emerging and growing professions","futDemand":"Demand","futWhen":"Emerging","futNote":"These are sample professions. Demand and forecast data are being collected — coming soon.","fut_ai_n":"AI Engineer","fut_ai_d":"Builds AI systems","fut_data_n":"Data Analyst","fut_data_d":"Turns data into decisions","fut_cyber_n":"Cybersecurity Specialist","fut_cyber_d":"Protects systems from attacks","fut_green_n":"Green Energy Engineer","fut_green_d":"Works on renewable energy","fut_ux_n":"UX Designer","fut_ux_d":"Makes digital products usable","fut_robo_n":"Robotics Engineer","fut_robo_d":"Designs robots","eduTitle":"Education pathway","eduHint":"Which study path leads to this profession","eduStep":"Profession","eduSector":"Field","eduColSpec":"Specialty","eduColUni":"University","eduColScore":"Passing score","eduColEmp":"Graduate employment","eduNote":"Specialty, university and graduate-employment data are being collected from DİM and the DMA graduate rating — coming soon.","aiTitle":"AI career assistant","aiHint":"Ask about professions, salaries and education","aiWelcome":"Hi! I'm your career assistant. I'm still in development, but soon I'll answer your questions.","aiStub":"This assistant is in development — real answers coming soon.","aiPh":"Type your question...","aiSendL":"Send","aiSug1":"Which professions are most in demand?","aiSug2":"How much does a developer earn?","aiSug3":"Where do I study to become a doctor?","sgTitle":"Skill-gap","sgHint":"Pick a target profession and mark your skills — see what's missing","sgStep1":"1. Target profession","sgStep2":"2. Your skills","sgBtn":"Compare","sgYours":"Your skills","sgNeed":"Required","sgMiss":"Missing","sgSoon":"data coming soon","sgNoneSel":"no skills selected","sgNote":"Required skills per profession are being collected from job ads — coming soon.","lNavTools":"Tools","tHubT":"Tools","tHubS":"All atlas tools — live and upcoming","tGrpLive":"Available now","tGrpDev":"In development","tGrpPlan":"Planned","tBadgeLive":"ready","tBadgeDev":"in progress","tBadgePlan":"planned","t_search_t":"Profession search","t_search_d":"Filter and explore every profession","t_match_t":"Find your fit","t_match_d":"Profession suggestions by your interests","t_compare_t":"Compare","t_compare_d":"Two professions side by side","t_favorites_t":"Favorites","t_favorites_d":"Save professions you like","t_map_t":"Professions map","t_map_d":"Explore professions as planets","t_demand_t":"Demand & trend","t_demand_d":"Live vacancy counts and trend per profession","t_skills_t":"In-demand skills","t_skills_d":"Top skills extracted from job ads","t_salary_t":"Salary ranges","t_salary_d":"Pay ranges by sector and region","t_edu_t":"Education pathway","t_edu_d":"Which study path leads here and graduate employment","t_skillgap_t":"Skill-gap","t_skillgap_d":"Pick your skills, see what's missing for a job","t_outlook_t":"Growing professions","t_outlook_d":"Flags for professions with rising demand","t_parents_t":"For parents & counselors","t_parents_d":"A guide to discussing career choice","t_ai_t":"AI career assistant","t_ai_d":"An assistant that answers your questions","t_video_t":"Career videos","t_video_d":"A day in the life — short videos","t_future_t":"Future professions","t_future_d":"Emerging and disappearing professions","lNavHome":"Home","lNavSearch":"Search","lNavMatch":"Find your fit","lNavCompare":"Compare","lSearchTitle":"Find a profession","lSearchHint":"Type a name, e.g. ‘accountant’","lSearchPh":"Search professions…","lSearchAll":"All sectors","lNoResults":"Nothing found","lMore":"Details","lMedian":"median","lApprox":"approx, monthly","lSrcLive":"from live vacancies","lSrcEst":"sector estimate","lSoon":"soon","lInDev":"in progress","lOpenRoles":"open roles","lBack":"← Back","lOnMap":"Show on map","lShare":"Share","lShared":"Link copied","lFav":"Save","lExp":"Experience","lEntry":"entry-level","lLangReq":"Language requirements","lSimilar":"Similar professions","lMatchTitle":"What suits you?","lMatchHint":"Pick what interests you or what you can do — we’ll show matching professions.","lMatchSectors":"Fields of interest","lMatchSkills":"Skills you have","lMatchBtn":"Show professions","lMatchReason":"Matches on:","lMatchEmpty":"Pick at least one option above","lMatchExp":"I’m just starting (no experience)","lCompareTitle":"Compare two professions","lCompareHint":"Pick two professions to see the difference.","lComparePick":"Choose a profession","lcSector":"Sector","lcPay":"Median pay","lcOpen":"Open roles","lcEng":"English","lcRus":"Russian","lcRem":"Remote","lcExp":"Experience","lcEntry":"Entry-level","lcSkills":"Key skills","lFavTitle":"Favorites","lFavEmpty":"Saved professions appear here. Tap ♥ on any profession."}};
+const LANDS2={"az":{"ghTitle":"Bazarı oxumağın iki yolu","ghSub":"Solda — Azərbaycan regionlar üzrə. Sağda — peşələr kainat kimi.","ghGeoT":"Azərbaycan xəritəsi","ghGeoD":"Vakansiyalar regionlar üzrə — real məlumatla birlikdə görünəcək.","ghUniT":"Peşələr kainatı","ghUniD":"Hər peşə bir ulduzdur. Onun siqnalları:","ghSoon":"tezliklə","lNavMenu":"Menyu","outTitle":"Böyüyən peşələr","outHint":"Tələbatı artan peşələrin işarələnməsi","outSoon":"trend: —","outUp":"tələbat artır","outNew":"yeni peşə","sgNone":"çatışmayan yoxdur ✅","outNote":"Böyümə trendi vakansiya dinamikasından hesablanır — tezliklə hər peşədə görünəcək.","parTitle":"Valideyn və müəllim üçün","parHint":"Uşağa peşə seçimində necə kömək etmək olar","par_t1_h":"Dinlə, qərar vermə","par_t1_b":"Uşağın özü kəşf etsin — seçimi ona təlqin etmə.","par_t2_h":"Birlikdə araşdırın","par_t2_b":"Atlasdan tələbat və maaşlara birlikdə baxın.","par_t3_h":"«Pis» peşə yoxdur","par_t3_b":"Hər yolun dəyəri var — uyğunluğa fokuslan.","par_t4_h":"Marağı peşə ilə bağla","par_t4_b":"«Mənə nə uyğundur» testini birlikdə keçin.","parNote":"Müəllimlər üçün əlavə materiallar hazırlanır.","vidTitle":"Peşə videoları","vidHint":"Peşənin bir günü — qısa videolar","vidSoon":"video tezliklə","vidNote":"Peşələr üzrə videolar hazırlanır — tezliklə əlçatan olacaq.","vid_v1_n":"Proqramçı","vid_v2_n":"Həkim","vid_v3_n":"Müəllim","vid_v4_n":"Satıcı","vid_v5_n":"Aşpaz","vid_v6_n":"Mühəndis","futTitle":"Gələcəyin peşələri","futHint":"Yaranan və böyüyən peşələr","futDemand":"Tələbat","futWhen":"Yaranma","futNote":"Bunlar nümunə peşələrdir. Tələbat və proqnoz məlumatları toplanır — tezliklə.","fut_ai_n":"AI mühəndisi","fut_ai_d":"Süni intellekt sistemləri qurur","fut_data_n":"Data analitik","fut_data_d":"Verilərdən qərar çıxarır","fut_cyber_n":"Kibertəhlükəsizlik mütəxəssisi","fut_cyber_d":"Sistemləri hücumlardan qoruyur","fut_green_n":"Yaşıl enerji mühəndisi","fut_green_d":"Bərpa olunan enerji üzərində işləyir","fut_ux_n":"UX dizayner","fut_ux_d":"Rəqəmsal məhsulları rahat edir","fut_robo_n":"Robototexnika mühəndisi","fut_robo_d":"Robotları dizayn edir","eduTitle":"Təhsil yolu","eduHint":"Bu peşəyə hansı təhsil yolu aparır","eduStep":"Peşə","eduSector":"Sahə","eduColSpec":"İxtisas","eduColUni":"Universitet","eduColScore":"Keçid balı","eduColEmp":"Məzun məşğulluğu","eduNote":"İxtisas, universitet və məzun məşğulluğu məlumatları DİM və DMA məzun reytinqindən toplanır — tezliklə.","aiTitle":"AI karyera köməkçisi","aiHint":"Peşələr, maaşlar və təhsil haqqında soruş","aiWelcome":"Salam! Atlasın məlumatları ilə oflayn cavab verirəm. Peşə («proqramçı nə qədər qazanır»), bacarıq («Excel kimə lazımdır») və ya «ən çox tələb olunanlar» barədə soruşun.","aiStub":"Sualda peşə və ya bacarıq tapmadım. Nümunələr: «mühasib nə qədər qazanır», «inşaat mühəndisinin bacarıqları», «Excel kimə lazımdır».","aiTopHead":"Canlı vakansiyalara görə liderlər:","aiTopNote":"Tam reytinq məlumat toplandıqca görünəcək.","aiEduLine":"Bu peşə üçün təhsil marşrutları hazırlanır — «Təhsil yolu» səhifəsinə baxın.","aiPh":"Sualını yaz...","aiSendL":"Göndər","aiSug1":"Ən çox tələb olunan peşələr hansılardır?","aiSug2":"Proqramçı nə qədər qazanır?","aiSug3":"Həkim olmaq üçün hara oxumalıyam?","sgTitle":"Bacarıq boşluğu","sgHint":"Hədəf peşəni seç və bacarıqlarını qeyd et — nəyin çatışmadığını gör","sgStep1":"1. Hədəf peşə","sgStep2":"2. Sənin bacarıqların","sgBtn":"Müqayisə et","sgYours":"Sənin bacarıqların","sgNeed":"Peşə üçün lazımdır","sgMiss":"Çatışmır","sgSoon":"məlumat hazırlanır","sgNoneSel":"bacarıq seçilməyib","sgNote":"Peşələr üzrə tələb olunan bacarıqlar elanlardan toplanır — tezliklə əlçatan olacaq.","lNavTools":"İmkanlar","tHubT":"İmkanlar","tHubS":"Atlasın bütün alətləri — işləyənlər və hazırlananlar","tGrpLive":"İşləyir","tGrpDev":"Hazırlanır","tGrpPlan":"Planlaşdırılır","tBadgeLive":"hazır","tBadgeDev":"hazırlanır","tBadgePlan":"planlaşdırılır","t_search_t":"Peşə axtarışı","t_search_d":"Bütün peşələri filtrlə və araşdır","t_match_t":"Mənə nə uyğundur","t_match_d":"Maraqlarına görə peşə tövsiyəsi","t_compare_t":"Müqayisə","t_compare_d":"İki peşəni yan-yana tutuşdur","t_favorites_t":"Seçilmişlər","t_favorites_d":"Bəyəndiyin peşələri yadda saxla","t_map_t":"Peşələr xəritəsi","t_map_d":"Peşələri kosmik xəritədə kəşf et","t_demand_t":"Tələbat və trend","t_demand_d":"Hər peşə üzrə canlı vakansiya sayı və dinamika","t_skills_t":"Tələb olunan bacarıqlar","t_skills_d":"Elanlardan çıxarılan ən çox istənilən bacarıqlar","t_salary_t":"Maaş diapazonu","t_salary_d":"Sahə və region üzrə maaş aralığı","t_edu_t":"Təhsil yolu","t_edu_d":"Hansı ixtisas bu peşəyə aparır və məzun məşğulluğu","t_skillgap_t":"Bacarıq boşluğu","t_skillgap_d":"Bacarıqlarını seç — çatışmayanları gör","t_outlook_t":"Böyüyən peşələr","t_outlook_d":"Tələbatı artan peşələrin işarələnməsi","t_parents_t":"Valideyn və müəllim üçün","t_parents_d":"Uşaqla peşə seçimi haqqında danışmaq üçün bələdçi","t_ai_t":"AI karyera köməkçisi","t_ai_d":"Suallarına cavab verən ağıllı köməkçi","t_video_t":"Peşə videoları","t_video_d":"Peşənin bir günü — qısa video","t_future_t":"Gələcəyin peşələri","t_future_d":"Yaranan və yox olan peşələr","lNavHome":"Ana səhifə","lNavSearch":"Peşə axtarışı","lNavMatch":"Mənə nə uyğundur","lNavCompare":"Müqayisə","lSearchTitle":"Peşə tapın","lSearchHint":"Adı yazın, məsələn «mühasib»","lSearchPh":"Peşə axtar…","lSearchAll":"Bütün sektorlar","lNoResults":"Heç nə tapılmadı","lMore":"Ətraflı","lMedian":"median","lApprox":"ayda, təxmini","lSrcLive":"canlı vakansiyalara görə","lSrcEst":"sahə üzrə təxmini","lSoon":"tezliklə","lInDev":"hazırlanır","lOpenRoles":"vakansiya","lBack":"← Geri","lOnMap":"Xəritədə göstər","lShare":"Paylaş","lShared":"Keçid kopyalandı","lFav":"Saxla","lExp":"Təcrübə","lEntry":"təcrübəsiz","lLangReq":"Dil tələbləri","lSimilar":"Oxşar peşələr","lMatchTitle":"Sizə nə uyğundur?","lMatchHint":"Sizi maraqlandıran və ya bacardığınızı seçin — uyğun peşələri göstərək.","lMatchSectors":"Maraqlı sahələr","lMatchSkills":"Bacardıqlarınız","lMatchBtn":"Peşələri göstər","lMatchReason":"Uyğunluq:","lMatchEmpty":"Yuxarıdan ən azı bir seçim edin","lMatchExp":"Yeni başlayıram (təcrübəsiz)","lCompareTitle":"İki peşəni müqayisə edin","lCompareHint":"Fərqi görmək üçün iki peşə seçin.","lComparePick":"Peşə seçin","lcSector":"Sektor","lcPay":"Median maaş","lcOpen":"Açıq vakansiya","lcEng":"İngilis dili","lcRus":"Rus dili","lcRem":"Uzaqdan iş","lcExp":"Təcrübə","lcEntry":"Təcrübəsiz","lcSkills":"Əsas bacarıqlar","lFavTitle":"Seçilmişlər","lFavEmpty":"Saxlanmış peşələr burada görünəcək. İstənilən peşədə ♥ basın."},"ru":{"ghTitle":"Две карты одного рынка","ghSub":"Слева — Азербайджан по регионам. Справа — профессии как вселенная.","ghGeoT":"Карта Азербайджана","ghGeoD":"Вакансии по регионам — появятся с реальными данными.","ghUniT":"Вселенная профессий","ghUniD":"Каждая профессия — звезда. Её сигналы:","ghSoon":"скоро","lNavMenu":"Меню","outTitle":"Растущие профессии","outHint":"Отметки профессий с растущим спросом","outSoon":"тренд: —","outUp":"спрос растёт","outNew":"новая профессия","sgNone":"всё необходимое есть ✅","outNote":"Тренд роста рассчитывается из динамики вакансий — скоро появится у каждой профессии.","parTitle":"Для родителей и педагогов","parHint":"Как помочь ребёнку с выбором профессии","par_t1_h":"Слушай, а не решай","par_t1_b":"Дай ребёнку исследовать самому — не навязывай выбор.","par_t2_h":"Изучайте вместе","par_t2_b":"Смотрите спрос и зарплаты в атласе вместе.","par_t3_h":"Нет «плохих» профессий","par_t3_b":"У каждого пути своя ценность — смотрите на соответствие.","par_t4_h":"Свяжи интерес с профессией","par_t4_b":"Пройдите тест «что мне подходит» вместе.","parNote":"Дополнительные материалы для педагогов готовятся.","vidTitle":"Видео о профессиях","vidHint":"Один день профессии — короткие видео","vidSoon":"видео скоро","vidNote":"Видео по профессиям готовятся — скоро будут доступны.","vid_v1_n":"Программист","vid_v2_n":"Врач","vid_v3_n":"Учитель","vid_v4_n":"Продавец","vid_v5_n":"Повар","vid_v6_n":"Инженер","futTitle":"Профессии будущего","futHint":"Появляющиеся и растущие профессии","futDemand":"Спрос","futWhen":"Появление","futNote":"Это примерные профессии. Данные о спросе и прогнозе собираются — скоро.","fut_ai_n":"AI-инженер","fut_ai_d":"Создаёт системы ИИ","fut_data_n":"Дата-аналитик","fut_data_d":"Извлекает решения из данных","fut_cyber_n":"Специалист по кибербезопасности","fut_cyber_d":"Защищает системы от атак","fut_green_n":"Инженер зелёной энергетики","fut_green_d":"Работает с возобновляемой энергией","fut_ux_n":"UX-дизайнер","fut_ux_d":"Делает цифровые продукты удобными","fut_robo_n":"Инженер робототехники","fut_robo_d":"Проектирует роботов","eduTitle":"Образовательный путь","eduHint":"Какой образовательный путь ведёт к этой профессии","eduStep":"Профессия","eduSector":"Сфера","eduColSpec":"Специальность","eduColUni":"Вуз","eduColScore":"Проходной балл","eduColEmp":"Трудоустройство выпускников","eduNote":"Данные о специальностях, вузах и трудоустройстве выпускников собираются из DİM и рейтинга выпускников DMA — скоро.","aiTitle":"AI карьерный помощник","aiHint":"Спрашивай о профессиях, зарплатах и образовании","aiWelcome":"Привет! Я отвечаю по данным атласа — офлайн. Спросите про профессию («сколько зарабатывает программист»), навык («кому нужен Excel») или «самые востребованные».","aiStub":"Не нашёл профессию или навык в вопросе. Примеры: «сколько зарабатывает бухгалтер», «навыки инженера-строителя», «кому нужен Excel».","aiTopHead":"Лидеры по живым вакансиям:","aiTopNote":"Полный рейтинг появится по мере сбора данных.","aiEduLine":"Образовательные маршруты для этой профессии готовятся — см. страницу «Образовательный путь».","aiPh":"Напиши свой вопрос...","aiSendL":"Отправить","aiSug1":"Какие профессии самые востребованные?","aiSug2":"Сколько зарабатывает программист?","aiSug3":"Где учиться, чтобы стать врачом?","sgTitle":"Пробел в навыках","sgHint":"Выбери целевую профессию и отметь свои навыки — увидишь, чего не хватает","sgStep1":"1. Целевая профессия","sgStep2":"2. Твои навыки","sgBtn":"Сравнить","sgYours":"Твои навыки","sgNeed":"Нужно для профессии","sgMiss":"Чего не хватает","sgSoon":"данные готовятся","sgNoneSel":"навыки не выбраны","sgNote":"Требуемые навыки по профессиям собираются из объявлений — скоро будут доступны.","lNavTools":"Возможности","tHubT":"Возможности","tHubS":"Все инструменты атласа — готовые и в разработке","tGrpLive":"Уже работает","tGrpDev":"В разработке","tGrpPlan":"Планируется","tBadgeLive":"готово","tBadgeDev":"в разработке","tBadgePlan":"планируется","t_search_t":"Поиск профессий","t_search_d":"Фильтруй и изучай все профессии","t_match_t":"Что мне подходит","t_match_d":"Подбор профессии по интересам","t_compare_t":"Сравнение","t_compare_d":"Сравни две профессии рядом","t_favorites_t":"Избранное","t_favorites_d":"Сохраняй понравившиеся профессии","t_map_t":"Карта профессий","t_map_d":"Профессии как планеты на карте","t_demand_t":"Спрос и тренд","t_demand_d":"Живое число вакансий и динамика по профессии","t_skills_t":"Востребованные навыки","t_skills_d":"Самые частые навыки из объявлений","t_salary_t":"Зарплатные диапазоны","t_salary_d":"Зарплата по отрасли и региону","t_edu_t":"Образовательный путь","t_edu_d":"Какая специальность ведёт к профессии и трудоустройство выпускников","t_skillgap_t":"Пробел в навыках","t_skillgap_d":"Укажи свои навыки — увидишь, чего не хватает","t_outlook_t":"Растущие профессии","t_outlook_d":"Отметки профессий с растущим спросом","t_parents_t":"Для родителей и педагогов","t_parents_d":"Гайд: как обсудить выбор профессии с ребёнком","t_ai_t":"AI карьерный помощник","t_ai_d":"Помощник, отвечающий на твои вопросы","t_video_t":"Видео о профессиях","t_video_d":"Один день профессии — короткое видео","t_future_t":"Профессии будущего","t_future_d":"Появляющиеся и исчезающие профессии","lNavHome":"Главная","lNavSearch":"Поиск профессий","lNavMatch":"Что мне подходит","lNavCompare":"Сравнение","lSearchTitle":"Найдите профессию","lSearchHint":"Введите название, например «бухгалтер»","lSearchPh":"Поиск профессии…","lSearchAll":"Все секторы","lNoResults":"Ничего не найдено","lMore":"Подробнее","lMedian":"медиана","lApprox":"ориентир, ₼/мес","lSrcLive":"по живым вакансиям","lSrcEst":"оценка по отрасли","lSoon":"скоро","lInDev":"в разработке","lOpenRoles":"вакансий","lBack":"← Назад","lOnMap":"Показать на карте","lShare":"Поделиться","lShared":"Ссылка скопирована","lFav":"В избранное","lExp":"Опыт","lEntry":"без опыта","lLangReq":"Требования к языкам","lSimilar":"Похожие профессии","lMatchTitle":"Что вам подходит?","lMatchHint":"Отметьте, что вам интересно или что вы умеете — и мы покажем подходящие профессии.","lMatchSectors":"Интересные сферы","lMatchSkills":"Навыки, которые у вас есть","lMatchBtn":"Показать профессии","lMatchReason":"Подходит по:","lMatchEmpty":"Выберите хотя бы один пункт выше","lMatchExp":"Я только начинаю (без опыта)","lCompareTitle":"Сравните две профессии","lCompareHint":"Выберите две профессии, чтобы увидеть разницу.","lComparePick":"Выберите профессию","lcSector":"Сектор","lcPay":"Медианная зарплата","lcOpen":"Открытые вакансии","lcEng":"Английский","lcRus":"Русский","lcRem":"Удалёнка","lcExp":"Опыт","lcEntry":"Без опыта","lcSkills":"Ключевые навыки","lFavTitle":"Избранное","lFavEmpty":"Здесь появятся сохранённые профессии. Нажмите ♥ на любой профессии."},"en":{"ghTitle":"Two ways to read the market","ghSub":"Left — Azerbaijan by region. Right — professions as a universe.","ghGeoT":"Azerbaijan map","ghGeoD":"Vacancies by region — appearing with real data.","ghUniT":"Universe of professions","ghUniD":"Each profession is a star. Its signals:","ghSoon":"coming soon","lNavMenu":"Menu","outTitle":"Growing professions","outHint":"Flags for professions with rising demand","outSoon":"trend: —","outUp":"demand growing","outNew":"new profession","sgNone":"nothing missing ✅","outNote":"Growth trend is computed from vacancy dynamics — coming to each profession soon.","parTitle":"For parents & counselors","parHint":"How to help a child choose a career","par_t1_h":"Listen, don't decide","par_t1_b":"Let your child explore — don't impose a choice.","par_t2_h":"Explore together","par_t2_b":"Look at demand and salaries in the atlas together.","par_t3_h":"No 'bad' professions","par_t3_b":"Every path has value — focus on fit.","par_t4_h":"Connect interest to a job","par_t4_b":"Take the 'find your fit' test together.","parNote":"Additional materials for counselors are coming.","vidTitle":"Career videos","vidHint":"A day in the life — short videos","vidSoon":"video coming soon","vidNote":"Profession videos are being produced — coming soon.","vid_v1_n":"Developer","vid_v2_n":"Doctor","vid_v3_n":"Teacher","vid_v4_n":"Salesperson","vid_v5_n":"Chef","vid_v6_n":"Engineer","futTitle":"Future professions","futHint":"Emerging and growing professions","futDemand":"Demand","futWhen":"Emerging","futNote":"These are sample professions. Demand and forecast data are being collected — coming soon.","fut_ai_n":"AI Engineer","fut_ai_d":"Builds AI systems","fut_data_n":"Data Analyst","fut_data_d":"Turns data into decisions","fut_cyber_n":"Cybersecurity Specialist","fut_cyber_d":"Protects systems from attacks","fut_green_n":"Green Energy Engineer","fut_green_d":"Works on renewable energy","fut_ux_n":"UX Designer","fut_ux_d":"Makes digital products usable","fut_robo_n":"Robotics Engineer","fut_robo_d":"Designs robots","eduTitle":"Education pathway","eduHint":"Which study path leads to this profession","eduStep":"Profession","eduSector":"Field","eduColSpec":"Specialty","eduColUni":"University","eduColScore":"Passing score","eduColEmp":"Graduate employment","eduNote":"Specialty, university and graduate-employment data are being collected from DİM and the DMA graduate rating — coming soon.","aiTitle":"AI career assistant","aiHint":"Ask about professions, salaries and education","aiWelcome":"Hi! I answer offline from the atlas data. Ask about a profession (‘how much does a developer earn’), a skill (‘who needs Excel’), or ‘most in-demand’.","aiStub":"I couldn't find a profession or skill in the question. Try: ‘how much does an accountant earn’, ‘civil engineer skills’, ‘who needs Excel’.","aiTopHead":"Leaders by live vacancies:","aiTopNote":"A full ranking will appear as data is collected.","aiEduLine":"Education routes for this profession are in progress — see the Education pathway page.","aiPh":"Type your question...","aiSendL":"Send","aiSug1":"Which professions are most in demand?","aiSug2":"How much does a developer earn?","aiSug3":"Where do I study to become a doctor?","sgTitle":"Skill-gap","sgHint":"Pick a target profession and mark your skills — see what's missing","sgStep1":"1. Target profession","sgStep2":"2. Your skills","sgBtn":"Compare","sgYours":"Your skills","sgNeed":"Required","sgMiss":"Missing","sgSoon":"data coming soon","sgNoneSel":"no skills selected","sgNote":"Required skills per profession are being collected from job ads — coming soon.","lNavTools":"Tools","tHubT":"Tools","tHubS":"All atlas tools — live and upcoming","tGrpLive":"Available now","tGrpDev":"In development","tGrpPlan":"Planned","tBadgeLive":"ready","tBadgeDev":"in progress","tBadgePlan":"planned","t_search_t":"Profession search","t_search_d":"Filter and explore every profession","t_match_t":"Find your fit","t_match_d":"Profession suggestions by your interests","t_compare_t":"Compare","t_compare_d":"Two professions side by side","t_favorites_t":"Favorites","t_favorites_d":"Save professions you like","t_map_t":"Professions map","t_map_d":"Explore professions as planets","t_demand_t":"Demand & trend","t_demand_d":"Live vacancy counts and trend per profession","t_skills_t":"In-demand skills","t_skills_d":"Top skills extracted from job ads","t_salary_t":"Salary ranges","t_salary_d":"Pay ranges by sector and region","t_edu_t":"Education pathway","t_edu_d":"Which study path leads here and graduate employment","t_skillgap_t":"Skill-gap","t_skillgap_d":"Pick your skills, see what's missing for a job","t_outlook_t":"Growing professions","t_outlook_d":"Flags for professions with rising demand","t_parents_t":"For parents & counselors","t_parents_d":"A guide to discussing career choice","t_ai_t":"AI career assistant","t_ai_d":"An assistant that answers your questions","t_video_t":"Career videos","t_video_d":"A day in the life — short videos","t_future_t":"Future professions","t_future_d":"Emerging and disappearing professions","lNavHome":"Home","lNavSearch":"Search","lNavMatch":"Find your fit","lNavCompare":"Compare","lSearchTitle":"Find a profession","lSearchHint":"Type a name, e.g. ‘accountant’","lSearchPh":"Search professions…","lSearchAll":"All sectors","lNoResults":"Nothing found","lMore":"Details","lMedian":"median","lApprox":"approx, monthly","lSrcLive":"from live vacancies","lSrcEst":"sector estimate","lSoon":"soon","lInDev":"in progress","lOpenRoles":"open roles","lBack":"← Back","lOnMap":"Show on map","lShare":"Share","lShared":"Link copied","lFav":"Save","lExp":"Experience","lEntry":"entry-level","lLangReq":"Language requirements","lSimilar":"Similar professions","lMatchTitle":"What suits you?","lMatchHint":"Pick what interests you or what you can do — we’ll show matching professions.","lMatchSectors":"Fields of interest","lMatchSkills":"Skills you have","lMatchBtn":"Show professions","lMatchReason":"Matches on:","lMatchEmpty":"Pick at least one option above","lMatchExp":"I’m just starting (no experience)","lCompareTitle":"Compare two professions","lCompareHint":"Pick two professions to see the difference.","lComparePick":"Choose a profession","lcSector":"Sector","lcPay":"Median pay","lcOpen":"Open roles","lcEng":"English","lcRus":"Russian","lcRem":"Remote","lcExp":"Experience","lcEntry":"Entry-level","lcSkills":"Key skills","lFavTitle":"Favorites","lFavEmpty":"Saved professions appear here. Tap ♥ on any profession."}};
 const LANDS3={
- az:{lNavMap:"Xəritə",lReadEye:"Xəritəni necə oxumaq",lReadTitle:"Siqnalları biləndə kainat praktik alətə çevrilir",lReadSub:"Hər vizual işarə əmək bazarı haqqında konkret suala cavab verir.",lR1t:"Ulduz ölçüsü",lR1d:"Böyük ulduzlar daha çox açıq vakansiya və daha güclü tələbat deməkdir.",lR2t:"Parıltı",lR2d:"Daha parlaq ulduzlar daha yüksək median maaş siqnalı verir.",lR3t:"Əlaqələr",lR3d:"Xətlər yaxın karyeraları və ortaq bacarıqları göstərir.",lR4t:"Linza",lR4d:"Sektor, maaş, dillər, karyera və zamanı müqayisə etmək üçün linzaları dəyişin.",lFilterTitle:"Nəticələri dəqiqləşdirin",lMinSalary:"Minimum maaş",lSortLabel:"Sıralama",lSortDemand:"Tələbat",lSortPay:"Maaş",lSortEntry:"Başlanğıc üçün",lNoExpOnly:"Yeni başlayanlar üçün",lRemoteOnly:"Uzaqdan mümkündür",lResetFilters:"Filtrləri sıfırla",lResultCount:"{n} peşə göstərilir"},
- ru:{lNavMap:"Карта",lReadEye:"Как читать карту",lReadTitle:"Карта становится полезной, когда понятны сигналы",lReadSub:"Каждая визуальная подсказка отвечает на практический вопрос о рынке труда.",lR1t:"Размер звезды",lR1d:"Чем больше звезда, тем больше открытых вакансий и заметнее спрос.",lR2t:"Свечение",lR2d:"Более яркие звёзды показывают более высокую медианную зарплату.",lR3t:"Связи",lR3d:"Линии показывают соседние карьеры и общие навыки для перехода.",lR4t:"Линзы",lR4d:"Переключайте линзы, чтобы сравнивать секторы, зарплаты, языки, карьеру и время.",lFilterTitle:"Уточнить результаты",lMinSalary:"Мин. зарплата",lSortLabel:"Сортировка",lSortDemand:"Спрос",lSortPay:"Зарплата",lSortEntry:"Вход без опыта",lNoExpOnly:"Подходит новичкам",lRemoteOnly:"Есть удалёнка",lResetFilters:"Сбросить фильтры",lResultCount:"Показано профессий: {n}"},
- en:{lNavMap:"Map",lReadEye:"How to read the map",lReadTitle:"The universe becomes useful once you know the signals",lReadSub:"Each visual cue answers a practical labour-market question.",lR1t:"Star size",lR1d:"Larger stars represent more open roles and stronger visible demand.",lR2t:"Glow",lR2d:"Brighter stars point to higher median pay and stronger salary signals.",lR3t:"Links",lR3d:"Lines reveal nearby careers and shared skills for possible transitions.",lR4t:"Lenses",lR4d:"Switch lenses to compare sectors, salaries, languages, careers and time.",lFilterTitle:"Refine results",lMinSalary:"Min salary",lSortLabel:"Sort by",lSortDemand:"Demand",lSortPay:"Salary",lSortEntry:"Entry-level",lNoExpOnly:"Good for beginners",lRemoteOnly:"Remote possible",lResetFilters:"Reset filters",lResultCount:"Showing {n} professions"}
+ az:{lNavMap:"Xəritə",lReadEye:"Xəritəni necə oxumaq",lReadTitle:"Siqnalları biləndə kainat praktik alətə çevrilir",lReadSub:"Hər vizual işarə əmək bazarı haqqında konkret suala cavab verir.",lR1t:"Ulduz ölçüsü",lR1d:"Böyük ulduzlar daha çox açıq vakansiya və daha güclü tələbat deməkdir.",lR2t:"Parıltı",lR2d:"Daha parlaq ulduzlar daha yüksək median maaş siqnalı verir.",lR3t:"Əlaqələr",lR3d:"Xətlər yaxın karyeraları və ortaq bacarıqları göstərir.",lR4t:"Linza",lR4d:"Sektor, maaş, dillər, karyera və zamanı müqayisə etmək üçün linzaları dəyişin.",lFilterTitle:"Nəticələri dəqiqləşdirin",lMinSalary:"Minimum maaş",lSortLabel:"Sıralama",lSortDemand:"Tələbat",lSortPay:"Maaş",lSortEntry:"Başlanğıc üçün",lNoExpOnly:"Yeni başlayanlar üçün",lRemoteOnly:"Uzaqdan mümkündür",lResetFilters:"Filtrləri sıfırla",lResultCount:"{n} peşə göstərilir",lZoomIn:"Yaxınlaşdır",lZoomOut:"Uzaqlaşdır",lZoomReset:"Görünüşü sıfırla"},
+ ru:{lNavMap:"Карта",lReadEye:"Как читать карту",lReadTitle:"Карта становится полезной, когда понятны сигналы",lReadSub:"Каждая визуальная подсказка отвечает на практический вопрос о рынке труда.",lR1t:"Размер звезды",lR1d:"Чем больше звезда, тем больше открытых вакансий и заметнее спрос.",lR2t:"Свечение",lR2d:"Более яркие звёзды показывают более высокую медианную зарплату.",lR3t:"Связи",lR3d:"Линии показывают соседние карьеры и общие навыки для перехода.",lR4t:"Линзы",lR4d:"Переключайте линзы, чтобы сравнивать секторы, зарплаты, языки, карьеру и время.",lFilterTitle:"Уточнить результаты",lMinSalary:"Мин. зарплата",lSortLabel:"Сортировка",lSortDemand:"Спрос",lSortPay:"Зарплата",lSortEntry:"Вход без опыта",lNoExpOnly:"Подходит новичкам",lRemoteOnly:"Есть удалёнка",lResetFilters:"Сбросить фильтры",lResultCount:"Показано профессий: {n}",lZoomIn:"Приблизить",lZoomOut:"Отдалить",lZoomReset:"Сбросить вид"},
+ en:{lNavMap:"Map",lReadEye:"How to read the map",lReadTitle:"The universe becomes useful once you know the signals",lReadSub:"Each visual cue answers a practical labour-market question.",lR1t:"Star size",lR1d:"Larger stars represent more open roles and stronger visible demand.",lR2t:"Glow",lR2d:"Brighter stars point to higher median pay and stronger salary signals.",lR3t:"Links",lR3d:"Lines reveal nearby careers and shared skills for possible transitions.",lR4t:"Lenses",lR4d:"Switch lenses to compare sectors, salaries, languages, careers and time.",lFilterTitle:"Refine results",lMinSalary:"Min salary",lSortLabel:"Sort by",lSortDemand:"Demand",lSortPay:"Salary",lSortEntry:"Entry-level",lNoExpOnly:"Good for beginners",lRemoteOnly:"Remote possible",lResetFilters:"Reset filters",lResultCount:"Showing {n} professions",lZoomIn:"Zoom in",lZoomOut:"Zoom out",lZoomReset:"Reset view"}
 };
 let TT={};
 function applyLang(){
@@ -1235,21 +1535,35 @@ function applyLang(){
   document.querySelectorAll('[data-ihtml]').forEach(el=>{ const k=el.getAttribute('data-ihtml'); if(L[k]!=null) el.innerHTML=L[k]; });
   document.querySelectorAll('[data-iph]').forEach(el=>{ const k=el.getAttribute('data-iph'); if(L[k]!=null) el.placeholder=L[k]; });
   buildDock(); buildLegend(); if(typeof refreshPages==='function') refreshPages();
+  ['zoomIn','zoomOut','zoomReset'].forEach(function(id){ var el=document.getElementById(id); if(!el)return;
+    var k=id==='zoomIn'?'lZoomIn':id==='zoomOut'?'lZoomOut':'lZoomReset';
+    el.title=L[k]||''; el.setAttribute('aria-label',L[k]||''); });
+  { var hb=document.getElementById('homeBtn'); if(hb){ hb.title=L.lNavHome||''; hb.setAttribute('aria-label',L.lNavHome||''); } }
   if(selected) showDetail(selected,true);
   else if(hovered) showDetail(hovered,false);
   else document.getElementById('dHint').textContent=(MODE==='careers')?L.careersHint:L.hintDefault;
   if(VIEW==='skill') showInsight(focusSkill);
   renderCrumbs();
 }
-function setLang(lg){ LG=lg;
-  document.querySelectorAll('#langsw button, #lLang button').forEach(x=>x.classList.toggle('on', x.getAttribute('data-l')===lg));
-  applyLang(); }
-document.querySelectorAll('#langsw button, #lLang button').forEach(b=>{ b.onclick=()=>setLang(b.getAttribute('data-l')); });
-function enterMap(){ const l=document.getElementById('landing'); l.style.opacity='0'; setTimeout(function(){ l.style.display='none'; }, 480); }
-function goHome(){ const l=document.getElementById('landing'); l.style.display='block'; requestAnimationFrame(function(){ l.style.opacity='1'; }); if(typeof showPage==='function') showPage('home'); else l.scrollTop=0; }
-document.querySelectorAll('.lcta-open').forEach(b=>b.onclick=enterMap);
+function setLang(lg){ LG=lg; try{ localStorage.setItem('az_atlas_lang',lg); }catch(e){}
+  document.querySelectorAll('#langsw button, #lLang button, #gLang button').forEach(x=>x.classList.toggle('on', x.getAttribute('data-l')===lg));
+  applyLang(); if(typeof updateLensCap==='function')updateLensCap(); }
+document.querySelectorAll('#langsw button, #lLang button, #gLang button').forEach(b=>{ b.onclick=()=>setLang(b.getAttribute('data-l')); });
+try{ const _sl=localStorage.getItem('az_atlas_lang'); if(_sl && LANG[_sl]) LG=_sl; }catch(e){}
+document.querySelectorAll('#langsw button, #lLang button, #gLang button').forEach(x=>x.classList.toggle('on', x.getAttribute('data-l')===LG));
+let LTIMER=null;
+function _enterMap(){ const l=document.getElementById('landing'); LAND_ON=false;
+  if(LTIMER){ clearTimeout(LTIMER); LTIMER=null; }
+  if(l.style.display==='none') return;
+  l.style.opacity='0'; LTIMER=setTimeout(function(){ l.style.display='none'; LTIMER=null; }, 480); }
+function _showLanding(){ LAND_ON=true; const l=document.getElementById('landing');
+  if(LTIMER){ clearTimeout(LTIMER); LTIMER=null; }
+  l.style.display='block'; requestAnimationFrame(function(){ l.style.opacity='1'; }); }
+document.querySelectorAll('.lcta-open').forEach(b=>b.onclick=()=>showPage('map'));
 document.querySelectorAll('.lnav[data-to]').forEach(a=>a.onclick=function(){ const t=document.getElementById(a.getAttribute('data-to')); if(t) t.scrollIntoView({behavior:'smooth'}); });
 { const hb=document.getElementById('homeBtn'); if(hb) hb.onclick=goHome; }
+{ const lb=document.querySelector('.l-brand'); if(lb){ lb.style.cursor='pointer'; lb.setAttribute('role','link'); lb.setAttribute('tabindex','0');
+  lb.onclick=()=>showPage('home'); lb.onkeydown=e=>{ if(e.key==='Enter') showPage('home'); }; } }
 
 /* ============ light-theme pages: search / find / compare / detail / favorites ============ */
 let searchSec=null, curDetail=null, matchSecSet=new Set(), matchSkillSet=new Set();
@@ -1259,7 +1573,13 @@ function loadFavs(){ try{ JSON.parse(localStorage.getItem(FAV_KEY)||'[]').forEac
 function saveFavs(){ try{ localStorage.setItem(FAV_KEY, JSON.stringify([...FAV])); }catch(e){} }
 function T(k){ return (TT && TT[k]!=null) ? TT[k] : k; }
 function profByIdx(i){ return STARS[i]; }
+function starOptions(prefix){ const list=STARS.map((s,i)=>({i,l:profLabel(s)}));
+  try{ list.sort((a,b)=>a.l.localeCompare(b.l,LG)); }catch(e){ list.sort((a,b)=>a.l<b.l?-1:1); }
+  return (prefix||'')+list.map(o=>'<option value="'+o.i+'">'+o.l+'</option>').join(''); }
 function fmt(n){ try{ return Number(n).toLocaleString('en-US'); }catch(e){ return ''+n; } }
+function normStr(x){ x=(''+(x==null?'':x)).toLocaleLowerCase('az');
+  try{ x=x.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }catch(e){}
+  return x.replace(/\u0259/g,'e').replace(/\u0131/g,'i'); }
 function pcChip(t){ return '<span class="pc-chip">'+t+'</span>'; }
 function slugOf(s){ return (s.en||s.name||'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,''); }
 
@@ -1267,7 +1587,7 @@ function profCard(s, idx, reason){
   const c=SEC[s.sec].c; const isf=FAV.has(idx);
   let h='<div class="pc" data-prof="'+idx+'">';
   h+='<div class="pc-top"><span class="pc-dot" style="background:rgb('+c.join(',')+')"></span><span class="pc-sec">'+secName(s.sec)+'</span>';
-  h+='<button class="pc-fav'+(isf?' on':'')+'" data-fav="'+idx+'">'+(isf?'\u2665':'\u2661')+'</button></div>';
+  h+='<button class="pc-fav'+(isf?' on':'')+'" data-fav="'+idx+'" aria-label="'+T('lFav')+'" aria-pressed="'+isf+'">'+(isf?'\u2665':'\u2661')+'</button></div>';
   h+='<div class="pc-name">'+profLabel(s)+'</div>';
   h+='<div class="pc-stats"><div><b>'+(rdy(s)?fmt(s.salary):'\u2014')+'</b>'+(rdy(s)?' AZN':'')+'<span>'+(rdy(s)?T(s.src==='live'?'lSrcLive':'lSrcEst'):T('lSoon'))+'</span></div><div><b>\u2014</b><span>'+T('lInDev')+'</span></div></div>';
   h+='<div class="pc-skills">'+s.skills.slice(0,4).map(k=>pcChip(skTR(k))).join('')+'</div>';
@@ -1279,17 +1599,20 @@ function wireCards(el){
   el.querySelectorAll('.pc').forEach(card=>{ card.onclick=()=>openDetail(profByIdx(+card.getAttribute('data-prof'))); });
   el.querySelectorAll('.pc-fav').forEach(b=>{ b.onclick=(e)=>{ e.stopPropagation(); toggleFav(+b.getAttribute('data-fav')); }; });
 }
-function toggleFav(i){ if(FAV.has(i))FAV.delete(i); else FAV.add(i); saveFavs(); const fc=document.getElementById('favCount'); if(fc) fc.textContent=FAV.size; refreshGrids(); }
+function toggleFav(i){ if(FAV.has(i))FAV.delete(i); else FAV.add(i); saveFavs();
+  const fc=document.getElementById('favCount');
+  if(fc){ fc.textContent=FAV.size; fc.classList.remove('pop'); void fc.offsetWidth; fc.classList.add('pop'); }
+  refreshGrids(); }
 function refreshGrids(){ const on=document.querySelector('#landing .page.page-on'); if(!on)return;
   if(on.id==='page-search') renderSearch();
   else if(on.id==='page-favorites') renderFav();
   else if(on.id==='page-match' && document.getElementById('matchResults').children.length) renderMatchResults();
   else if(on.id==='page-detail' && curDetail) renderDetail(curDetail); }
 
-function showPage(name){
-  if(name==='map'){ enterMap(); return; }
+function _showPage(name){
+  if(name!=='detail') lastPage=name;
   document.querySelectorAll('#landing .page').forEach(pg=>pg.classList.toggle('page-on', pg.id==='page-'+name));
-  document.querySelectorAll('.ltab').forEach(t=>t.classList.toggle('on', t.getAttribute('data-page')===name));
+  document.querySelectorAll('.ltab').forEach(t=>t.classList.toggle('on', t.getAttribute('data-page')===name)); var _dd=document.getElementById('lDd');if(_dd)_dd.classList.remove('open');var _ddb=document.getElementById('lDdBtn');if(_ddb)_ddb.classList.toggle('on',['search','match','compare','tools'].indexOf(name)>=0);
   const l=document.getElementById('landing'); if(l) l.scrollTop=0;
   if(name==='search') renderSearch();
   else if(name==='compare') renderCompare();
@@ -1299,10 +1622,46 @@ function showPage(name){
   else if(name==='edu') buildEdu();
   else if(name==='outlook') buildOutlook();
 }
-function openDetail(s){ renderDetail(s);
+function _openDetail(s){ renderDetail(s);
   document.querySelectorAll('#landing .page').forEach(pg=>pg.classList.toggle('page-on', pg.id==='page-detail'));
   document.querySelectorAll('.ltab').forEach(t=>t.classList.remove('on'));
   const l=document.getElementById('landing'); if(l) l.scrollTop=0; }
+
+/* ---- hash router: back/forward + shareable page URLs ---- */
+let lastPage='home', pendingStar=null, BOOTED=false, PENDING_MAP=null;
+const PAGES={home:1,tools:1,outlook:1,videos:1,parents:1,future:1,edu:1,ai:1,skillgap:1,search:1,match:1,compare:1,favorites:1};
+function renderRoute(force){
+  let h;
+  if(force!=null){ h=force; }
+  else { try{ h=decodeURIComponent(location.hash.slice(1)||''); }catch(e){ h=location.hash.slice(1)||''; } }
+  if(h==='map' || h.indexOf('map/')===0){
+    const rest=h.slice(4);
+    if(!BOOTED){ PENDING_MAP = pendingStar ? ('prof-'+slugOf(pendingStar)) : rest; pendingStar=null;
+      _enterMap();
+      if(PENDING_MAP){ const g=document.getElementById('gate'); if(g) g.classList.add('gone'); }
+      return; }
+    _enterMap();
+    if(pendingStar){ const s=pendingStar; pendingStar=null;
+      const g=document.getElementById('gate'); if(g) g.classList.add('gone');
+      enterSystem(s,true); }
+    else if(rest.indexOf('prof-')===0){ const s=STARS.find(x=>slugOf(x)===rest.slice(5));
+      if(s && selected!==s){ const g=document.getElementById('gate'); if(g) g.classList.add('gone'); enterSystem(s,true); } }
+    else if(rest.indexOf('skill-')===0){ const k=rest.slice(6);
+      if(SKILLSET.has(k) && focusSkill!==k){ const g=document.getElementById('gate'); if(g) g.classList.add('gone'); enterSkill(k,true); } }
+    return; }
+  _showLanding();
+  if(h.indexOf('prof-')===0){ const s=STARS.find(x=>slugOf(x)===h.slice(5));
+    if(s){ _openDetail(s); return; } h='search'; }
+  _showPage(Object.prototype.hasOwnProperty.call(PAGES,h)?h:'home');
+}
+function navHash(t){
+  try{ if(location.hash==='#'+t){ renderRoute(); } else location.hash=t; }
+  catch(e){ try{ history.replaceState(null,'','#'+t); }catch(_){} renderRoute(t); }
+}
+function showPage(name){ navHash((name==='map')?'map':name); }
+function openDetail(s){ navHash('prof-'+slugOf(s)); }
+function goHome(){ showPage('home'); }
+window.addEventListener('hashchange',function(){ renderRoute(); });
 
 function buildSearchSectors(){ const el=document.getElementById('searchSectors'); if(!el)return;
   let h='<button class="chip-f'+(searchSec==null?' on':'')+'" data-s="-1">'+T('lSearchAll')+'</button>';
@@ -1315,13 +1674,13 @@ function renderSearch(){ const inp=document.getElementById('searchInput'); const
   const entryOnly=!!(document.getElementById('entryOnly')&&document.getElementById('entryOnly').checked);
   const remoteOnly=!!(document.getElementById('remoteOnly')&&document.getElementById('remoteOnly').checked);
   const sortBy=(document.getElementById('sortBy')&&document.getElementById('sortBy').value)||'demand';
-  const q=((inp&&inp.value)||'').trim().toLowerCase();
+  const q=normStr(((inp&&inp.value)||'').trim());
   const arr=[];
   STARS.forEach((s,i)=>{ if(searchSec!=null && s.sec!==searchSec) return;
     if(minSalary && s.salary<minSalary) return;
     if(entryOnly && s.noexp<30) return;
     if(remoteOnly && s.rem<10) return;
-    const hay=(profLabel(s)+' '+(s.en||'')+' '+(s.name||'')+' '+s.skills.map(skTR).join(' ')+' '+s.skills.join(' ')).toLowerCase();
+    const hay=normStr(profLabel(s)+' '+(s.en||'')+' '+(s.name||'')+' '+s.skills.map(skTR).join(' ')+' '+s.skills.join(' '));
     if(q && hay.indexOf(q)<0) return; arr.push({s,i}); });
   arr.sort((a,b)=> sortBy==='pay' ? b.s.salary-a.s.salary : sortBy==='entry' ? b.s.noexp-a.s.noexp : b.s.count-a.s.count);
   const rc=document.getElementById('resultCount'); if(rc) rc.textContent=(T('lResultCount')||'{n}').replace('{n}',arr.length);
@@ -1334,17 +1693,71 @@ function resetSearchFilters(){
 
 let sgSkillSet=new Set();
 function aiAppend(cls,text){ const log=document.getElementById('aiLog'); if(!log)return; const d=document.createElement('div'); d.className='ai-msg '+cls; d.textContent=text; log.appendChild(d); log.scrollTop=log.scrollHeight; }
-function aiSend(){ const inp=document.getElementById('aiInput'); if(!inp)return; const t=(inp.value||'').trim(); if(!t)return; aiAppend('user',t); inp.value=''; setTimeout(function(){ aiAppend('bot',T('aiStub')); },400); }
+let AI_STARS=null, AI_SKILLS=null;
+function buildAIIndex(){ if(AI_STARS) return;
+  const MAN={'Software Developer':['программист','разработчик','proqramci','developer'],
+    'Sales Representative':['продавец','satici'],
+    'Construction Worker':['строитель'],
+    'Driver':['шофер','sofer'],
+    'Nurse':['медбрат']};
+  AI_STARS=[];
+  STARS.forEach(s=>{ const set=new Set([s.name,s.en,PROF_RU[s.en]].filter(Boolean).map(normStr));
+    (MAN[s.en]||[]).forEach(a=>set.add(normStr(a)));
+    set.forEach(a=>{ if(a.length>=3) AI_STARS.push({a,s}); }); });
+  AI_STARS.sort((x,y)=>y.a.length-x.a.length);
+  AI_SKILLS=[]; const seen=new Set();
+  STARS.forEach(s=>s.skills.forEach(k=>{ if(seen.has(k))return; seen.add(k);
+    const tr=SKILL_TR[k]||[]; [k,tr[0],tr[1]].filter(Boolean).forEach(a=>{ a=normStr(a); if(a.length>=2) AI_SKILLS.push({a,k}); }); }));
+  AI_SKILLS.sort((x,y)=>y.a.length-x.a.length);
+}
+function aiFind(list,nq,toks){
+  for(const o of list){
+    if(o.a.indexOf(' ')>=0){ if((' '+nq+' ').indexOf(' '+o.a+' ')>=0) return o; }
+    else for(const t of toks){ if(t===o.a || (o.a.length>=3 && t.indexOf(o.a)===0)) return o; } }
+  return null; }
+function aiProfile(s, edu){ const L=LANG[LG]; const lines=[profLabel(s)+' — '+secName(s.sec)];
+  lines.push(L.pay+': '+(rdy(s)? fmt(s.salary)+' AZN ('+T(s.src==='live'?'lSrcLive':'lSrcEst')+')' : T('lSoon')));
+  const DD=DEMAND[s.en];
+  lines.push(L.open+': '+(DD? fmt(DD.n)+' ('+T('lSrcLive')+')' : T('lInDev')));
+  lines.push(L.skills+': '+s.skills.slice(0,5).map(skTR).join(', '));
+  const sim=(s.related||[]).slice(0,3).map(profLabel).join(', ');
+  if(sim) lines.push(T('lSimilar')+': '+sim);
+  if(edu) lines.push(T('aiEduLine'));
+  return lines.join('\n'); }
+function aiAnswer(q){ buildAIIndex(); const L=LANG[LG];
+  let nq=normStr(q).replace(/[^a-z0-9\u0430-\u044f\s]/g,' ').replace(/\s+/g,' ').trim();
+  const toks=nq.split(' ').filter(Boolean);
+  const eduQ=toks.some(t=>['учит','oxu','study','стат','olmaq','become','вуз','universitet','university'].some(a=>t.indexOf(a)===0));
+  const st=aiFind(AI_STARS,nq,toks);
+  if(st) return aiProfile(st.s, eduQ);
+  const sk=aiFind(AI_SKILLS,nq,toks);
+  if(sk){ const list=STARS.filter(s=>s.skills.includes(sk.k));
+    const sal=list.map(s=>s.salary).slice().sort((a,b)=>a-b);
+    const med=sal.length? sal[Math.floor(sal.length/2)] : 0;
+    const top=list.slice().sort((a,b)=>b.salary-a.salary).slice(0,3).map(s=>profLabel(s)+' ('+fmt(s.salary)+')').join(', ');
+    return skTR(sk.k)+': '+list.length+' '+L.profWord+', '+T('lMedian')+' '+fmt(med)+' AZN\n'+L.insTop+': '+top; }
+  const demQ=toks.some(t=>['востреб','teleb','demand','лидер','popul','top'].some(a=>t.indexOf(a)===0));
+  if(demQ){ const live=Object.keys(DEMAND).map(en=>({n:DEMAND[en].n, s:STARS.find(x=>x.en===en)}))
+      .filter(o=>o.s).sort((a,b)=>b.n-a.n).slice(0,5);
+    return T('aiTopHead')+'\n'+live.map((o,k)=>(k+1)+'. '+profLabel(o.s)+' — '+fmt(o.n)).join('\n')+'\n'+T('aiTopNote'); }
+  if(eduQ) return T('aiEduLine');
+  if(toks.length<=3 && toks.some(t=>['привет','salam','салам','hello','hi','hey'].indexOf(t)>=0)) return T('aiWelcome');
+  return T('aiStub'); }
+function aiSend(){ const inp=document.getElementById('aiInput'); if(!inp)return; const t=(inp.value||'').trim(); if(!t)return; aiAppend('user',t); inp.value=''; setTimeout(function(){ aiAppend('bot',aiAnswer(t)); },350); }
 function buildAI(){ const log=document.getElementById('aiLog'); if(!log)return;
   if(!log.dataset.init){ aiAppend('bot',T('aiWelcome')); log.dataset.init='1'; }
   const sb=document.getElementById('aiSend'), inp=document.getElementById('aiInput'); if(sb)sb.onclick=aiSend; if(inp)inp.onkeydown=function(e){ if(e.key==='Enter')aiSend(); };
   document.querySelectorAll('#aiSuggest [data-q]').forEach(function(b){ b.onclick=function(){ const i2=document.getElementById('aiInput'); if(i2){i2.value=b.textContent; aiSend();} }; });
 }
 function buildOutlook(){ const el=document.getElementById('outList'); if(!el)return;
-  el.innerHTML=STARS.map(function(s){ return '<div class="out-row"><span class="out-name">'+profLabel(s)+'</span><span class="out-tag">'+T('outSoon')+'</span></div>'; }).join('');
+  const rows=STARS.map((s,i)=>({s,i})).filter(o=>o.s.gtype==='up'||o.s.gtype==='emerge')
+    .sort((a,b)=>((a.s.gtype==='emerge')?0:1)-((b.s.gtype==='emerge')?0:1) || b.s.count-a.s.count);
+  el.innerHTML=rows.map(o=>'<button type="button" class="out-row" data-prof="'+o.i+'"><span class="out-name">'+profLabel(o.s)+'</span><span class="out-tag '+(o.s.gtype==='emerge'?'new':'up')+'">'+(o.s.gtype==='emerge'?T('outNew'):T('outUp'))+'</span></button>').join('');
+  el.querySelectorAll('[data-prof]').forEach(b=>b.onclick=()=>openDetail(profByIdx(+b.getAttribute('data-prof'))));
 }
 function buildEdu(){ const pf=document.getElementById('eduProf'); if(!pf)return;
-  pf.innerHTML=STARS.map((s,i)=>'<option value="'+i+'">'+profLabel(s)+'</option>').join('');
+  const _cv=pf.value; pf.innerHTML=starOptions('');
+  if(_cv!=='' && pf.querySelector('option[value="'+_cv+'"]')) pf.value=_cv;
   pf.onchange=function(){ renderEdu(+pf.value); }; renderEdu(+pf.value);
 }
 function renderEdu(idx){ const s=STARS[idx]; if(!s)return;
@@ -1353,7 +1766,8 @@ function renderEdu(idx){ const s=STARS[idx]; if(!s)return;
 }
 function buildSkillGap(){
   const pf=document.getElementById('sgProf'), sk=document.getElementById('sgSkills'), bt=document.getElementById('sgBtn'); if(!pf||!sk)return;
-  pf.innerHTML=STARS.map((s,i)=>'<option value="'+i+'">'+profLabel(s)+'</option>').join('');
+  const _cv=pf.value; pf.innerHTML=starOptions('');
+  if(_cv!=='' && pf.querySelector('option[value="'+_cv+'"]')) pf.value=_cv;
   const freq={}; STARS.forEach(s=>s.skills.forEach(k=>freq[k]=(freq[k]||0)+1));
   const top=Object.keys(freq).sort((a,b)=>freq[b]-freq[a]).slice(0,24);
   sk.innerHTML=top.map(k=>'<button class="chip-t'+(sgSkillSet.has(k)?' on':'')+'" data-sg="'+k+'">'+skTR(k)+'</button>').join('');
@@ -1366,8 +1780,15 @@ function runSkillGap(){
   const picked=[...sgSkillSet];
   yv.className = picked.length?'sg-chips':'sg-soon';
   yv.innerHTML = picked.length ? picked.map(k=>'<span class="pc-chip">'+skTR(k)+'</span>').join('') : T('sgNoneSel');
-  document.getElementById('sgNeedV').textContent=T('sgSoon');
-  document.getElementById('sgMissV').textContent=T('sgSoon');
+  const pf=document.getElementById('sgProf'); const tgt=STARS[+((pf&&pf.value)||0)];
+  const req=(tgt&&tgt.skills)||[];
+  const needEl=document.getElementById('sgNeedV'), missEl=document.getElementById('sgMissV');
+  needEl.className='sg-chips';
+  needEl.innerHTML=req.length? req.map(k=>'<span class="pc-chip'+(sgSkillSet.has(k)?' ok':'')+'">'+skTR(k)+'</span>').join('')
+    : '<span class="sg-soon">'+T('sgSoon')+'</span>';
+  const miss=req.filter(k=>!sgSkillSet.has(k));
+  if(miss.length){ missEl.className='sg-chips'; missEl.innerHTML=miss.map(k=>'<span class="pc-chip miss">'+skTR(k)+'</span>').join(''); }
+  else { missEl.className='sg-soon'; missEl.textContent=T('sgNone'); }
 }
 function buildMatchPalette(){
   const se=document.getElementById('matchSectors'), sk=document.getElementById('matchSkills'); if(!se||!sk)return;
@@ -1393,7 +1814,7 @@ function renderMatchResults(){ const out=document.getElementById('matchResults')
 }
 
 function buildCompareSelects(){ const a=document.getElementById('cmpA'), b=document.getElementById('cmpB'); if(!a||!b)return;
-  const opts='<option value="-1">'+T('lComparePick')+'</option>'+STARS.map((s,i)=>'<option value="'+i+'">'+profLabel(s)+'</option>').join('');
+  const opts=starOptions('<option value="-1">'+T('lComparePick')+'</option>');
   const av=a.value, bv=b.value; a.innerHTML=opts; b.innerHTML=opts; if(av) a.value=av; if(bv) b.value=bv;
   a.onchange=renderCompare; b.onchange=renderCompare;
 }
@@ -1405,7 +1826,11 @@ function renderCompare(){ const t=document.getElementById('cmpTable'); if(!t)ret
   let h='<div class="cmp-head"><div class="cmp-a">'+profLabel(A)+'</div><div class="cmp-k"></div><div class="cmp-b">'+profLabel(B)+'</div></div>';
   h+=cmpRow(T('lcSector'),secName(A.sec),secName(B.sec),0);
   h+=cmpRow(T('lcPay'),rdy(A)?fmt(A.salary)+' AZN':T('lSoon'),rdy(B)?fmt(B.salary)+' AZN':T('lSoon'),(rdy(A)&&rdy(B))?(A.salary>B.salary?1:B.salary>A.salary?2:0):0);
-  h+=cmpRow(T('lcOpen'),T('lInDev'),T('lInDev'),0);
+  { const DA=DEMAND[A.en], DB=DEMAND[B.en];
+    h+=cmpRow(T('lcOpen'),
+      DA? fmt(DA.n)+' \u00b7 '+T('lSrcLive') : T('lSoon'),
+      DB? fmt(DB.n)+' \u00b7 '+T('lSrcLive') : T('lSoon'),
+      (DA&&DB)? (DA.n>DB.n?1:DB.n>DA.n?2:0) : 0); }
   h+=cmpRow(T('lcEng'),T('lInDev'),T('lInDev'),0);
   h+=cmpRow(T('lcRus'),T('lInDev'),T('lInDev'),0);
   h+=cmpRow(T('lcRem'),T('lInDev'),T('lInDev'),0);
@@ -1419,11 +1844,11 @@ function langBars(s){ const a=[[T('bEn'),s.enp,'#56b3f5,#9fd6ff'],[T('bRu'),s.ru
   return '<div class="d2-langs">'+a.map(x=>'<div class="d2-lang"><span>'+x[0]+'</span><div class="d2-t"><div class="d2-f" style="width:'+x[1]+'%;background:linear-gradient(90deg,'+x[2]+')"></div></div><span class="d2-n">'+x[1]+'%</span></div>').join('')+'</div>'; }
 const DEMAND = {"Software Developer": {"n": 54, "skills": ["SQL", "Komanda işi", "Git", "Ünsiyyət", "Analitik düşüncə"]}, "Accountant": {"n": 39, "skills": ["Excel", "1C", "Analitik düşüncə", "MS Office", "Məsuliyyət"]}, "Sales Representative": {"n": 102, "skills": ["Müştəri xidməti", "Ünsiyyət", "Rus dili", "İngilis dili", "1C"]}, "Doctor": {"n": 3, "skills": []}, "Nurse": {"n": 6, "skills": []}, "Waiter": {"n": 3, "skills": []}, "Construction Worker": {"n": 19, "skills": ["Komanda işi"]}};
 function renderDetail(s){ curDetail=s; const c=SEC[s.sec].c; const idx=STARS.indexOf(s); const isf=FAV.has(idx);
-  const tier=s.count>600?2:s.count>250?1:0; const demW=(TT.dem&&TT.dem[tier])||'';
+  const DD=DEMAND[s.en]; const tier=DD?(DD.n>60?2:DD.n>15?1:0):0; const demW=(TT.dem&&TT.dem[tier])||'';
   const ladder=LADDER.map((m,k)=>'<div class="d2-step"><span>'+LV[k]+'</span><b>'+(rdy(s)?fmt(r50(s.salary*m)):'\u2014')+'</b></div>').join('');
   const firms='<div class="d2-li" style="color:#9aa4ba">'+T('lInDev')+'</div>';
   const sim=(s.related||[]).slice(0,4).map(b=>{ const bi=STARS.indexOf(b); return '<button class="d2-sim" data-prof="'+bi+'"><span class="pc-dot" style="background:rgb('+SEC[b.sec].c.join(',')+')"></span>'+profLabel(b)+'</button>'; }).join('');
-  const DD=DEMAND[s.en]; const skills=(DD&&DD.skills.length)?DD.skills.map(k=>pcChip(k)).join(''):'';
+  const skills=(DD&&DD.skills.length)?DD.skills.map(k=>pcChip(k)).join(''):'';
   let h='<button class="d2-back" id="d2back">'+T('lBack')+'</button>';
   h+='<div class="d2-head"><span class="pc-dot big" style="background:rgb('+c.join(',')+')"></span><div class="d2-sec">'+secName(s.sec)+'</div></div>';
   h+='<h1 class="d2-name">'+profLabel(s)+'</h1>';
@@ -1438,7 +1863,7 @@ function renderDetail(s){ curDetail=s; const c=SEC[s.sec].c; const idx=STARS.ind
   h+='<div class="d2-sec2"><div class="d2-h">'+T('cardCareer')+'</div><div class="d2-ladder">'+ladder+'</div></div>';
   h+='<div class="d2-cols"><div><div class="d2-h">'+T('cardFirms')+'</div>'+firms+'</div><div><div class="d2-h">'+T('lSimilar')+'</div><div class="d2-sims">'+sim+'</div></div></div>';
   document.getElementById('detailBody').innerHTML=h;
-  document.getElementById('d2back').onclick=()=>showPage('search');
+  document.getElementById('d2back').onclick=()=>showPage((lastPage&&lastPage!=='detail')?lastPage:'search');
   document.getElementById('d2map').onclick=()=>openMapAt(s);
   document.getElementById('d2fav').onclick=()=>{ toggleFav(STARS.indexOf(s)); renderDetail(s); };
   document.getElementById('d2share').onclick=()=>shareProf(s);
@@ -1448,13 +1873,10 @@ function renderFav(){ const out=document.getElementById('favResults'); if(!out)r
   const arr=[...FAV]; out.innerHTML = arr.length? arr.map(i=>profCard(STARS[i],i)).join('') : '<div class="empty">'+T('lFavEmpty')+'</div>'; wireCards(out);
 }
 
-function openMapAt(s){ const l=document.getElementById('landing'); if(l) l.style.opacity='0';
-  const g=document.getElementById('gate'); if(g) g.style.display='none';
-  setTimeout(function(){ if(l) l.style.display='none'; if(typeof enterSystem==='function') enterSystem(s,true); }, 300); }
+function openMapAt(s){ pendingStar=s; navHash('map'); }
 function toast(msg){ let t=document.getElementById('toast'); if(!t){ t=document.createElement('div'); t.id='toast'; t.className='toast'; document.body.appendChild(t); } t.textContent=msg; t.classList.add('on'); clearTimeout(t._h); t._h=setTimeout(()=>t.classList.remove('on'),1800); }
-function shareProf(s){ const url=location.origin+location.pathname+'?prof='+slugOf(s);
+function shareProf(s){ const url=location.origin+location.pathname+'#prof-'+slugOf(s);
   if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(url).then(()=>toast(T('lShared')),()=>toast(url)); } else { toast(url); } }
-function openFromUrl(){ try{ const m=/[?&]prof=([^&]+)/.exec(location.search); if(!m)return; const slug=decodeURIComponent(m[1]); const s=STARS.find(x=>slugOf(x)===slug); if(s){ applyLang(); const l=document.getElementById('landing'); if(l){ l.style.display='block'; l.style.opacity='1'; } openDetail(s); } }catch(e){} }
 function refreshPages(){ buildSearchSectors(); buildMatchPalette(); buildCompareSelects();
   const on=document.querySelector('#landing .page.page-on'); if(!on)return;
   if(on.id==='page-search') renderSearch();
@@ -1462,8 +1884,11 @@ function refreshPages(){ buildSearchSectors(); buildMatchPalette(); buildCompare
   else if(on.id==='page-favorites') renderFav();
   else if(on.id==='page-match' && document.getElementById('matchResults').children.length) renderMatchResults();
   else if(on.id==='page-detail' && curDetail) renderDetail(curDetail);
+  if(typeof renderTick==='function') renderTick(false);
 }
-document.querySelectorAll('.ltab').forEach(t=>t.onclick=()=>showPage(t.getAttribute('data-page')));
+document.querySelectorAll('.ltab').forEach(t=>{ const pg=t.getAttribute('data-page'); t.setAttribute('href','#'+pg);
+  t.onclick=e=>{ e.preventDefault(); showPage(pg); }; });
+(function(){var b=document.getElementById('lDdBtn'),dd=document.getElementById('lDd');if(b&&dd){b.onclick=function(e){e.stopPropagation();dd.classList.toggle('open');};document.addEventListener('click',function(e){if(!dd.contains(e.target))dd.classList.remove('open');});}})();
 { const fb=document.getElementById('favBtn'); if(fb) fb.onclick=()=>showPage('favorites'); }
 { const si=document.getElementById('searchInput'); if(si) si.oninput=renderSearch; }
 ['salaryMin','sortBy','entryOnly','remoteOnly'].forEach(id=>{ const el=document.getElementById(id); if(el){ el.oninput=renderSearch; el.onchange=renderSearch; } });
@@ -1471,26 +1896,72 @@ document.querySelectorAll('.ltab').forEach(t=>t.onclick=()=>showPage(t.getAttrib
 { const mb=document.getElementById('matchBtn'); if(mb) mb.onclick=renderMatchResults; }
 loadFavs();
 buildSearchSectors(); buildMatchPalette(); buildCompareSelects();
-openFromUrl();
+/* ---- landing motion: reveal-on-scroll, stat counters, live ticker ---- */
+(function(){
+  const H=document.documentElement; H.classList.add('anim'); if(RM) H.classList.add('rm');
+  function statCount(root){ root.querySelectorAll('.l-statn').forEach(el=>{
+      const m=/^(\D*)(\d+)(.*)$/.exec((el.textContent||'').trim()); if(!m) return;
+      const pre=m[1], tgt=+m[2], suf=m[3], t0=performance.now(), dur=950;
+      (function st(n){ const p=Math.min(1,(n-t0)/dur), e=1-Math.pow(1-p,3);
+        el.textContent=pre+Math.round(tgt*e)+suf;
+        if(p<1) requestAnimationFrame(st); })(t0); }); }
+  window._statCount=statCount;
+  const els=[].slice.call(document.querySelectorAll('#page-home .l-sec, #page-home .l-stats, #page-home .l-band'));
+  if(!RM && 'IntersectionObserver' in window){
+    els.forEach(el=>el.classList.add('rev'));
+    const io=new IntersectionObserver(en=>en.forEach(e=>{ if(!e.isIntersecting) return;
+        e.target.classList.add('on');
+        if(e.target.classList.contains('l-stats')) statCount(e.target);
+        io.unobserve(e.target); }),{threshold:.16});
+    els.forEach(el=>io.observe(el));
+  } else els.forEach(el=>el.classList.add('rev','on'));
+  const tk=document.getElementById('lTick'), tx=document.getElementById('lTickTxt');
+  if(tk && tx){
+    const feed=[];
+    STARS.forEach(s=>{ if(rdy(s)) feed.push({s,t:'pay'}); });
+    Object.keys(DEMAND).forEach(en=>{ const s=STARS.find(x=>x.en===en); if(s) feed.push({s,t:'open'}); });
+    for(let i=feed.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); const q=feed[i]; feed[i]=feed[j]; feed[j]=q; }
+    if(feed.length){
+      let ix=0;
+      const fmtE=e=> e.t==='pay'
+        ? profLabel(e.s)+' \u2014 '+fmt(e.s.salary)+' AZN \u00b7 '+T('lMedian')
+        : profLabel(e.s)+' \u2014 '+fmt(DEMAND[e.s.en].n)+' '+T('lOpenRoles');
+      window.renderTick=function(adv){ if(adv!==false) ix=(ix+1)%feed.length;
+        tx.textContent=fmtE(feed[ix]); tk.dataset.prof=STARS.indexOf(feed[ix].s); };
+      renderTick(false); tk.hidden=false;
+      tk.onclick=()=>openDetail(STARS[+tk.dataset.prof]);
+      if(!RM) setInterval(()=>{ if(document.hidden || !LAND_ON) return;
+        tx.classList.add('out');
+        setTimeout(()=>{ renderTick(); tx.classList.remove('out'); },260); },4200);
+    }
+  }
+})();
+(function(){ try{ const m=/[?&]prof=([^&]+)/.exec(location.search);
+    if(m) history.replaceState(null,'', location.pathname+'#prof-'+decodeURIComponent(m[1])); }catch(e){}
+  applyLang(); renderRoute(); })();
 
+const CAPS={"galaxy": {"az": "Peşələr sahələr üzrə qruplaşıb — rəng sahəni göstərir.", "ru": "Профессии сгруппированы по сферам — цвет = сфера.", "en": "Professions grouped by field — colour shows the field."}, "demand": {"az": "Mərkəzə yaxın və iri — daha çox açıq vakansiya (əksəriyyət üçün təxmini).", "ru": "Ближе к центру и крупнее — больше открытых вакансий (для большинства — оценка).", "en": "Closer to centre and larger — more open vacancies (an estimate for most)."}, "salary": {"az": "Sağa doğru və qızılı rəng — daha yüksək maaş (əksəriyyət üçün təxmini).", "ru": "Правее и золотистее — выше зарплата (для большинства — оценка).", "en": "Further right and warmer — higher pay (an estimate for most)."}, "tides": {"az": "Yuxarı — ingilis dili tələb olunur; sağa — rus dili (təxmini).", "ru": "Выше — требуется английский; правее — русский (оценка).", "en": "Higher — English required; further right — Russian (estimate)."}, "careers": {"az": "Solda — təcrübəsiz başlamaq olar; sağa — daha çox təcrübə tələb olunur.", "ru": "Слева — можно начать без опыта; правее — нужен опыт.", "en": "Left — you can start with no experience; right — more experience required."}, "time": {"az": "Tələbatın illər üzrə dəyişimi (illüstrativ) — ili sürüşdürün və ya ▶ basın.", "ru": "Изменение спроса по годам (иллюстративно) — двигайте год или нажмите ▶.", "en": "Demand over the years (illustrative) — drag the year or press ▶."}};
+function updateLensCap(){ var lc=document.getElementById('lenscap'); if(!lc)return; var c=CAPS[MODE]; if(c){ lc.textContent=c[LG]||c.en; lc.classList.add('show'); } else lc.classList.remove('show'); }
 function setMode(m){
   MODE=m;
   if(VIEW!=='universe'){ VIEW='universe'; selected=null; focusSkill=null; SYS.length=0; NEIGH.length=0; NAV.length=0;
     document.getElementById('back').classList.remove('show'); document.getElementById('brand').style.opacity=1; renderCrumbs(); }
   cam.tx=0; cam.ty=0; cam.tzoom=fitZoomFor();
   layout(m);
-  document.getElementById('timebar').classList.toggle('show', m==='time');
-  if(m==='careers'){ document.getElementById('dHint').textContent=LANG[LG].careersHint; }
-  else { document.getElementById('detail').classList.remove('show'); }
+  document.getElementById('timebar').classList.remove('show');
+  document.getElementById('detail').classList.remove('show');
+  updateLensCap();
+  try{ if(!LAND_ON) history.replaceState(null,'','#map'); }catch(e){}
 }
 const yrInput=document.getElementById('yr'), yrLabel=document.getElementById('yrLabel');
-yrInput.addEventListener('input',()=>{ YEAR=+yrInput.value; yrLabel.textContent=YEAR; if(MODE==='time')layout('time'); });
+yrInput.addEventListener('input',()=>{ YEAR=+yrInput.value; yrLabel.textContent=YEAR; applyYearSizes(); });
 let playing=false, playT=0;
 document.getElementById('play').addEventListener('click',function(){ playing=!playing; this.textContent=playing?'❚❚':'▶'; });
 
 /* ============================================================ PULSE / RIPPLE == */
 const RIPPLES=[];
 function spawnPulse(){
+  if(RM || LAND_ON || document.hidden) return;
   const s=STARS[Math.floor(Math.random()*STARS.length)];
   if(s.tsize<1) return;
   RIPPLES.push({x:s.x,y:s.y,r:s.size,max:s.size*9,a:1,col:SEC[s.sec].c});
@@ -1503,11 +1974,13 @@ function rrect(x,y,w,h,r){ ctx.beginPath(); ctx.moveTo(x+r,y); ctx.arcTo(x+w,y,x
 function fdim(sec){ return (filterSector!=null && VIEW==='universe') ? (sec===filterSector?1:0.08) : 1; }
 function drawLabels(){
   if(!HEADLINE){ const so=STARS.slice().sort((a,b)=>b.count-a.count); so.forEach((s,k)=>s.headline=(k<14)); HEADLINE=true; }
+  const showAll = filterSector!=null || cam.zoom > fitZoomFor()*1.25;
   ctx.globalCompositeOperation='source-over'; ctx.textAlign='center'; ctx.textBaseline='middle';
   ctx.font='600 12.5px "Space Grotesk", sans-serif';
   for(const s of STARS){ if(s.size<0.6) continue;
-    const show = (s.headline || s===hovered) && (filterSector==null || s.sec===filterSector);
+    const show = (filterSector==null || s.sec===filterSector);
     if(!show) continue;
+    if(!showAll && !s.headline && s!==hovered && s!==selected) continue;
     const p=S(s.x,s.y); if(p[0]<46||p[0]>CW-46||p[1]<26||p[1]>CH-14) continue;
     const txt=profLabel(s); const w=ctx.measureText(txt).width;
     const ly=p[1]-s.size*cam.zoom-15;
@@ -1516,11 +1989,55 @@ function drawLabels(){
   }
   ctx.textBaseline='alphabetic'; ctx.textAlign='left'; ctx.globalCompositeOperation='lighter';
 }
+function drawAxes(){
+  if(MODE!=='salary' && MODE!=='careers' && MODE!=='tides' && MODE!=='demand') return;
+  ctx.globalCompositeOperation='source-over';
+  ctx.font='10.5px "IBM Plex Mono",monospace'; ctx.textBaseline='alphabetic';
+  const TXT='rgba(158,174,200,.92)', LN='rgba(158,174,200,.32)';
+  const laneX = CW>760 ? 228 : 14;
+  const bandT=CH-104, bandL=CH-90;
+  function tick(sx,label){ if(sx<44||sx>CW-44)return;
+    ctx.strokeStyle=LN; ctx.lineWidth=1; ctx.beginPath(); ctx.moveTo(sx,bandT); ctx.lineTo(sx,bandT+6); ctx.stroke();
+    ctx.fillStyle=TXT; ctx.textAlign='center'; ctx.fillText(label,sx,bandL); }
+  function cap(sx,label){ if(sx>CW-40)return; ctx.fillStyle=TXT; ctx.textAlign='left'; ctx.fillText(label,Math.max(sx,44),bandL); }
+  function lanes(span){ for(let i=0;i<SEC.length;i++){
+      const sy=S(0,mapv(i,0,SEC.length-1,-span,span))[1]; if(sy<96||sy>CH-150)continue;
+      const dim=(filterSector!=null && filterSector!==i);
+      ctx.globalAlpha=dim?0.28:1;
+      ctx.fillStyle='rgb('+SEC[i].c.join(',')+')'; ctx.beginPath(); ctx.arc(laneX+3,sy-3,3,0,Math.PI*2); ctx.fill();
+      ctx.fillStyle=TXT; ctx.textAlign='left';
+      let nm=secName(i); if(nm.length>18) nm=nm.slice(0,17)+'…';
+      ctx.fillText(nm,laneX+12,sy); ctx.globalAlpha=1; } }
+  if(MODE==='salary'){
+    [500,1000,1500,2000,2500,3000].forEach(v=>tick(S(mapv(v,400,3000,-700,700),0)[0], v>=1000? (v/1000)+'k' : ''+v));
+    cap(S(700,0)[0]+16, T('unMonth')); lanes(360);
+  } else if(MODE==='careers'){
+    const yw={az:' il',ru:' г.',en:' yr'}[LG]||' yr';
+    [0,1,2,3,4,5,6].forEach(v=>tick(S(mapv(v,0,6,-650,650),0)[0], v===0? (LANG[LG].exp[1]) : v+yw));
+    cap(S(650,0)[0]+16, LANG[LG].exp[0]); lanes(330);
+  } else if(MODE==='tides'){
+    [0,30,60,90].forEach(v=>tick(S(mapv(v,0,90,-680,680),0)[0], v+'%'));
+    cap(S(680,0)[0]+16,'RU');
+    let topY=1e9;
+    [0,30,60,90].forEach(v=>{ const sy=S(0,mapv(v,0,90,-330,330))[1]; if(sy<96||sy>CH-150)return; topY=Math.min(topY,sy);
+      ctx.fillStyle=TXT; ctx.textAlign='left'; ctx.fillText(v+'%',laneX,sy); });
+    if(topY<1e8){ ctx.fillText('EN',laneX,topY-18); }
+  } else if(MODE==='demand'){
+    ctx.strokeStyle=LN; ctx.setLineDash([4,7]);
+    [[120,LANG[LG].dem[2]],[640,LANG[LG].dem[0]]].forEach(([r,lab])=>{
+      const c0=S(0,0), rx=r*cam.zoom, ry=r*0.85*cam.zoom;
+      ctx.beginPath(); ctx.ellipse(c0[0],c0[1],rx,ry,0,0,Math.PI*2); ctx.stroke();
+      const ty=c0[1]-ry-8; if(ty>96&&ty<CH-150){ ctx.fillStyle=TXT; ctx.textAlign='center'; ctx.fillText(lab,c0[0],ty); } });
+    ctx.setLineDash([]);
+  }
+  ctx.textAlign='left'; ctx.globalCompositeOperation='lighter';
+}
 function buildLegend(){
   const el=document.getElementById('legend'); if(!el) return;
   let html='<div class="lg-title">'+(LANG[LG].lgTitle||'Sectors')+'</div>';
   html+='<div class="lg-row lg-all'+(filterSector==null?' on':'')+'" data-s="-1"><span class="lg-sw" style="background:linear-gradient(120deg,#7fe9c0,#54d0e0)"></span>'+(LANG[LG].lgAll||'All sectors')+'</div>';
-  for(let i=0;i<SEC.length;i++){ html+='<div class="lg-row'+(filterSector===i?' on':'')+'" data-s="'+i+'"><span class="lg-sw" style="background:rgb('+SEC[i].c.join(',')+')"></span>'+secName(i)+'</div>'; }
+  const SECN=[]; STARS.forEach(s=>SECN[s.sec]=(SECN[s.sec]||0)+1);
+  for(let i=0;i<SEC.length;i++){ html+='<div class="lg-row'+(filterSector===i?' on':'')+'" data-s="'+i+'"><span class="lg-sw" style="background:rgb('+SEC[i].c.join(',')+')"></span>'+secName(i)+'<span class="lg-n">'+(SECN[i]||0)+'</span></div>'; }
   el.innerHTML=html;
   el.querySelectorAll('.lg-row').forEach(r=>{ r.onclick=()=>{ const v=+r.getAttribute('data-s'); setFilter(v<0?null:v); }; });
 }
@@ -1529,16 +2046,20 @@ function setFilter(sec){ filterSector = (sec!=null && filterSector===sec) ? null
 /* ============================================================ RENDER LOOP ===== */
 let last=performance.now();
 function frame(now){
+  if(document.hidden || LAND_ON){ last=now; setTimeout(function(){ requestAnimationFrame(frame); },200); return; }
   const dt=Math.min(40, now-last); last=now;
 
   // time autoplay
-  if(playing){ playT+=dt; if(playT>620){ playT=0; YEAR=YEAR>=2027?2019:YEAR+1; yrInput.value=YEAR; yrLabel.textContent=YEAR; layout('time'); } }
+  if(playing){ playT+=dt; if(playT>620){ playT=0; YEAR=YEAR>=2027?2019:YEAR+1; yrInput.value=YEAR; yrLabel.textContent=YEAR; applyYearSizes(); } }
 
   // ease camera
   cam.x+=(cam.tx-cam.x)*0.07; cam.y+=(cam.ty-cam.y)*0.07; cam.zoom+=(cam.tzoom-cam.zoom)*0.07;
 
-  // hover (skip while zoomed)
-  if(VIEW==='universe'){
+  // hover (frozen while panning/pinching)
+  const dragging = PTRS.size>0 && dragMoved;
+  if(dragging){
+    cv.style.cursor='grabbing';
+  } else if(VIEW==='universe'){
     hovered = pickStar();
     if(hovered!==lastHover){
       if(hovered){ showDetail(hovered,false); }
@@ -1555,7 +2076,7 @@ function frame(now){
   }
 
   // slow celestial rotation of the galaxy (decorative lenses only)
-  if(VIEW==='universe' && (MODE==='galaxy'||MODE==='careers'||MODE==='time')){
+  if(!RM && VIEW==='universe' && (MODE==='galaxy'||MODE==='careers'||MODE==='time')){
     const da=0.00016*(dt/16.7), ca=Math.cos(da), sa=Math.sin(da);
     for(const s of STARS){ const nx=s.tx*ca-s.ty*sa, ny=s.tx*sa+s.ty*ca; s.tx=nx; s.ty=ny; }
   }
@@ -1578,8 +2099,8 @@ function frame(now){
   // far horizon stars + drifting dust (depth & parallax-like layering)
   for(const f of FAR){ const p=S(f.x,f.y); if(p[0]<-20||p[0]>CW+20||p[1]<-20||p[1]>CH+20)continue;
     ctx.globalAlpha=(0.22+0.18*Math.sin(now*0.0008+f.ph)); const sz=f.s*1.8; ctx.drawImage(WHITE,p[0]-sz,p[1]-sz,sz*2,sz*2); }
-  for(const d of DUST){ d.x+=d.vx*(dt/16.7); d.y+=d.vy*(dt/16.7);
-    if(d.x>1700)d.x=-1700; else if(d.x<-1700)d.x=1700; if(d.y>1200)d.y=-1200; else if(d.y<-1200)d.y=1200;
+  for(const d of DUST){ if(!RM){ d.x+=d.vx*(dt/16.7); d.y+=d.vy*(dt/16.7);
+    if(d.x>1700)d.x=-1700; else if(d.x<-1700)d.x=1700; if(d.y>1200)d.y=-1200; else if(d.y<-1200)d.y=1200; }
     const p=S(d.x,d.y); if(p[0]<-20||p[0]>CW+20||p[1]<-20||p[1]>CH+20)continue;
     ctx.globalAlpha=d.a*(0.7+0.3*Math.sin(now*0.001+d.ph)); const sz=d.s*1.6; ctx.drawImage(WHITE,p[0]-sz,p[1]-sz,sz*2,sz*2); }
   ctx.globalAlpha=1;
@@ -1627,7 +2148,7 @@ function frame(now){
   }
   ctx.globalAlpha=1;
 
-  if(VIEW==='universe') drawLabels();
+  if(VIEW==='universe'){ drawLabels(); drawAxes(); }
 
   // selected system: skill orbits
   if(VIEW==='system'){ drawSystem(now); }
@@ -1719,7 +2240,7 @@ function drawSystem(now){
   const PR=Math.min(CW,CH)*0.15;
   const c=SEC[s.sec].c;
   const lt=[Math.min(255,(c[0]+70)|0),Math.min(255,(c[1]+70)|0),Math.min(255,(c[2]+70)|0)];
-  const tilt=0.16;
+  const tilt=0.16+now*0.00004;
   ctx.globalCompositeOperation='lighter';
   let gh=ctx.createRadialGradient(p[0],p[1],PR*0.6,p[0],p[1],PR*2.2);
   gh.addColorStop(0,'rgba('+c[0]+','+c[1]+','+c[2]+',0.22)'); gh.addColorStop(1,'rgba(0,0,0,0)');
@@ -1748,16 +2269,16 @@ function drawSystem(now){
   ctx.fillStyle=gr; ctx.fillRect(p[0]-PR*1.2,p[1]-PR*1.2,PR*2.4,PR*2.4);
   drawRing(p,PR,tilt,lt,false);
   // skill moons (outside the rings, clickable)
-  SYS.forEach((o,k)=>{ o.t+=o.sp*16; const ang=o.ang+o.t; const r=PR*(2.0+k*0.17);
+  SYS.forEach((o,k)=>{ o.t+=o.sp*4; const ang=o.ang+o.t; const r=PR*(2.0+k*0.17);
     const x=p[0]+Math.cos(ang)*r, y=p[1]+Math.sin(ang)*r*0.92; o.sx=x; o.sy=y;
-    const hot=hoverNode&&hoverNode.kind==='skill'&&hoverNode.name===o.name; const ms=PR*(hot?0.13:0.09);
-    ctx.globalAlpha=1; ctx.drawImage(WHITE,x-ms,y-ms,ms*2,ms*2); });
+    const hot=hoverNode&&hoverNode.kind==='skill'&&hoverNode.name===o.name; const ms=PR*(hot?0.18:0.13);
+    ctx.globalAlpha=0.28; ctx.drawImage(WHITE,x-ms*2.3,y-ms*2.3,ms*4.6,ms*4.6); ctx.globalAlpha=1; ctx.drawImage(WHITE,x-ms,y-ms,ms*2,ms*2); });
   // neighbour worlds (career traversal)
   NEIGH.forEach(o=>{ const r=PR*3.05; const x=p[0]+Math.cos(o.ang)*r, y=p[1]+Math.sin(o.ang)*r*0.92; o.sx=x; o.sy=y;
     const col=SEC[o.star.sec].c; const hot=hoverNode&&hoverNode.kind==='neighbor'&&hoverNode.star===o.star;
     ctx.strokeStyle='rgba('+col[0]+','+col[1]+','+col[2]+','+(hot?0.5:0.16)+')'; ctx.lineWidth=1;
     ctx.beginPath(); ctx.moveTo(p[0],p[1]); ctx.lineTo(x,y); ctx.stroke();
-    const sp=SPRITE[o.star.sec]; const ns=PR*(hot?0.18:0.12); ctx.globalAlpha=1; ctx.drawImage(sp,x-ns,y-ns,ns*2,ns*2); });
+    const sp=SPRITE[o.star.sec]; const ns=PR*(hot?0.26:0.18); ctx.globalAlpha=1; ctx.drawImage(sp,x-ns,y-ns,ns*2,ns*2); });
   ctx.globalAlpha=1;
   // embedded labels
   ctx.globalCompositeOperation='source-over'; ctx.textAlign='center';
@@ -1786,14 +2307,25 @@ function drawSkillCenter(now){
 }
 
 /* ============================================================ BOOT ============ */
+let BOOT_DONE=false;
 function boot(){
+  if(BOOT_DONE) return; BOOT_DONE=true;
   try{
     resize();
     applyLang();
-    // arrival: scatter then settle
     layout('galaxy');
-    STARS.forEach(s=>{ const a=Math.random()*6.283, R=rnd(1100,1900);
-      s.x=Math.cos(a)*R; s.y=Math.sin(a)*R; s.size=0; });
+    if(PENDING_MAP){
+      // deep link straight into a system/skill: settle stars in place, no arrival flight
+      STARS.forEach(s=>{ s.x=s.tx; s.y=s.ty; s.size=s.tsize; });
+    } else {
+      // arrival: scatter then settle
+      STARS.forEach(s=>{ const a=Math.random()*6.283, R=rnd(1100,1900);
+        s.x=Math.cos(a)*R; s.y=Math.sin(a)*R; s.size=0; });
+    }
+    BOOTED=true;
+    if(PENDING_MAP){ const r=PENDING_MAP; PENDING_MAP=null;
+      if(r.indexOf('prof-')===0){ const s=STARS.find(x=>slugOf(x)===r.slice(5)); if(s) enterSystem(s,true); }
+      else if(r.indexOf('skill-')===0){ const k=r.slice(6); if(SKILLSET.has(k)) enterSkill(k,true); } }
     requestAnimationFrame(frame);
   }catch(err){
     document.body.insertAdjacentHTML('beforeend',

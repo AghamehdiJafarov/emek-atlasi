@@ -167,7 +167,7 @@ canvas{position:fixed; inset:0; display:block}
 .d-col{flex:1; min-width:0}
 .d-col .row{font-size:12.5px; color:var(--ink); padding:3px 0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
 
-.homebtn{position:fixed; left:30px; bottom:26px; z-index:6; display:flex; align-items:center; gap:9px;
+.homebtn{position:fixed; left:30px; bottom:26px; z-index:30; display:flex; align-items:center; gap:9px;
   padding:15px 30px; border-radius:100px; border:1.5px solid rgba(127,233,192,.65); cursor:pointer;
   background:rgba(18,38,52,.92); backdrop-filter:blur(14px); color:#eafff8; font-weight:600;
   box-shadow:0 10px 30px rgba(127,233,192,.26);
@@ -1444,7 +1444,7 @@ function applyDaySizes(){ /* time lens: planet size = real cumulative count of c
    professions with no mapped ads stay small (no data — no growth story). */
   STARS.forEach(s=>{ const dd=DEMAND[s.en] && DEMAND[s.en].d;
     if(dd){ let c=0; for(let k=0;k<=DAY && k<dd.length;k++) c+=dd[k];
-      s.tsize = 7 + Math.sqrt(c)*2.6; }
+      s.tsize = c>0 ? 7 + Math.sqrt(c)*2.6 : 2.2; /* not yet seen: a faint ember */ }
     else { s.tsize = s.baseSize*0.3; } });
 }
 
@@ -1457,7 +1457,9 @@ function pickFrom(list){
   let best=null,bd=1e9;
   for(const s of list){ if(s.tsize<1) continue; const p=S(s.x,s.y);
     const d=Math.hypot(p[0]-mouse.x,p[1]-mouse.y); const rad=Math.max(16,s.size*cam.zoom+9);
-    if(d<rad && d<bd){bd=d;best=s;} }
+    const lb=(VIEW==='universe')?s._lb:null; /* label pill drawn this frame counts as the star */
+    const inLb=!!lb && mouse.x>=lb.x-3 && mouse.x<=lb.x+lb.w+3 && mouse.y>=lb.y-3 && mouse.y<=lb.y+lb.h+3;
+    if((d<rad || inLb) && d<bd){bd=d;best=s;} }
   return best;
 }
 function pickStar(){ return pickFrom(STARS); }
@@ -1621,9 +1623,9 @@ function layoutSkill(skill){
 
 /* ============================================================ DETAIL PANEL ==== */
 const LANG={
- az:{brand:'Bakı Əmək Rəsədxanası · prototip',tag:'Azərbaycan əmək bazarı — hər ulduz bir peşədir',back:'← Kainata qayıt',pay:'Median maaş',open:'Açıq vakansiya',bEn:'İngilis',bRu:'Rus',bRem:'Uzaqdan iş',skills:'Əsas bacarıqlar',hintDefault:'Ulduza toxun → peşə sistemi açılır',careersHint:'Ulduza toxun → karyera əlaqələri yansın',gate_eye:'Daxil ol · əmək kainatı',gate_h2:'Hər vakansiya bir fotondur.<br>Milyonlarla işıq bir kosmos qurur.',gate_p:'Azərbaycan əmək bazarı canlı xəritə kimi. Linzanı dəyiş — eyni kainat başqa fizikada açılır: tələbatın cazibəsi, maaşın iqlimi, dil tələbi, karyera axınları, zamanın hərəkəti.',enter:'Kainata gir',note:'İllüstrativ data · real boru kəməri sonra qoşulur',exp:['Təcrübə','təcrübəsiz'],err:'Kainat yüklənmədi: ',universe:'Kainat',profWord:'peşə',insTop:'Ən yüksək maaş',insMost:'Ən çox',insBridge:'Körpü',cardCareer:'Karyera yolu',cardFirms:'Şirkətlər',cardSimilar:'Oxşar peşələr',dem:['az tələbat','orta tələbat','yüksək tələbat'],lgTitle:'Sektorlar',lgAll:'Bütün sektorlar',lenses:[['Bürclər','sektorlar'],['Tələbat','cazibə'],['Maaş iqlimi','iqlim'],['Dillər','tələb'],['Karyera','əlaqələr'],['Zaman','2019–27']],mapTitle:'Əmək bazarının kainatı',unMonth:'AZN / ay',hintSystem:'Peyklər — bacarıqlar, kənar planetlər — qonşu peşələr. Klik edin.'},
- ru:{brand:'Бакинская обсерватория труда · прототип',tag:'Рынок труда Азербайджана — каждая звезда это профессия',back:'← Назад во вселенную',pay:'Медианная зарплата',open:'Открытые вакансии',bEn:'Английский',bRu:'Русский',bRem:'Удалёнка',skills:'Ключевые навыки',hintDefault:'Коснись звезды → откроется её система',careersHint:'Наведи на звезду → загорятся карьерные связи',gate_eye:'Войди · вселенная труда',gate_h2:'Каждая вакансия — фотон.<br>Миллионы из них образуют космос.',gate_p:'Рынок труда Азербайджана как живая карта. Меняй линзу — та же вселенная открывается в другой физике: гравитация спроса, климат зарплат, требования к языкам, потоки карьер, движение времени.',enter:'Войти во вселенную',note:'Иллюстративные данные · реальный конвейер подключим позже',exp:['Опыт','без опыта'],err:'Вселенная не загрузилась: ',universe:'Вселенная',profWord:'профессий',insTop:'Самые денежные',insMost:'Больше всего в',insBridge:'Мост',cardCareer:'Карьерный путь',cardFirms:'Компании',cardSimilar:'Похожие профессии',dem:['низкий спрос','средний спрос','высокий спрос'],lgTitle:'Секторы',lgAll:'Все секторы',lenses:[['Созвездия','секторы'],['Спрос','гравитация'],['Климат зарплат','климат'],['Языки','приливы'],['Карьера','связи'],['Время','2019–27']],mapTitle:'Вселенная рынка труда',unMonth:'AZN / мес',hintSystem:'Спутники — навыки, внешние планеты — соседние профессии. Кликайте.'},
- en:{brand:'Baku Labour Observatory · prototype',tag:"Azerbaijan's labour market — every star is a profession",back:'← Back to the universe',pay:'Median pay',open:'Open roles',bEn:'English',bRu:'Russian',bRem:'Remote',skills:'Key skills',hintDefault:'Click a star → enter its system',careersHint:'Hover a star → its career links light up',gate_eye:'Enter · the universe of work',gate_h2:'Every vacancy is a photon.<br>Millions of them build a cosmos.',gate_p:"Azerbaijan's labour market as a living map. Switch the lens and the same universe opens in a different physics — the gravity of demand, the climate of pay, language requirements, the currents of careers, the motion of time.",enter:'Enter the universe',note:'Illustrative data · real pipeline plugs in later',exp:['Experience','entry-level'],err:'Universe failed to load: ',universe:'Universe',profWord:'professions',insTop:'Top pay',insMost:'Most in',insBridge:'Bridge',cardCareer:'Career path',cardFirms:'Companies',cardSimilar:'Similar roles',dem:['niche','steady','high demand'],lgTitle:'Sectors',lgAll:'All sectors',lenses:[['Constellations','by sector'],['Demand','gravity well'],['Salary','pay climate'],['Languages','tides'],['Careers','links'],['Time','machine']],mapTitle:'Observable Universe of Work',unMonth:'AZN / month',hintSystem:'Moons are skills, outer planets are neighbouring roles. Click them.'}
+ az:{brand:'Bakı Əmək Rəsədxanası · prototip',tag:'Azərbaycan əmək bazarı — hər ulduz bir peşədir',back:'← Kainata qayıt',pay:'Median maaş',open:'Açıq vakansiya',bEn:'İngilis',bRu:'Rus',bRem:'Uzaqdan iş',skills:'Əsas bacarıqlar',hintDefault:'Ulduza toxun → peşə sistemi açılır',careersHint:'Ulduza toxun → karyera əlaqələri yansın',gate_eye:'Daxil ol · əmək kainatı',gate_h2:'Hər vakansiya bir fotondur.<br>Milyonlarla işıq bir kosmos qurur.',gate_p:'Azərbaycan əmək bazarı canlı xəritə kimi. Linzanı dəyiş — eyni kainat başqa fizikada açılır: tələbatın cazibəsi, maaşın iqlimi, dil tələbi, karyera axınları, zamanın hərəkəti.',enter:'Kainata gir',note:'İllüstrativ data · real boru kəməri sonra qoşulur',exp:['Təcrübə','təcrübəsiz'],err:'Kainat yüklənmədi: ',universe:'Kainat',profWord:'peşə',insTop:'Ən yüksək maaş',insMost:'Ən çox',insBridge:'Körpü',cardCareer:'Karyera yolu',cardFirms:'Şirkətlər',cardSimilar:'Oxşar peşələr',dem:['az tələbat','orta tələbat','yüksək tələbat'],lgTitle:'Sektorlar',lgAll:'Bütün sektorlar',lenses:[['Bürclər','sektorlar'],['Tələbat','cazibə'],['Maaş iqlimi','iqlim'],['Dillər','tələb'],['Karyera','əlaqələr'],['Zaman','21 gün']],mapTitle:'Əmək bazarının kainatı',unMonth:'AZN / ay',hintSystem:'Peyklər — bacarıqlar, kənar planetlər — qonşu peşələr. Klik edin.'},
+ ru:{brand:'Бакинская обсерватория труда · прототип',tag:'Рынок труда Азербайджана — каждая звезда это профессия',back:'← Назад во вселенную',pay:'Медианная зарплата',open:'Открытые вакансии',bEn:'Английский',bRu:'Русский',bRem:'Удалёнка',skills:'Ключевые навыки',hintDefault:'Коснись звезды → откроется её система',careersHint:'Наведи на звезду → загорятся карьерные связи',gate_eye:'Войди · вселенная труда',gate_h2:'Каждая вакансия — фотон.<br>Миллионы из них образуют космос.',gate_p:'Рынок труда Азербайджана как живая карта. Меняй линзу — та же вселенная открывается в другой физике: гравитация спроса, климат зарплат, требования к языкам, потоки карьер, движение времени.',enter:'Войти во вселенную',note:'Иллюстративные данные · реальный конвейер подключим позже',exp:['Опыт','без опыта'],err:'Вселенная не загрузилась: ',universe:'Вселенная',profWord:'профессий',insTop:'Самые денежные',insMost:'Больше всего в',insBridge:'Мост',cardCareer:'Карьерный путь',cardFirms:'Компании',cardSimilar:'Похожие профессии',dem:['низкий спрос','средний спрос','высокий спрос'],lgTitle:'Секторы',lgAll:'Все секторы',lenses:[['Созвездия','секторы'],['Спрос','гравитация'],['Климат зарплат','климат'],['Языки','приливы'],['Карьера','связи'],['Время','21 день']],mapTitle:'Вселенная рынка труда',unMonth:'AZN / мес',hintSystem:'Спутники — навыки, внешние планеты — соседние профессии. Кликайте.'},
+ en:{brand:'Baku Labour Observatory · prototype',tag:"Azerbaijan's labour market — every star is a profession",back:'← Back to the universe',pay:'Median pay',open:'Open roles',bEn:'English',bRu:'Russian',bRem:'Remote',skills:'Key skills',hintDefault:'Click a star → enter its system',careersHint:'Hover a star → its career links light up',gate_eye:'Enter · the universe of work',gate_h2:'Every vacancy is a photon.<br>Millions of them build a cosmos.',gate_p:"Azerbaijan's labour market as a living map. Switch the lens and the same universe opens in a different physics — the gravity of demand, the climate of pay, language requirements, the currents of careers, the motion of time.",enter:'Enter the universe',note:'Illustrative data · real pipeline plugs in later',exp:['Experience','entry-level'],err:'Universe failed to load: ',universe:'Universe',profWord:'professions',insTop:'Top pay',insMost:'Most in',insBridge:'Bridge',cardCareer:'Career path',cardFirms:'Companies',cardSimilar:'Similar roles',dem:['niche','steady','high demand'],lgTitle:'Sectors',lgAll:'All sectors',lenses:[['Constellations','by sector'],['Demand','gravity well'],['Salary','pay climate'],['Languages','tides'],['Careers','links'],['Time','21 days']],mapTitle:'Observable Universe of Work',unMonth:'AZN / month',hintSystem:'Moons are skills, outer planets are neighbouring roles. Click them.'}
 };
 const PROF_RU={"Sales Manager":"Менеджер по продажам","Sales Representative":"Торговый представитель","Cashier":"Кассир","Store Manager":"Директор магазина","Marketing Specialist":"Маркетолог","E-commerce Manager":"Менеджер e-commerce","Software Developer":"Разработчик ПО","Frontend Developer":"Frontend-разработчик","DevOps Engineer":"DevOps-инженер","QA Engineer":"QA-инженер","Data Analyst":"Аналитик данных","ML Engineer":"ML-инженер","Prompt Engineer":"Prompt-инженер","Accountant":"Бухгалтер","Chief Accountant":"Главный бухгалтер","Financial Analyst":"Финансовый аналитик","Driver":"Водитель","Logistician":"Логист","Warehouse Keeper":"Кладовщик","Courier":"Курьер","Supply Specialist":"Специалист по снабжению","Mechanical Engineer":"Инженер-механик","Electrical Engineer":"Инженер-электрик","HSE Specialist":"Специалист по охране труда","Plant Operator":"Оператор установки","Geologist":"Геолог","Civil Engineer":"Инженер-строитель","Foreman":"Прораб","Architect":"Архитектор","Cost Estimator":"Сметчик","Construction Worker":"Строительный рабочий","Doctor":"Врач","Nurse":"Медсестра","Pharmacist":"Фармацевт","Dentist":"Стоматолог","Lab Technician":"Лаборант","Waiter":"Официант","Chef":"Повар","Hotel Administrator":"Администратор отеля","Barista":"Бариста","Guest Service Agent":"Агент гостевого сервиса","HR Specialist":"HR-специалист","Office Manager":"Офис-менеджер","Administrative Assistant":"Помощник администратора","Translator":"Переводчик","Receptionist":"Ресепшионист"};
 const SKILL_TR={"Danışıqlar":["Переговоры","Negotiation"],"Müştəri xidməti":["Клиентский сервис","Customer service"],"Ünsiyyət":["Коммуникация","Communication"],"Kassa":["Работа с кассой","Cash handling"],"Satış":["Продажи","Sales"],"Diqqət":["Внимательность","Attention to detail"],"Müştəri":["Работа с клиентами","Customer relations"],"İdarəetmə":["Управление","Management"],"İnventar":["Инвентаризация","Inventory"],"Analitika":["Аналитика","Analytics"],"Kontent":["Контент","Content"],"Logistika":["Логистика","Logistics"],"Vergi":["Налоги","Tax"],"Hesabat":["Отчётность","Reporting"],"Kredit":["Кредитование","Credit"],"Modelləşdirmə":["Моделирование","Modeling"],"Statistika":["Статистика","Statistics"],"Sürücülük":["Вождение","Driving"],"Naviqasiya":["Навигация","Navigation"],"Anbar":["Складской учёт","Warehousing"],"Təchizat":["Снабжение","Procurement"],"Mexanika":["Механика","Mechanics"],"Layihə":["Проектирование","Project design"],"Elektrik":["Электрика","Electrical"],"Təhlükəsizlik":["Охрана труда","Safety"],"Avadanlıq":["Оборудование","Equipment"],"Geologiya":["Геология","Geology"],"Analiz":["Анализ","Analysis"],"Smeta":["Сметы","Cost estimation"],"Briqada":["Бригадирство","Crew lead"],"Dizayn":["Дизайн","Design"],"Tikinti":["Строительство","Construction"],"Fiziki":["Физический труд","Physical work"],"Tibb":["Медицина","Medicine"],"Diaqnoz":["Диагностика","Diagnosis"],"Müalicə":["Лечение","Treatment"],"Qulluq":["Уход за пациентами","Patient care"],"Əczaçılıq":["Фармацевтика","Pharmacy"],"Stomatologiya":["Стоматология","Dentistry"],"Laboratoriya":["Лабораторная работа","Lab work"],"Xidmət":["Сервис","Service"],"Kulinariya":["Кулинария","Cooking"],"Menyu":["Меню","Menu"],"Gigiyena":["Гигиена","Hygiene"],"Qəhvə":["Кофе","Coffee"],"Dillər":["Языки","Languages"],"İşə qəbul":["Подбор персонала","Recruiting"],"Sənəd":["Документооборот","Documents"],"Telefon":["Телефон","Phone"],"İngilis":["Английский","English"],"Rus":["Русский","Russian"],"Tərcümə":["Перевод","Translation"],"Bank":["Банковское дело","Banking"]};
@@ -1813,6 +1815,7 @@ function renderRoute(force){
       _enterMap();
       if(PENDING_MAP){ const g=document.getElementById('gate'); if(g) g.classList.add('gone'); }
       return; }
+    const fromLanding=LAND_ON;
     _enterMap();
     if(pendingStar){ const s=pendingStar; pendingStar=null;
       const g=document.getElementById('gate'); if(g) g.classList.add('gone');
@@ -1821,6 +1824,8 @@ function renderRoute(force){
       if(s && selected!==s){ const g=document.getElementById('gate'); if(g) g.classList.add('gone'); enterSystem(s,true); } }
     else if(rest.indexOf('skill-')===0){ const k=rest.slice(6);
       if(SKILLSET.has(k) && focusSkill!==k){ const g=document.getElementById('gate'); if(g) g.classList.add('gone'); enterSkill(k,true); } }
+    else if(!rest && fromLanding){ /* fresh entry from the landing: show the two-map gate again */
+      const g=document.getElementById('gate'); if(g) g.classList.remove('gone'); }
     return; }
   _showLanding();
   if(h.indexOf('search?')===0){ if(typeof applySearchParams==='function') applySearchParams(h.slice(7)); h='search'; }
@@ -2151,14 +2156,20 @@ function setMode(m){
   try{ if(!LAND_ON) history.replaceState(null,'','#map'); }catch(e){}
 }
 const yrInput=document.getElementById('yr'), yrLabel=document.getElementById('yrLabel');
-yrInput.addEventListener('input',()=>{ DAY=+yrInput.value; yrLabel.textContent=fmtDay(DAY); applyDaySizes(); updateLensCap(); });
+function setDay(v,fx){ v=clamp(v,0,TREND.days.length-1); const prev=DAY; DAY=v;
+  yrInput.value=v; yrLabel.textContent=fmtDay(v); applyDaySizes(); updateLensCap();
+  if(fx && v!==prev){ /* stars whose ads arrived on this day flash; bursts ripple */
+    for(const s of STARS){ const dd=DEMAND[s.en]&&DEMAND[s.en].d; const n=dd?(dd[v]||0):0;
+      if(n>0){ s.flash=Math.max(s.flash||0, Math.min(1, .3+n*.06));
+        if(n>=4 && RIPPLES.length<14) RIPPLES.push({x:s.x,y:s.y,r:s.size,max:s.size*5.5,a:.8,col:SEC[s.sec].c}); } } } }
+yrInput.addEventListener('input',()=>{ setDay(+yrInput.value,true); });
 let playing=false, playT=0;
-document.getElementById('play').addEventListener('click',function(){ playing=!playing; if(playing && DAY>=TREND.days.length-1){ DAY=0; yrInput.value=0; yrLabel.textContent=fmtDay(0); applyDaySizes(); updateLensCap(); } this.textContent=playing?'❚❚':'▶'; });
+document.getElementById('play').addEventListener('click',function(){ playing=!playing; if(playing && DAY>=TREND.days.length-1) setDay(0,false); this.textContent=playing?'❚❚':'▶'; });
 
 /* ============================================================ PULSE / RIPPLE == */
 const RIPPLES=[];
 function spawnPulse(){
-  if(RM || LAND_ON || document.hidden) return;
+  if(RM || LAND_ON || document.hidden || MODE==='time') return; /* time lens: only data-driven flashes */
   const s=STARS[Math.floor(Math.random()*STARS.length)];
   if(s.tsize<1) return;
   RIPPLES.push({x:s.x,y:s.y,r:s.size,max:s.size*9,a:1,col:SEC[s.sec].c});
@@ -2174,13 +2185,14 @@ function drawLabels(){
   const showAll = filterSector!=null || cam.zoom > fitZoomFor()*1.25;
   ctx.globalCompositeOperation='source-over'; ctx.textAlign='center'; ctx.textBaseline='middle';
   ctx.font='600 12.5px "Space Grotesk", sans-serif';
-  for(const s of STARS){ if(s.size<0.6) continue;
+  for(const s of STARS){ s._lb=null; if(s.size<0.6) continue;
     const show = (filterSector==null || s.sec===filterSector);
     if(!show) continue;
     if(!showAll && !s.headline && s!==hovered && s!==selected) continue;
     const p=S(s.x,s.y); if(p[0]<46||p[0]>CW-46||p[1]<26||p[1]>CH-14) continue;
     const txt=profLabel(s); const w=ctx.measureText(txt).width;
     const ly=p[1]-s.size*cam.zoom-15;
+    s._lb={x:p[0]-w/2-9, y:ly-11, w:w+18, h:22};
     ctx.fillStyle='rgba(4,7,15,0.6)'; rrect(p[0]-w/2-9, ly-11, w+18, 22, 8); ctx.fill();
     ctx.fillStyle=(s===hovered)?'#ffffff':'rgba(228,236,250,0.92)'; ctx.fillText(txt, p[0], ly);
   }
@@ -2248,7 +2260,7 @@ function frame(now){
 
   // time autoplay
   if(playing && MODE==='time'){ if(now-playT>430){ playT=now;
-      if(DAY<TREND.days.length-1){ DAY++; yrInput.value=DAY; yrLabel.textContent=fmtDay(DAY); applyDaySizes(); updateLensCap(); }
+      if(DAY<TREND.days.length-1){ setDay(DAY+1,true); }
       else { playing=false; var _pb=document.getElementById('play'); if(_pb)_pb.textContent='\u25B6'; } } }
   else if(playing){ playing=false; var _pb2=document.getElementById('play'); if(_pb2)_pb2.textContent='\u25B6'; }
 

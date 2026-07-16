@@ -1419,7 +1419,7 @@ RAW.forEach((r,i)=>{
     rem:r[7], exp:r[8], noexp:r[9], skills:r[10], gtype:r[11], birth:r[12],
     col:SEC[sec].c.slice(), cur:SEC[sec].c.slice(),
     x:0,y:0, tx:0,ty:0, size:0, tsize:0, baseSize:0,
-    tw:Math.random()*6.283, sat:[]
+    tw:Math.random()*6.283, flash:0, sat:[]
   };
   const _rd = REAL[st.en]; if(_rd){ st.salary = _rd.salary; st.src = _rd.src; }
   st.baseSize = 7 + Math.sqrt(st.count)*2.6;     // star radius ∝ √vacancies
@@ -2435,7 +2435,7 @@ function frame(now){
     const sp = makeColSprite(s.cur);
     const tw=0.82+0.18*Math.sin(s.tw);
     const dim = (filterSector!=null && VIEW==='universe') ? (s.sec===filterSector?1:0.06) : (selected&&selected!==s)?0.18 : (hovered&&hovered!==s&&!selected)?0.5 : 1;
-    let R=s.size*cam.zoom*(1+s.flash*0.8);
+    let R=s.size*cam.zoom*(1+(s.flash||0)*0.8);
     if(s===hovered||s===selected) R*=1.4;
     const lum=clamp(mapv(s.salary,400,3000,1.7,4.2),1.5,4.6);
     const cor=R*lum; ctx.globalAlpha=clamp(0.15*tw*dim,0,1); ctx.drawImage(sp,p[0]-cor,p[1]-cor,cor*2,cor*2);

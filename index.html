@@ -86,6 +86,7 @@ canvas{position:fixed; inset:0; display:block}
   background:rgba(12,18,32,.62); backdrop-filter:blur(14px); border:1px solid rgba(255,255,255,.08)}
 .timebar.show{display:flex}
 .timebar .yr{font-family:"Space Grotesk",sans-serif; font-weight:600; font-size:26px; min-width:74px; text-align:center; letter-spacing:.01em}
+.timebar .tstat{font-size:10.5px;color:#8fe9c9;text-align:left;line-height:1.5;min-width:84px;letter-spacing:.03em}
 .timebar input{width:min(46vw,380px); accent-color:#7fe9c0}
 .timebar .play{cursor:pointer; border:0; background:linear-gradient(120deg,#7fe9c0,#54d0e0); color:#06121f;
   width:38px;height:38px;border-radius:50%; font-size:15px; display:grid; place-items:center}
@@ -567,6 +568,40 @@ canvas{position:fixed; inset:0; display:block}
 .gh-col-d{color:#9fb4c9;font-size:13px;line-height:1.5;margin:0 0 15px}
 .gh-badge{position:absolute;top:15px;right:15px;font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;padding:4px 9px;border-radius:100px}
 .gh-badge-soon{color:#ffce85;background:rgba(240,162,59,.14);border:1px solid rgba(240,162,59,.3)}
+.gh-badge-proto{color:#7fe9c0;background:rgba(45,212,191,.12);border:1px solid rgba(45,212,191,.35)}
+.gh-geo{cursor:pointer;transition:box-shadow .2s, transform .2s}
+.gh-geo:hover,.gh-geo:focus-visible{box-shadow:0 0 0 1.5px rgba(45,212,191,.55), 0 14px 44px rgba(20,60,80,.45);transform:translateY(-2px);outline:none}
+
+/* ---- Azerbaijan regions overlay ---- */
+.regions{position:fixed;inset:0;z-index:24;display:none;place-items:center;overflow-y:auto;
+  background:radial-gradient(1100px 640px at 50% 14%, #0b1830 0%, #04070f 62%);padding:38px 18px}
+.regions.show{display:grid}
+.rg-hub{width:min(1060px,100%)}
+.rg-head{text-align:center;margin-bottom:22px}
+.rg-proto{display:inline-flex;align-items:center;gap:10px;margin-top:12px;font-family:"Inter",sans-serif;font-size:12.5px;color:#9fb4c9;
+  border:1px dashed rgba(45,212,191,.35);border-radius:100px;padding:7px 14px;background:rgba(45,212,191,.05)}
+.rg-proto-b{font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:#7fe9c0}
+.rg-cols{display:grid;grid-template-columns:1.55fr 1fr;gap:24px;align-items:stretch}
+.rg-mapwrap{background:rgba(10,20,38,.55);border:1px solid rgba(120,160,200,.14);border-radius:16px;padding:14px;display:flex;align-items:center}
+.rg-mapwrap svg{display:block;width:100%;height:auto}
+.rg-bub circle{fill:rgba(45,212,191,.16);stroke:#2dd4bf;stroke-opacity:.75;stroke-width:1.4;transition:.15s}
+.rg-bub:hover circle{fill:rgba(45,212,191,.3)}
+.rg-cnt{fill:#d9fff2;font-family:"Space Grotesk",sans-serif;font-weight:600;font-size:11px;text-anchor:middle}
+.rg-city{fill:#9fb4c9;font-family:"Inter",sans-serif;font-size:9.5px;text-anchor:middle}
+.rg-list{background:rgba(10,20,38,.55);border:1px solid rgba(120,160,200,.14);border-radius:16px;padding:10px 12px;display:flex;flex-direction:column;justify-content:center;gap:2px}
+.rg-row{display:grid;grid-template-columns:20px 1fr 74px 52px 44px;align-items:center;gap:9px;padding:6.5px 8px;border-radius:9px;font-family:"Inter",sans-serif;font-size:13px;color:#dbe6f5}
+.rg-row:hover{background:rgba(120,180,220,.07)}
+.rg-rk{font-family:var(--mono);font-size:10px;color:#5d708c}
+.rg-nm{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rg-bar{height:5px;border-radius:100px;background:rgba(120,160,200,.14);overflow:hidden}
+.rg-bar i{display:block;height:100%;border-radius:100px;background:linear-gradient(90deg,#2dd4bf,#54a0e0)}
+.rg-n{font-family:"Space Grotesk",sans-serif;font-weight:600;text-align:right}
+.rg-pc{font-family:var(--mono);font-size:10px;color:#7c8fa9;text-align:right}
+.rg-row.rg-other{opacity:.72}
+.rg-foot{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-top:22px;flex-wrap:wrap}
+.rg-back{padding:12px 22px}
+.rg-total{font-size:11px;color:#7fe9c0;letter-spacing:.06em}
+@media(max-width:860px){.rg-cols{grid-template-columns:1fr}.rg-row{grid-template-columns:18px 1fr 56px 46px 40px;font-size:12.5px}}
 .gh-map{width:100%;border-radius:12px;overflow:hidden;max-height:230px}
 .gh-map svg{max-height:230px}
 .gh-map svg{display:block;width:100%;height:auto}
@@ -1131,6 +1166,7 @@ button.out-row:hover{background:#f3fbfa}
     <button class="play" id="play" aria-label="Play / Pause">▶</button>
     <input type="range" id="yr" min="0" max="20" step="1" value="20">
     <div class="yr mono" id="yrLabel">13.07</div>
+    <div class="tstat mono" id="tStat"></div>
   </div>
 
   <div class="zoomctl" id="zoomctl"><button id="zoomIn" type="button">+</button><button id="zoomOut" type="button">−</button><button id="zoomReset" type="button">↺</button></div>
@@ -1147,11 +1183,11 @@ button.out-row:hover{background:#f3fbfa}
       <p class="gh-sub" data-i="ghSub">Left — Azerbaijan by region. Right — professions as a universe.</p>
     </div>
     <div class="gh-cols">
-      <div class="gh-col gh-geo">
-        <div class="gh-badge gh-badge-soon" data-i="ghSoon">coming soon</div>
+      <div class="gh-col gh-geo" id="gateGeo" role="button" tabindex="0">
+        <div class="gh-badge gh-badge-proto" data-i="ghProto">prototype</div>
         <h3 class="gh-col-t" data-i="ghGeoT">Azerbaijan map</h3>
-        <p class="gh-col-d" data-i="ghGeoD">Vacancies by region — appearing with real data.</p>
-        <div class="gh-map"><svg viewBox="0 0 420 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Azerbaijan"><path class="gh-sea" d="M300 0 L420 0 L420 300 L300 300 Q352 240 340 180 Q362 150 350 92 Q330 40 300 0 Z"/><path class="gh-land" d="M56 150 L58 108 L92 70 L155 56 L232 70 L296 94 L336 146 L356 144 Q394 146 398 166 Q396 180 366 178 L338 168 L300 210 L240 240 L180 240 L110 222 L62 186 Z"/><path class="gh-land" d="M48 246 Q60 236 82 244 Q96 252 88 268 Q72 278 56 270 Q44 260 48 246 Z"/><circle class="gh-city" cx="372" cy="166" r="4"/><circle class="gh-city" cx="352" cy="150" r="3"/><circle class="gh-city" cx="120" cy="142" r="3.5"/><circle class="gh-city" cx="178" cy="120" r="3"/><circle class="gh-city" cx="165" cy="96" r="3"/><circle class="gh-city" cx="250" cy="228" r="3.5"/><circle class="gh-city" cx="72" cy="256" r="3"/><g><circle class="gh-bub" cx="372" cy="146" r="12"/><text class="gh-bubt" x="372" y="149">—</text></g><g><circle class="gh-bub" cx="120" cy="122" r="12"/><text class="gh-bubt" x="120" y="125">—</text></g><g><circle class="gh-bub" cx="250" cy="208" r="11"/><text class="gh-bubt" x="250" y="211">—</text></g><text class="gh-clab" x="380" y="180">Bakı</text><text class="gh-clab" x="88" y="146">Gəncə</text></svg></div>
+        <p class="gh-col-d" data-i="ghGeoD2">Regional distribution — click to open the prototype.</p>
+        <div class="gh-map"><svg viewBox="0 0 420 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Azerbaijan"><path class="gh-sea" d="M300 0 L420 0 L420 300 L300 300 Q352 240 340 180 Q362 150 350 92 Q330 40 300 0 Z"/><path class="gh-land" d="M56 150 L58 108 L92 70 L155 56 L232 70 L296 94 L336 146 L356 144 Q394 146 398 166 Q396 180 366 178 L338 168 L300 210 L240 240 L180 240 L110 222 L62 186 Z"/><path class="gh-land" d="M48 246 Q60 236 82 244 Q96 252 88 268 Q72 278 56 270 Q44 260 48 246 Z"/><circle class="gh-city" cx="372" cy="166" r="4"/><circle class="gh-city" cx="352" cy="150" r="3"/><circle class="gh-city" cx="120" cy="142" r="3.5"/><circle class="gh-city" cx="178" cy="120" r="3"/><circle class="gh-city" cx="165" cy="96" r="3"/><circle class="gh-city" cx="250" cy="228" r="3.5"/><circle class="gh-city" cx="72" cy="256" r="3"/><g><circle class="gh-bub" cx="372" cy="146" r="12"/><text class="gh-bubt" x="372" y="149">2.2k</text></g><g><circle class="gh-bub" cx="120" cy="122" r="12"/><text class="gh-bubt" x="120" y="125">186</text></g><g><circle class="gh-bub" cx="250" cy="208" r="11"/><text class="gh-bubt" x="250" y="211">96</text></g><text class="gh-clab" x="380" y="180">Bakı</text><text class="gh-clab" x="88" y="146">Gəncə</text></svg></div>
       </div>
       <div class="gh-col gh-uni">
         <h3 class="gh-col-t" data-i="ghUniT">Universe of professions</h3>
@@ -1164,6 +1200,33 @@ button.out-row:hover{background:#f3fbfa}
         </div>
         <button class="enter" id="enter" data-i="enter">Enter the universe</button>
       </div>
+    </div>
+  </div>
+</div>
+
+<div class="regions" id="regions">
+  <div class="rg-hub">
+    <div class="rg-head">
+      <div class="glang" id="rgLang"><button data-l="az">AZ</button><button data-l="ru">RU</button><button data-l="en">EN</button></div>
+      <div class="ge" data-i="rgEye">Azerbaijan · regions</div>
+      <h2 class="gh-h2" data-i="rgTitle">Vacancies by region</h2>
+      <p class="gh-sub" data-i="rgSub"></p>
+      <div class="rg-proto"><span class="rg-proto-b" data-i="ghProto">prototype</span><span data-i="rgNote"></span></div>
+    </div>
+    <div class="rg-cols">
+      <div class="rg-mapwrap">
+        <svg id="rgSvg" viewBox="0 0 420 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Azerbaijan regions">
+          <path class="gh-sea" d="M300 0 L420 0 L420 300 L300 300 Q352 240 340 180 Q362 150 350 92 Q330 40 300 0 Z"/>
+          <path class="gh-land" d="M56 150 L58 108 L92 70 L155 56 L232 70 L296 94 L336 146 L356 144 Q394 146 398 166 Q396 180 366 178 L338 168 L300 210 L240 240 L180 240 L110 222 L62 186 Z"/>
+          <path class="gh-land" d="M48 246 Q60 236 82 244 Q96 252 88 268 Q72 278 56 270 Q44 260 48 246 Z"/>
+          <g id="rgBubbles"></g>
+        </svg>
+      </div>
+      <div class="rg-list" id="rgList"></div>
+    </div>
+    <div class="rg-foot">
+      <button class="enter rg-back" id="rgBack" data-i="rgBack">← Back</button>
+      <div class="rg-total mono" id="rgTotal"></div>
     </div>
   </div>
 </div>
@@ -1407,9 +1470,9 @@ function layout(mode){
     // gravity well: high demand sinks toward centre
     STARS.forEach(s=>{
       const a=secAng(s.sec)+gauss()*0.25;
-      const R=mapv(clamp(s.count,5,62),5,62,640,120);
+      const R=mapv(Math.sqrt(clamp(s.count,1,255)),1,16,660,115);
       s.tx=Math.cos(a)*R; s.ty=Math.sin(a)*R*0.85;
-      s.tsize=s.baseSize*mapv(clamp(s.count,5,62),5,62,0.8,1.5);
+      s.tsize=s.baseSize*mapv(Math.sqrt(clamp(s.count,1,255)),1,16,0.85,1.3);
     });
   } else if(mode==='salary'){
     // climate: x = pay, sector lanes on y, colour = heat
@@ -1506,7 +1569,9 @@ cv.addEventListener('pointerup',endPtr); cv.addEventListener('pointercancel',end
 cv.addEventListener('dblclick',e=>{ if(LAND_ON||VIEW!=='universe')return; if(pickStar())return; zoomAt(e.clientX,e.clientY,1.6); });
 function resetView(){ cam.tx=0; cam.ty=0; cam.tzoom=fitZoomFor(); }
 window.addEventListener('keydown',e=>{ if(LAND_ON)return;
-  if(e.key==='Escape'){ if(VIEW!=='universe') backNav(); else resetView(); } });
+  if(e.key==='Escape'){ const rg=document.getElementById('regions');
+    if(rg && rg.classList.contains('show')){ closeRegions(); return; }
+    if(VIEW!=='universe') backNav(); else resetView(); } });
 { const zi=document.getElementById('zoomIn'), zo=document.getElementById('zoomOut'), zr=document.getElementById('zoomReset');
   if(zi) zi.onclick=()=>zoomAt(CW/2,CH/2,1.35);
   if(zo) zo.onclick=()=>zoomAt(CW/2,CH/2,1/1.35);
@@ -1627,6 +1692,9 @@ const LANG={
  ru:{brand:'Бакинская обсерватория труда · прототип',tag:'Рынок труда Азербайджана — каждая звезда это профессия',back:'← Назад во вселенную',pay:'Медианная зарплата',open:'Открытые вакансии',bEn:'Английский',bRu:'Русский',bRem:'Удалёнка',skills:'Ключевые навыки',hintDefault:'Коснись звезды → откроется её система',careersHint:'Наведи на звезду → загорятся карьерные связи',gate_eye:'Войди · вселенная труда',gate_h2:'Каждая вакансия — фотон.<br>Миллионы из них образуют космос.',gate_p:'Рынок труда Азербайджана как живая карта. Меняй линзу — та же вселенная открывается в другой физике: гравитация спроса, климат зарплат, требования к языкам, потоки карьер, движение времени.',enter:'Войти во вселенную',note:'Иллюстративные данные · реальный конвейер подключим позже',exp:['Опыт','без опыта'],err:'Вселенная не загрузилась: ',universe:'Вселенная',profWord:'профессий',insTop:'Самые денежные',insMost:'Больше всего в',insBridge:'Мост',cardCareer:'Карьерный путь',cardFirms:'Компании',cardSimilar:'Похожие профессии',dem:['низкий спрос','средний спрос','высокий спрос'],lgTitle:'Секторы',lgAll:'Все секторы',lenses:[['Созвездия','секторы'],['Спрос','гравитация'],['Климат зарплат','климат'],['Языки','приливы'],['Карьера','связи'],['Время','21 день']],mapTitle:'Вселенная рынка труда',unMonth:'AZN / мес',hintSystem:'Спутники — навыки, внешние планеты — соседние профессии. Кликайте.'},
  en:{brand:'Baku Labour Observatory · prototype',tag:"Azerbaijan's labour market — every star is a profession",back:'← Back to the universe',pay:'Median pay',open:'Open roles',bEn:'English',bRu:'Russian',bRem:'Remote',skills:'Key skills',hintDefault:'Click a star → enter its system',careersHint:'Hover a star → its career links light up',gate_eye:'Enter · the universe of work',gate_h2:'Every vacancy is a photon.<br>Millions of them build a cosmos.',gate_p:"Azerbaijan's labour market as a living map. Switch the lens and the same universe opens in a different physics — the gravity of demand, the climate of pay, language requirements, the currents of careers, the motion of time.",enter:'Enter the universe',note:'Illustrative data · real pipeline plugs in later',exp:['Experience','entry-level'],err:'Universe failed to load: ',universe:'Universe',profWord:'professions',insTop:'Top pay',insMost:'Most in',insBridge:'Bridge',cardCareer:'Career path',cardFirms:'Companies',cardSimilar:'Similar roles',dem:['niche','steady','high demand'],lgTitle:'Sectors',lgAll:'All sectors',lenses:[['Constellations','by sector'],['Demand','gravity well'],['Salary','pay climate'],['Languages','tides'],['Careers','links'],['Time','21 days']],mapTitle:'Observable Universe of Work',unMonth:'AZN / month',hintSystem:'Moons are skills, outer planets are neighbouring roles. Click them.'}
 };
+Object.assign(LANG.az,{ghProto:'prototip',ghGeoD2:'Regionlar üzrə paylanma — prototipi açmaq üçün klikləyin.',rgEye:'Azərbaycan · regionlar',rgTitle:'Vakansiyalar regionlar üzrə',rgSub:'Son 3 həftədə toplanan elanların şəhərlər üzrə paylanması.',rgNote:'Rəqəmlər illüstrativdir — regional bölgü real toplama ilə tezliklə dəqiqləşəcək.',rgBack:'← Seçimə qayıt',rgOther:'Digər regionlar',rgTotalW:'elan · cəmi',tNew:'yeni'});
+Object.assign(LANG.ru,{ghProto:'прототип',ghGeoD2:'Распределение по регионам — кликните, чтобы открыть прототип.',rgEye:'Азербайджан · регионы',rgTitle:'Вакансии по регионам',rgSub:'Распределение собранных за 3 недели объявлений по городам.',rgNote:'Цифры иллюстративные — региональная разбивка уточнится с реальным сбором.',rgBack:'← К выбору карт',rgOther:'Другие регионы',rgTotalW:'объявлений всего',tNew:'новых'});
+Object.assign(LANG.en,{ghProto:'prototype',ghGeoD2:'Regional distribution — click to open the prototype.',rgEye:'Azerbaijan · regions',rgTitle:'Vacancies by region',rgSub:'How the ads collected over 3 weeks spread across cities.',rgNote:'Figures are illustrative — the regional split will sharpen with the live pipeline.',rgBack:'← Back to map choice',rgOther:'Other regions',rgTotalW:'ads total',tNew:'new'});
 const PROF_RU={"Sales Manager":"Менеджер по продажам","Sales Representative":"Торговый представитель","Cashier":"Кассир","Store Manager":"Директор магазина","Marketing Specialist":"Маркетолог","E-commerce Manager":"Менеджер e-commerce","Software Developer":"Разработчик ПО","Frontend Developer":"Frontend-разработчик","DevOps Engineer":"DevOps-инженер","QA Engineer":"QA-инженер","Data Analyst":"Аналитик данных","ML Engineer":"ML-инженер","Prompt Engineer":"Prompt-инженер","Accountant":"Бухгалтер","Chief Accountant":"Главный бухгалтер","Financial Analyst":"Финансовый аналитик","Driver":"Водитель","Logistician":"Логист","Warehouse Keeper":"Кладовщик","Courier":"Курьер","Supply Specialist":"Специалист по снабжению","Mechanical Engineer":"Инженер-механик","Electrical Engineer":"Инженер-электрик","HSE Specialist":"Специалист по охране труда","Plant Operator":"Оператор установки","Geologist":"Геолог","Civil Engineer":"Инженер-строитель","Foreman":"Прораб","Architect":"Архитектор","Cost Estimator":"Сметчик","Construction Worker":"Строительный рабочий","Doctor":"Врач","Nurse":"Медсестра","Pharmacist":"Фармацевт","Dentist":"Стоматолог","Lab Technician":"Лаборант","Waiter":"Официант","Chef":"Повар","Hotel Administrator":"Администратор отеля","Barista":"Бариста","Guest Service Agent":"Агент гостевого сервиса","HR Specialist":"HR-специалист","Office Manager":"Офис-менеджер","Administrative Assistant":"Помощник администратора","Translator":"Переводчик","Receptionist":"Ресепшионист"};
 const SKILL_TR={"Danışıqlar":["Переговоры","Negotiation"],"Müştəri xidməti":["Клиентский сервис","Customer service"],"Ünsiyyət":["Коммуникация","Communication"],"Kassa":["Работа с кассой","Cash handling"],"Satış":["Продажи","Sales"],"Diqqət":["Внимательность","Attention to detail"],"Müştəri":["Работа с клиентами","Customer relations"],"İdarəetmə":["Управление","Management"],"İnventar":["Инвентаризация","Inventory"],"Analitika":["Аналитика","Analytics"],"Kontent":["Контент","Content"],"Logistika":["Логистика","Logistics"],"Vergi":["Налоги","Tax"],"Hesabat":["Отчётность","Reporting"],"Kredit":["Кредитование","Credit"],"Modelləşdirmə":["Моделирование","Modeling"],"Statistika":["Статистика","Statistics"],"Sürücülük":["Вождение","Driving"],"Naviqasiya":["Навигация","Navigation"],"Anbar":["Складской учёт","Warehousing"],"Təchizat":["Снабжение","Procurement"],"Mexanika":["Механика","Mechanics"],"Layihə":["Проектирование","Project design"],"Elektrik":["Электрика","Electrical"],"Təhlükəsizlik":["Охрана труда","Safety"],"Avadanlıq":["Оборудование","Equipment"],"Geologiya":["Геология","Geology"],"Analiz":["Анализ","Analysis"],"Smeta":["Сметы","Cost estimation"],"Briqada":["Бригадирство","Crew lead"],"Dizayn":["Дизайн","Design"],"Tikinti":["Строительство","Construction"],"Fiziki":["Физический труд","Physical work"],"Tibb":["Медицина","Medicine"],"Diaqnoz":["Диагностика","Diagnosis"],"Müalicə":["Лечение","Treatment"],"Qulluq":["Уход за пациентами","Patient care"],"Əczaçılıq":["Фармацевтика","Pharmacy"],"Stomatologiya":["Стоматология","Dentistry"],"Laboratoriya":["Лабораторная работа","Lab work"],"Xidmət":["Сервис","Service"],"Kulinariya":["Кулинария","Cooking"],"Menyu":["Меню","Menu"],"Gigiyena":["Гигиена","Hygiene"],"Qəhvə":["Кофе","Coffee"],"Dillər":["Языки","Languages"],"İşə qəbul":["Подбор персонала","Recruiting"],"Sənəd":["Документооборот","Documents"],"Telefon":["Телефон","Phone"],"İngilis":["Английский","English"],"Rus":["Русский","Russian"],"Tərcümə":["Перевод","Translation"],"Bank":["Банковское дело","Banking"]};
 function skTR(s){ if(LG==='az')return s; const t=SKILL_TR[s]; return t?(LG==='ru'?t[0]:t[1]):s; }
@@ -1817,15 +1885,16 @@ function renderRoute(force){
       return; }
     const fromLanding=LAND_ON;
     _enterMap();
-    if(pendingStar){ const s=pendingStar; pendingStar=null;
+    if(pendingStar){ const s=pendingStar; pendingStar=null; hideRegions();
       const g=document.getElementById('gate'); if(g) g.classList.add('gone');
       enterSystem(s,true); }
     else if(rest.indexOf('prof-')===0){ const s=STARS.find(x=>slugOf(x)===rest.slice(5));
-      if(s && selected!==s){ const g=document.getElementById('gate'); if(g) g.classList.add('gone'); enterSystem(s,true); } }
+      if(s && selected!==s){ hideRegions(); const g=document.getElementById('gate'); if(g) g.classList.add('gone'); enterSystem(s,true); } }
     else if(rest.indexOf('skill-')===0){ const k=rest.slice(6);
-      if(SKILLSET.has(k) && focusSkill!==k){ const g=document.getElementById('gate'); if(g) g.classList.add('gone'); enterSkill(k,true); } }
+      if(SKILLSET.has(k) && focusSkill!==k){ hideRegions(); const g=document.getElementById('gate'); if(g) g.classList.add('gone'); enterSkill(k,true); } }
+    else if(rest==='regions'){ openRegions(); }
     else if(!rest && fromLanding){ /* fresh entry from the landing: show the two-map gate again */
-      const g=document.getElementById('gate'); if(g) g.classList.remove('gone'); }
+      hideRegions(); const g=document.getElementById('gate'); if(g) g.classList.remove('gone'); }
     return; }
   _showLanding();
   if(h.indexOf('search?')===0){ if(typeof applySearchParams==='function') applySearchParams(h.slice(7)); h='search'; }
@@ -2122,6 +2191,14 @@ buildSearchSectors(); buildMatchPalette(); buildCompareSelects();
   applyLang(); renderRoute(); })();
 
 const CAPS={"galaxy": {"az": "Peşələr sahələr üzrə qruplaşıb — rəng sahəni göstərir.", "ru": "Профессии сгруппированы по сферам — цвет = сфера.", "en": "Professions grouped by field — colour shows the field."}, "demand": {"az": "Mərkəzə yaxın və iri — daha çox açıq vakansiya (əksəriyyət üçün təxmini).", "ru": "Ближе к центру и крупнее — больше открытых вакансий (для большинства — оценка).", "en": "Closer to centre and larger — more open vacancies (an estimate for most)."}, "salary": {"az": "Sağa doğru və qızılı rəng — daha yüksək maaş (canlı medianlar + sahə təxminləri).", "ru": "Правее и золотистее — выше зарплата (живые медианы + отраслевые оценки).", "en": "Further right and warmer — higher pay (live medians + sector estimates)."}, "tides": {"az": "Yuxarı — ingilis dili tələb olunur; sağa — rus dili (təxmini).", "ru": "Выше — требуется английский; правее — русский (оценка).", "en": "Higher — English required; further right — Russian (estimate)."}, "careers": {"az": "Solda — təcrübəsiz başlamaq olar; sağa — daha çox təcrübə tələb olunur.", "ru": "Слева — можно начать без опыта; правее — нужен опыт.", "en": "Left — you can start with no experience; right — more experience required."}, "time": {"az": "Yeni vakansiyaların gündəlik axını — sürgü ilə günü seç: planetlər yığılan elanlarla böyüyür.", "ru": "Приток вакансий по дням: двигай ползунок — планеты растут по мере сбора объявлений.", "en": "New vacancies per day — drag the slider; planets grow as ads are collected."}};
+/* live counts drive the default sky: radius, satellites, label ranking — the "time lens" look becomes the resting state */
+STARS.forEach(s=>{ const d=DEMAND[s.en]; if(d && d.n>0){
+  s.count=d.n; s.baseSize=7+Math.sqrt(d.n)*2.6; s.tsize=s.baseSize;
+  s.sat.length=0; const nm=Math.min(14, Math.max(2, Math.round(d.n*0.12)));
+  for(let k=0;k<nm;k++){ const a=Math.random()*6.283, rr=s.baseSize*rnd(1.4,4.2);
+    s.sat.push({ox:Math.cos(a)*rr, oy:Math.sin(a)*rr, s:rnd(1.2,3), ph:Math.random()*6.283}); } } });
+HEADLINE=false;
+
 const TREND={"days":["06-23", "06-24", "06-25", "06-26", "06-27", "06-28", "06-29", "06-30", "07-01", "07-02", "07-03", "07-04", "07-05", "07-06", "07-07", "07-08", "07-09", "07-10", "07-11", "07-12", "07-13"],"counts":[670, 327, 167, 181, 331, 148, 161, 160, 124, 144, 152, 170, 82, 40, 72, 52, 21, 87, 66, 43, 50],"total":3248};
 let DAY=TREND.days.length-1;
 function fmtDay(i){ var p=TREND.days[i].split('-'); return p[1]+'.'+p[0]; }
@@ -2150,7 +2227,13 @@ function setMode(m){
     document.getElementById('back').classList.remove('show'); document.getElementById('brand').style.opacity=1; renderCrumbs(); }
   cam.tx=0; cam.ty=0; cam.tzoom=fitZoomFor();
   layout(m);
-  var _tb=document.getElementById('timebar'); if(m==='time'){_tb.classList.add('show');}else{_tb.classList.remove('show');}
+  var _tb=document.getElementById('timebar');
+  if(m==='time'){ _tb.classList.add('show'); /* the lens tells its story by itself: replay 21 days from day 0 */
+    setDay(0,false); playing=true; playT=performance.now();
+    var _pb3=document.getElementById('play'); if(_pb3) _pb3.textContent='\u275A\u275A'; }
+  else { _tb.classList.remove('show');
+    if(typeof playing!=='undefined' && playing){ playing=false;
+      var _pb4=document.getElementById('play'); if(_pb4) _pb4.textContent='\u25B6'; } }
   document.getElementById('detail').classList.remove('show');
   updateLensCap();
   try{ if(!LAND_ON) history.replaceState(null,'','#map'); }catch(e){}
@@ -2158,11 +2241,16 @@ function setMode(m){
 const yrInput=document.getElementById('yr'), yrLabel=document.getElementById('yrLabel');
 function setDay(v,fx){ v=clamp(v,0,TREND.days.length-1); const prev=DAY; DAY=v;
   yrInput.value=v; yrLabel.textContent=fmtDay(v); applyDaySizes(); updateLensCap();
+  const tsEl=document.getElementById('tStat');
+  if(tsEl){ let cum=0; for(let k=0;k<=v;k++) cum+=TREND.counts[k];
+    tsEl.innerHTML='+'+TREND.counts[v]+' '+((LANG[LG]&&LANG[LG].tNew)||'')+'<br>\u03a3 '+cum; }
   if(fx && v!==prev){ /* stars whose ads arrived on this day flash; bursts ripple */
     for(const s of STARS){ const dd=DEMAND[s.en]&&DEMAND[s.en].d; const n=dd?(dd[v]||0):0;
       if(n>0){ s.flash=Math.max(s.flash||0, Math.min(1, .3+n*.06));
         if(n>=4 && RIPPLES.length<14) RIPPLES.push({x:s.x,y:s.y,r:s.size,max:s.size*5.5,a:.8,col:SEC[s.sec].c}); } } } }
-yrInput.addEventListener('input',()=>{ setDay(+yrInput.value,true); });
+yrInput.addEventListener('input',()=>{ if(playing){ playing=false;
+    const pb=document.getElementById('play'); if(pb) pb.textContent='\u25B6'; }
+  setDay(+yrInput.value,true); });
 let playing=false, playT=0;
 document.getElementById('play').addEventListener('click',function(){ playing=!playing; if(playing && DAY>=TREND.days.length-1) setDay(0,false); this.textContent=playing?'❚❚':'▶'; });
 
@@ -2537,7 +2625,8 @@ function boot(){
     BOOTED=true;
     if(PENDING_MAP){ const r=PENDING_MAP; PENDING_MAP=null;
       if(r.indexOf('prof-')===0){ const s=STARS.find(x=>slugOf(x)===r.slice(5)); if(s) enterSystem(s,true); }
-      else if(r.indexOf('skill-')===0){ const k=r.slice(6); if(SKILLSET.has(k)) enterSkill(k,true); } }
+      else if(r.indexOf('skill-')===0){ const k=r.slice(6); if(SKILLSET.has(k)) enterSkill(k,true); }
+      else if(r==='regions'){ openRegions(); } }
     requestAnimationFrame(frame);
   }catch(err){
     document.body.insertAdjacentHTML('beforeend',
@@ -2547,6 +2636,53 @@ function boot(){
 }
 window.addEventListener('resize', ()=>{ resize(); layout(MODE); });
 window.addEventListener('load', boot);
+
+/* ---- Azerbaijan regions prototype ---- */
+const RG_TOTAL=3248;
+const RG=[
+ {az:'Bakı',ru:'Баку',en:'Baku',n:2205,x:372,y:166,lp:'below'},
+ {az:'Sumqayıt',ru:'Сумгайыт',en:'Sumgait',n:213,x:346,y:140,lp:'above'},
+ {az:'Gəncə',ru:'Гянджа',en:'Ganja',n:186,x:120,y:142,lp:'below'},
+ {az:'Lənkəran',ru:'Ленкорань',en:'Lankaran',n:96,x:306,y:232,lp:'below'},
+ {az:'Naxçıvan',ru:'Нахчыван',en:'Nakhchivan',n:84,x:72,y:256,lp:'below'},
+ {az:'Mingəçevir',ru:'Мингячевир',en:'Mingachevir',n:71,x:178,y:120,lp:'below'},
+ {az:'Şəki',ru:'Шеки',en:'Sheki',n:63,x:162,y:92,lp:'above'},
+ {az:'Şirvan',ru:'Ширван',en:'Shirvan',n:58,x:278,y:196,lp:'below'},
+ {az:'Quba',ru:'Губа',en:'Quba',n:47,x:290,y:100,lp:'above'}
+];
+const RG_OTHER=RG_TOTAL-RG.reduce((a,c)=>a+c.n,0);
+function rgShort(n){ return n>=1000 ? (n/1000).toFixed(1).replace('.0','')+'k' : ''+n; }
+function renderRegions(){
+  const bb=document.getElementById('rgBubbles'), ls=document.getElementById('rgList');
+  if(!bb||!ls) return;
+  const sorted=RG.slice().sort((a,b)=>b.n-a.n);
+  bb.innerHTML = sorted.map(c=>{ const r=5+Math.sqrt(c.n)*0.5, ly=(c.lp==='above')?(c.y-r-6):(c.y+r+11);
+    return '<g class="rg-bub"><title>'+c[LG]+' — '+fmt(c.n)+'</title>'
+      +'<circle cx="'+c.x+'" cy="'+c.y+'" r="'+r.toFixed(1)+'"/>'
+      +'<text class="rg-cnt" x="'+c.x+'" y="'+(c.y+3.5)+'">'+rgShort(c.n)+'</text>'
+      +'<text class="rg-city" x="'+c.x+'" y="'+ly+'">'+c[LG]+'</text></g>'; }).join('');
+  const mx=sorted[0].n, L=LANG[LG];
+  const row=(rk,nm,n,other)=>'<div class="rg-row'+(other?' rg-other':'')+'"><span class="rg-rk">'+rk+'</span>'
+    +'<span class="rg-nm">'+nm+'</span><span class="rg-bar"><i style="width:'+Math.max(4,Math.round(n/mx*100))+'%"></i></span>'
+    +'<span class="rg-n">'+fmt(n)+'</span><span class="rg-pc">'+(n/RG_TOTAL*100).toFixed(n/RG_TOTAL*100>=10?0:1)+'%</span></div>';
+  ls.innerHTML = sorted.map((c,k)=>row(k+1,c[LG],c.n,false)).join('') + row('·',L.rgOther,RG_OTHER,true);
+  const tt=document.getElementById('rgTotal'); if(tt) tt.textContent='Σ '+fmt(RG_TOTAL)+' '+L.rgTotalW;
+  document.querySelectorAll('#rgLang button').forEach(b=>b.classList.toggle('on', b.getAttribute('data-l')===LG));
+}
+function openRegions(){ renderRegions();
+  const rg=document.getElementById('regions'), g=document.getElementById('gate');
+  if(rg) rg.classList.add('show'); if(g) g.classList.add('gone');
+  try{ history.replaceState(null,'','#map/regions'); }catch(e){} }
+function hideRegions(){ const rg=document.getElementById('regions'); if(rg) rg.classList.remove('show'); }
+function closeRegions(){ hideRegions();
+  const g=document.getElementById('gate'); if(g) g.classList.remove('gone');
+  try{ history.replaceState(null,'','#map'); }catch(e){} }
+{ document.querySelectorAll('#rgLang button').forEach(b=>{
+    b.addEventListener('click',()=>setLang(b.getAttribute('data-l'))); });
+  const gg=document.getElementById('gateGeo');
+  if(gg){ gg.addEventListener('click',openRegions);
+    gg.addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); openRegions(); } }); }
+  const rb=document.getElementById('rgBack'); if(rb) rb.addEventListener('click',closeRegions); }
 
 /* gate */
 document.getElementById('enter').addEventListener('click',()=>{
@@ -2643,7 +2779,8 @@ function enhanceDetail(s){
   var _tf=toggleFav;
   toggleFav=function(i){ _tf(i); updFavN(); };
   var _al=applyLang;
-  applyLang=function(){ _al(); renderCtxChip(); };
+  applyLang=function(){ _al(); renderCtxChip();
+    try{ if(typeof renderRegions==='function') renderRegions(); }catch(e){} };
 })();
 
 /* ---------- command palette ---------- */

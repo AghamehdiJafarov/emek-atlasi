@@ -763,6 +763,127 @@ button.out-row:hover{background:#f3fbfa}
 .l-cta:hover::after{left:125%}
 .fav-n.pop{animation:favPop .45s cubic-bezier(.34,1.56,.5,1)}
 @media(max-width:900px){ .l-hero::before{width:300px;height:300px;left:-90px} .l-hero::after{width:280px;height:280px;right:-70px} }
+
+/* ===== v3: trends, stats, calculator, routes, ai cards ===== */
+.tbdg{display:inline-flex;align-items:center;gap:5px;font-family:var(--mono);font-size:9.5px;letter-spacing:.05em;text-transform:uppercase;padding:3px 9px;border-radius:100px;white-space:nowrap}
+.tbdg::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+.tb2{color:#0f8c7e;background:rgba(23,182,164,.12)} .tb1{color:#5566a0;background:rgba(90,110,180,.1)}
+.tb0{color:#b06d12;background:rgba(214,150,30,.13)} .tbf{color:#8a96ac;background:#eef2f8}
+.mspark{display:block;overflow:visible}
+.pc-live{display:flex;align-items:center;gap:9px;margin:-2px 0 10px;min-height:22px}
+.pc-live .mspark path{stroke:#17a08f}
+.st-tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:6px 0 26px}
+.st-tile{background:#fff;border:1px solid #ebeff6;border-radius:16px;padding:16px 16px;box-shadow:0 6px 22px rgba(20,30,60,.04)}
+.st-tile b{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:26px;color:#141c30;display:block;line-height:1.05}
+.st-tile span{font-size:12px;color:#737f98;display:block;margin-top:5px;line-height:1.35}
+.st-sec{margin-top:30px}
+.st-h{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:20px;color:#141c30;margin:0 0 4px}
+.st-s{font-size:13.5px;color:#6b7690;margin:0 0 14px;max-width:52em;line-height:1.5}
+.st-card{background:#fff;border:1px solid #ebeff6;border-radius:16px;padding:18px;box-shadow:0 6px 22px rgba(20,30,60,.04)}
+.st-flow svg{width:100%;height:auto;display:block}
+.st-bar{display:grid;grid-template-columns:150px 1fr 92px;align-items:center;gap:12px;padding:7px 0;font-size:13.5px;color:#23304e}
+.st-bar .t{height:9px;background:#f1f4f9;border-radius:6px;overflow:hidden}
+.st-bar .f{height:100%;border-radius:6px;min-width:2px}
+.st-bar .n{font-family:var(--mono);font-size:11.5px;text-align:right;color:#46506b;white-space:nowrap}
+.st-bar .nm{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:flex;align-items:center;gap:8px}
+.st-rng{display:grid;grid-template-columns:150px 1fr;align-items:center;gap:12px;padding:9px 0}
+.st-rng .nm{font-size:13.5px;color:#23304e;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:flex;align-items:center;gap:8px}
+.st-track{position:relative;height:22px}
+.st-track .rail{position:absolute;left:0;right:0;top:9px;height:4px;background:#f1f4f9;border-radius:3px}
+.st-track .span{position:absolute;top:8px;height:6px;border-radius:4px;opacity:.5}
+.st-track .med{position:absolute;top:4px;width:14px;height:14px;border-radius:50%;transform:translateX(-50%);border:2.5px solid #fff;box-shadow:0 1px 5px rgba(20,30,60,.3)}
+.st-track .lb{position:absolute;top:0;font-family:var(--mono);font-size:9.5px;color:#9aa4ba;transform:translateX(-50%)}
+.st-two{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start}
+.st-row{display:grid;grid-template-columns:22px 1fr auto;align-items:center;gap:10px;padding:8px 4px;border-bottom:1px solid #f0f3f8;font-size:14px;color:#1f2940;cursor:pointer;border-radius:8px;background:none;border-left:0;border-right:0;border-top:0;width:100%;text-align:left;font-family:inherit;transition:.15s}
+.st-row:hover{background:#f6faf9}
+.st-row .rk{font-family:var(--mono);font-size:10.5px;color:#9aa4ba}
+.st-row .nm{display:flex;align-items:center;gap:8px;min-width:0}.st-row .nm span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.st-row .vv{display:flex;align-items:center;gap:9px;font-family:var(--mono);font-size:12px;color:#23304e;white-space:nowrap}
+.st-skill{display:inline-flex;align-items:center;gap:7px;font-size:13px;color:#23304e;background:#fff;border:1px solid #e6ebf3;border-radius:100px;padding:7px 13px}
+.st-skill b{font-family:var(--mono);font-weight:500;font-size:10.5px;color:#0f8c7e}
+.exp-btns{display:flex;gap:12px;flex-wrap:wrap;margin-top:4px}
+.meth{font-size:13.5px;color:#46506b;line-height:1.65;max-width:60em;background:#fff;border:1px solid #ebeff6;border-left:3px solid #17b6a4;border-radius:12px;padding:15px 18px}
+.ms-form{display:flex;gap:14px;flex-wrap:wrap;align-items:end;margin:4px 0 8px}
+.ms-form .filter-control{min-width:190px}
+.ms-out{margin-top:20px;display:none;flex-direction:column;gap:16px}
+.ms-out.on{display:flex}
+.ms-blk{background:#fff;border:1px solid #ebeff6;border-radius:16px;padding:18px;box-shadow:0 6px 22px rgba(20,30,60,.04)}
+.ms-t{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#9aa4ba;margin-bottom:10px}
+.ms-big{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:23px;color:#141c30;line-height:1.2}
+.ms-sub{font-size:13px;color:#6b7690;margin-top:5px;line-height:1.5}
+.ms-scale{position:relative;height:44px;margin-top:14px}
+.ms-scale .rail{position:absolute;left:0;right:0;top:20px;height:5px;background:#eef2f8;border-radius:4px}
+.ms-scale .dot{position:absolute;top:20.5px;width:7px;height:7px;border-radius:50%;transform:translate(-50%,-1.5px);opacity:.75}
+.ms-scale .me{position:absolute;top:6px;width:3px;height:32px;border-radius:2px;background:#141c30;transform:translateX(-50%)}
+.ms-scale .melb{position:absolute;top:-6px;transform:translateX(-50%);font-family:var(--mono);font-size:10px;font-weight:600;color:#141c30;background:#fff;border:1px solid #dde4ef;border-radius:100px;padding:2px 8px;white-space:nowrap}
+.ms-scale .end{position:absolute;top:34px;font-family:var(--mono);font-size:9.5px;color:#9aa4ba}
+.ms-lvl{position:relative;height:52px;margin-top:12px}
+.ms-lvl .seg{position:absolute;top:22px;height:7px}
+.ms-lvl .sl{position:absolute;top:40px;transform:translateX(-50%);font-family:var(--mono);font-size:9.5px;color:#8a96ac}
+.ms-diff{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:19px}
+.ms-diff.up{color:#0f8c7e}.ms-diff.dn{color:#c2861a}
+.rt-form{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin:4px 0 20px}
+.rt-chain{display:flex;flex-direction:column;gap:0;max-width:640px}
+.rt-card{display:flex;align-items:center;gap:12px;background:#fff;border:1px solid #ebeff6;border-radius:14px;padding:14px 16px;box-shadow:0 6px 22px rgba(20,30,60,.04);cursor:pointer;font-family:inherit;font-size:15px;text-align:left;transition:.18s;width:100%}
+.rt-card:hover{border-color:#17b6a4}
+.rt-card b{font-family:"Space Grotesk",sans-serif;font-weight:600;color:#141c30;flex:1;min-width:0}
+.rt-card .sal{font-family:var(--mono);font-size:12.5px;color:#46506b;white-space:nowrap}
+.rt-link{display:flex;align-items:flex-start;gap:11px;padding:8px 0 8px 21px;position:relative}
+.rt-link::before{content:"";position:absolute;left:26px;top:0;bottom:0;width:2px;background:linear-gradient(#c9e8e2,#9ed8cd)}
+.rt-link .dl{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:13.5px;white-space:nowrap;background:#fff;border:1px solid #d3ede8;border-radius:100px;padding:4px 11px;position:relative;z-index:1}
+.rt-link .dl.up{color:#0f8c7e}.rt-link .dl.dn{color:#b06d12}
+.rt-link .lr{font-size:12.5px;color:#5a647d;line-height:1.5;padding-top:4px}
+.rt-link .lr b{color:#23304e;font-weight:600}
+.grow{margin:14px 0 2px;padding:13px 16px;border:1px solid #d9efe9;border-radius:14px;background:#f6fbfa}
+.grow .nba-t{color:#4d9c8d}
+.grow-r{display:flex;align-items:center;gap:10px;width:100%;border:0;background:transparent;cursor:pointer;font-family:inherit;font-size:13.5px;color:#23304e;padding:7px 4px;border-radius:9px;text-align:left;transition:.15s}
+.grow-r:hover{background:rgba(23,182,164,.08)}
+.grow-r b{font-family:"Space Grotesk",sans-serif;font-weight:600;color:#141c30}
+.grow-r .gd{font-family:var(--mono);font-size:12px;color:#0f8c7e;white-space:nowrap}
+.grow-r .gm{font-size:11.5px;color:#7d879e;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1}
+.d2-rank{font-family:var(--mono);font-size:11px;color:#8a96ac;letter-spacing:.03em;margin:-12px 0 16px}
+.d2-trend{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:10px}
+.d2-trend .mspark path{stroke:#17a08f}
+.ai-card{align-self:flex-start;max-width:88%;background:#fff;border:1px solid #e6ebf3;border-radius:14px;border-bottom-left-radius:4px;padding:12px 14px;font-size:14px;line-height:1.5;color:#2a3550}
+.ai-card .ac-h{display:flex;align-items:center;gap:8px;font-family:"Space Grotesk",sans-serif;font-weight:600;color:#141c30;margin-bottom:6px}
+.ai-card .ac-r{display:flex;justify-content:space-between;gap:14px;padding:3px 0;font-size:13.5px}
+.ai-card .ac-r i{font-style:normal;color:#8a96ac}
+.ai-card .ac-r b{font-weight:600;color:#23304e;text-align:right}
+.ai-acts{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.ai-act{border:1px solid #d3dbe8;background:#fff;color:#0f8c7e;cursor:pointer;font-family:"Space Grotesk",sans-serif;font-weight:600;font-size:12.5px;padding:6px 12px;border-radius:100px;transition:.15s}
+.ai-act:hover{border-color:#17b6a4;background:#f3fbfa}
+.ai-pre{white-space:pre-wrap}
+@media(max-width:900px){.st-tiles{grid-template-columns:1fr 1fr}.st-two{grid-template-columns:1fr}
+ .st-bar{grid-template-columns:104px 1fr 76px}.st-rng{grid-template-columns:104px 1fr}
+ .rt-form .cmp-sel{min-width:150px}}
+
+/* ===== v4: LLM assistant, compare 2.0, match weights, a11y ===== */
+.ai-prov{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin:2px 0 8px}
+.ai-provl{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#9aa4ba}
+.ai-status{font-size:10.5px;color:#7d879e;margin-left:auto}
+.ai-keyrow{display:flex;gap:10px;margin:0 0 10px}
+.ai-keyrow .ai-input{flex:1}
+.ai-privnote{font-size:12px;color:#8a96ac;margin:0 0 12px;line-height:1.5;max-width:60em}
+.ai-typing{display:inline-flex;gap:4px;align-items:center;padding:12px 16px}
+.ai-typing i{width:6px;height:6px;border-radius:50%;background:#9fb4ae;animation:aiDot 1s infinite}
+.ai-typing i:nth-child(2){animation-delay:.18s}.ai-typing i:nth-child(3){animation-delay:.36s}
+@keyframes aiDot{0%,70%,100%{opacity:.3;transform:translateY(0)}35%{opacity:1;transform:translateY(-3px)}}
+.ai-note{margin-top:9px;font-size:11.5px;color:#b06d12;border-top:1px dashed #eee2cf;padding-top:7px}
+.ai-pre b{font-weight:600;color:#141c30}
+.cmp-live{display:flex;flex-direction:column;gap:5px;align-items:flex-start}
+.cmp-b .cmp-live{align-items:flex-end}
+.cmp-skl{background:#fff;border:1px solid #ebeff6;border-radius:14px;padding:15px 17px;margin-top:14px;box-shadow:0 6px 22px rgba(20,30,60,.04)}
+.cmp-skl .lab{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#9aa4ba;margin:9px 0 7px}
+.cmp-skl .lab:first-child{margin-top:0}
+.chip-common{display:inline-block;font-size:12px;color:#0f7c6f;background:rgba(23,182,164,.12);border:1px solid rgba(23,182,164,.25);border-radius:100px;padding:5px 11px;margin:0 6px 6px 0}
+.cmp-note{font-size:12.5px;color:#8a96ac;margin-top:12px;line-height:1.5}
+.mw-grid{display:grid;grid-template-columns:repeat(3,minmax(160px,220px));gap:12px 22px}
+.mw{display:grid;grid-template-columns:1fr auto;align-items:center;gap:4px 10px;font-size:13px;color:#46506b}
+.mw input{grid-column:1/2;accent-color:#17b6a4;width:100%}
+.mw b{font-weight:500;font-size:11.5px;color:#0f8c7e;min-width:12px;text-align:center}
+.m-formula{font-size:10.5px;color:#9aa4ba;margin:10px 0 0;letter-spacing:.02em}
+@media(max-width:760px){.mw-grid{grid-template-columns:1fr 1fr}}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,[tabindex]:focus-visible{outline:2px solid #17b6a4;outline-offset:2px;border-radius:6px}
 </style>
 </head>
 <body>
@@ -783,6 +904,10 @@ button.out-row:hover{background:#f3fbfa}
             <a class="ltab mm-item" data-page="compare"><span class="mm-row"><span class="mm-t" data-i="t_compare_t"></span><span class="mm-badge live" data-i="tBadgeLive"></span></span><span class="mm-d" data-i="t_compare_d"></span></a>
             <a class="ltab mm-item" data-page="map"><span class="mm-row"><span class="mm-t" data-i="t_map_t"></span><span class="mm-badge live" data-i="tBadgeLive"></span></span><span class="mm-d" data-i="t_map_d"></span></a>
             <a class="ltab mm-item" data-page="favorites"><span class="mm-row"><span class="mm-t" data-i="t_favorites_t"></span><span class="mm-badge live" data-i="tBadgeLive"></span></span><span class="mm-d" data-i="t_favorites_d"></span></a>
+            <a class="ltab mm-item" data-page="stats"><span class="mm-row"><span class="mm-t" data-i="t_stats_t"></span><span class="mm-badge live" data-i="tBadgeLive"></span></span><span class="mm-d" data-i="t_stats_d"></span></a>
+            <a class="ltab mm-item" data-page="mysalary"><span class="mm-row"><span class="mm-t" data-i="t_mysal_t"></span><span class="mm-badge live" data-i="tBadgeLive"></span></span><span class="mm-d" data-i="t_mysal_d"></span></a>
+            <a class="ltab mm-item" data-page="routes"><span class="mm-row"><span class="mm-t" data-i="t_routes_t"></span><span class="mm-badge live" data-i="tBadgeLive"></span></span><span class="mm-d" data-i="t_routes_d"></span></a>
+            <a class="ltab mm-item" data-page="ai"><span class="mm-row"><span class="mm-t" data-i="t_ai_t"></span><span class="mm-badge live" data-i="tBadgeLive"></span></span><span class="mm-d" data-i="t_ai_d"></span></a>
           </div>
           <div class="mm-col">
             <div class="mm-h" data-i="tGrpDev">In development</div>
@@ -795,7 +920,7 @@ button.out-row:hover{background:#f3fbfa}
           <div class="mm-col">
             <div class="mm-h" data-i="tGrpPlan">Planned</div>
             <a class="ltab mm-item" data-page="outlook"><span class="mm-row"><span class="mm-t" data-i="t_outlook_t"></span><span class="mm-badge plan" data-i="tBadgePlan"></span></span><span class="mm-d" data-i="t_outlook_d"></span></a>
-            <a class="ltab mm-item" data-page="ai"><span class="mm-row"><span class="mm-t" data-i="t_ai_t"></span><span class="mm-badge plan" data-i="tBadgePlan"></span></span><span class="mm-d" data-i="t_ai_d"></span></a>
+            
             <a class="ltab mm-item" data-page="parents"><span class="mm-row"><span class="mm-t" data-i="t_parents_t"></span><span class="mm-badge plan" data-i="tBadgePlan"></span></span><span class="mm-d" data-i="t_parents_d"></span></a>
             <a class="ltab mm-item" data-page="videos"><span class="mm-row"><span class="mm-t" data-i="t_video_t"></span><span class="mm-badge plan" data-i="tBadgePlan"></span></span><span class="mm-d" data-i="t_video_d"></span></a>
             <a class="ltab mm-item" data-page="future"><span class="mm-row"><span class="mm-t" data-i="t_future_t"></span><span class="mm-badge plan" data-i="tBadgePlan"></span></span><span class="mm-d" data-i="t_future_d"></span></a>
@@ -884,6 +1009,7 @@ button.out-row:hover{background:#f3fbfa}
       <div class="l-seye" data-i="lDataEye">Data &amp; methodology</div>
       <h2 class="l-h2" data-i="lDataTitle">Where the numbers come from</h2>
       <p class="l-lead" data-i="lDataBody">Built from publicly posted vacancies.</p>
+      <button class="l-ghost ltab" data-page="stats" data-i="stOpen" style="margin-top:2px">Open market in numbers</button>
     </div>
     <div class="l-facts">
       <div class="l-fact"><div class="l-factk" data-i="lDataSrc">Source</div><div class="l-factv" data-i="lDataSrcV">Public vacancies</div></div>
@@ -943,6 +1069,10 @@ button.out-row:hover{background:#f3fbfa}
         <button class="l-card tool go" onclick="showPage('compare')"><div class="tool-top"><b data-i="t_compare_t"></b><span class="tool-badge live" data-i="tBadgeLive"></span></div><p data-i="t_compare_d"></p></button>
         <button class="l-card tool go" onclick="showPage('favorites')"><div class="tool-top"><b data-i="t_favorites_t"></b><span class="tool-badge live" data-i="tBadgeLive"></span></div><p data-i="t_favorites_d"></p></button>
         <button class="l-card tool go" onclick="showPage('map')"><div class="tool-top"><b data-i="t_map_t"></b><span class="tool-badge live" data-i="tBadgeLive"></span></div><p data-i="t_map_d"></p></button>
+        <button class="l-card tool go" onclick="showPage('stats')"><div class="tool-top"><b data-i="t_stats_t"></b><span class="tool-badge live" data-i="tBadgeLive"></span></div><p data-i="t_stats_d"></p></button>
+        <button class="l-card tool go" onclick="showPage('mysalary')"><div class="tool-top"><b data-i="t_mysal_t"></b><span class="tool-badge live" data-i="tBadgeLive"></span></div><p data-i="t_mysal_d"></p></button>
+        <button class="l-card tool go" onclick="showPage('routes')"><div class="tool-top"><b data-i="t_routes_t"></b><span class="tool-badge live" data-i="tBadgeLive"></span></div><p data-i="t_routes_d"></p></button>
+        <button class="l-card tool go" onclick="showPage('ai')"><div class="tool-top"><b data-i="t_ai_t"></b><span class="tool-badge live" data-i="tBadgeLive"></span></div><p data-i="t_ai_d"></p></button>
       </div>
       <div class="t-grp" data-i="tGrpDev"></div>
       <div class="l-grid">
@@ -956,7 +1086,7 @@ button.out-row:hover{background:#f3fbfa}
         <button class="l-card tool go" onclick="showPage('skillgap')"><div class="tool-top"><b data-i="t_skillgap_t"></b><span class="tool-badge plan" data-i="tBadgePlan"></span></div><p data-i="t_skillgap_d"></p></button>
         <button class="l-card tool go" onclick="showPage('outlook')"><div class="tool-top"><b data-i="t_outlook_t"></b><span class="tool-badge plan" data-i="tBadgePlan"></span></div><p data-i="t_outlook_d"></p></button>
         <button class="l-card tool go" onclick="showPage('parents')"><div class="tool-top"><b data-i="t_parents_t"></b><span class="tool-badge plan" data-i="tBadgePlan"></span></div><p data-i="t_parents_d"></p></button>
-        <button class="l-card tool go" onclick="showPage('ai')"><div class="tool-top"><b data-i="t_ai_t"></b><span class="tool-badge plan" data-i="tBadgePlan"></span></div><p data-i="t_ai_d"></p></button>
+        
         <button class="l-card tool go" onclick="showPage('videos')"><div class="tool-top"><b data-i="t_video_t"></b><span class="tool-badge plan" data-i="tBadgePlan"></span></div><p data-i="t_video_d"></p></button>
         <button class="l-card tool go" onclick="showPage('future')"><div class="tool-top"><b data-i="t_future_t"></b><span class="tool-badge plan" data-i="tBadgePlan"></span></div><p data-i="t_future_d"></p></button>
       </div>
@@ -1032,8 +1162,20 @@ button.out-row:hover{background:#f3fbfa}
     <section class="pg">
       <h1 class="pg-h" data-i="aiTitle">AI career assistant</h1>
       <p class="pg-sub" data-i="aiHint"></p>
+      <div class="ai-prov" id="aiProv">
+        <span class="ai-provl" data-i="aiProvL">Model</span>
+        <button class="chip-t" data-prov="gemini" type="button">Gemini</button>
+        <button class="chip-t" data-prov="claude" type="button">Claude</button>
+        <button class="chip-t" data-prov="offline" type="button" data-i="aiProvOff">Offline</button>
+        <span class="ai-status mono" id="aiStatus"></span>
+      </div>
+      <div class="ai-keyrow" id="aiKeyRow" hidden>
+        <input class="ai-input" id="aiKeyInp" type="password" data-iph="aiKeyPh" placeholder="" autocomplete="off">
+        <button class="ai-send" id="aiKeySave" type="button" data-i="aiKeySave">Save</button>
+      </div>
+      <p class="ai-privnote" data-i="aiProvNote"></p>
       <div class="ai-wrap">
-        <div class="ai-log" id="aiLog"></div>
+        <div class="ai-log" id="aiLog" role="log" aria-live="polite"></div>
         <div class="ai-suggest" id="aiSuggest">
           <button class="ai-sug" data-q="1" data-i="aiSug1"></button>
           <button class="ai-sug" data-q="2" data-i="aiSug2"></button>
@@ -1075,7 +1217,7 @@ button.out-row:hover{background:#f3fbfa}
         <div class="filter-title" data-i="lFilterTitle">Refine results</div>
         <div class="filter-grid">
           <label class="filter-control"><span data-i="lMinSalary">Min salary</span><input id="salaryMin" type="number" min="0" step="100" placeholder="AZN"></label>
-          <label class="filter-control"><span data-i="lSortLabel">Sort by</span><select id="sortBy"><option value="demand" data-i="lSortDemand">Demand</option><option value="pay" data-i="lSortPay">Salary</option><option value="entry" data-i="lSortEntry">Entry-level</option></select></label>
+          <label class="filter-control"><span data-i="lSortLabel">Sort by</span><select id="sortBy"><option value="demand" data-i="lSortDemand">Demand</option><option value="pay" data-i="lSortPay">Salary</option><option value="entry" data-i="lSortEntry">Entry-level</option><option value="trend" data-i="lSortTrend">Trend</option></select></label>
           <label class="filter-check"><input type="checkbox" id="entryOnly"><span data-i="lNoExpOnly">Good for beginners</span></label>
           <label class="filter-check"><input type="checkbox" id="remoteOnly"><span data-i="lRemoteOnly">Remote possible</span></label>
         </div>
@@ -1092,6 +1234,13 @@ button.out-row:hover{background:#f3fbfa}
       <p class="pg-sub" data-i="lMatchHint">Pick what interests you</p>
       <div class="m-block"><div class="m-lab" data-i="lMatchSectors">Fields</div><div class="chips-row" id="matchSectors"></div></div>
       <div class="m-block"><div class="m-lab" data-i="lMatchSkills">Skills</div><div class="chips-row" id="matchSkills"></div></div>
+      <div class="m-block"><div class="m-lab" data-i="mWeights">Priorities</div>
+        <div class="mw-grid">
+          <label class="mw"><span data-i="mwSkill">Skills</span><input type="range" id="wSkill" min="0" max="2" step="1" value="1"><b class="mono" id="wSkillV">1</b></label>
+          <label class="mw"><span data-i="mwPay">Salary</span><input type="range" id="wPay" min="0" max="2" step="1" value="1"><b class="mono" id="wPayV">1</b></label>
+          <label class="mw"><span data-i="mwDem">Demand</span><input type="range" id="wDem" min="0" max="2" step="1" value="1"><b class="mono" id="wDemV">1</b></label>
+        </div>
+        <p class="m-formula mono" data-i="mFormula"></p></div>
       <label class="m-exp"><input type="checkbox" id="matchNoExp"><span data-i="lMatchExp">I am starting</span></label>
       <div><button class="l-cta" id="matchBtn" data-i="lMatchBtn">Show professions</button></div>
       <div class="cards-grid" id="matchResults"></div>
@@ -1108,6 +1257,59 @@ button.out-row:hover{background:#f3fbfa}
   </div>
 
   <div class="page" id="page-detail"><section class="pg" id="detailBody"></section></div>
+
+  <div class="page" id="page-stats">
+    <section class="pg">
+      <h1 class="pg-h" data-i="stTitle">Market in numbers</h1>
+      <p class="pg-sub" data-i="stSub"></p>
+      <div class="st-tiles" id="stTiles"></div>
+      <div class="st-sec"><div class="st-h" data-i="stInflowT"></div><p class="st-s" data-i="stInflowS"></p>
+        <div class="st-card st-flow" id="stFlow"></div></div>
+      <div class="st-sec"><div class="st-h" data-i="stShareT"></div><p class="st-s" data-i="stShareS"></p>
+        <div class="st-card" id="stShare"></div></div>
+      <div class="st-sec"><div class="st-h" data-i="stRangeT"></div><p class="st-s" data-i="stRangeS"></p>
+        <div class="st-card" id="stRange"></div></div>
+      <div class="st-sec"><div class="st-h" data-i="stSkillsT"></div><p class="st-s" data-i="stSkillsS"></p>
+        <div class="chips-row" id="stSkills" style="margin:0"></div></div>
+      <div class="st-sec st-two">
+        <div><div class="st-h" data-i="stTopDem"></div><p class="st-s" data-i="trNote"></p><div class="st-card" id="stTopDem"></div></div>
+        <div><div class="st-h" data-i="stTopPay"></div><p class="st-s" data-i="stRangeS"></p><div class="st-card" id="stTopPay"></div></div>
+      </div>
+      <div class="st-sec"><div class="st-h" data-i="stExportT"></div><p class="st-s" data-i="stExportS"></p>
+        <div class="exp-btns"><button class="l-cta" id="expCSV" data-i="stCSV">CSV</button><button class="l-ghost" id="expJSON" data-i="stJSON">JSON</button></div></div>
+      <div class="st-sec"><div class="st-h" data-i="stMethT"></div><p class="meth" data-i="stMeth"></p></div>
+    </section>
+  </div>
+
+  <div class="page" id="page-mysalary">
+    <section class="pg">
+      <h1 class="pg-h" data-i="msTitle">Where does my pay sit?</h1>
+      <p class="pg-sub" data-i="msSub"></p>
+      <div class="ms-form">
+        <label class="filter-control"><span data-i="msSalL"></span><input id="msSal" type="number" min="0" step="50" placeholder="1200"></label>
+        <label class="filter-control"><span data-i="msProfL"></span><select id="msProf" class="sg-select" style="max-width:280px"></select></label>
+        <button class="l-cta" id="msBtn" data-i="msBtn">Show</button>
+      </div>
+      <div class="ms-out" id="msOut"></div>
+      <p class="edu-note" data-i="msNote"></p>
+    </section>
+  </div>
+
+  <div class="page" id="page-routes">
+    <section class="pg">
+      <h1 class="pg-h" data-i="rtTitle">Career route</h1>
+      <p class="pg-sub" data-i="rtSub"></p>
+      <div class="rt-form">
+        <select id="rtFrom" class="cmp-sel"></select><span class="cmp-vs">→</span>
+        <select id="rtTo" class="cmp-sel"></select>
+        <button class="l-cta" id="rtBtn" data-i="rtBtn">Build</button>
+      </div>
+      <div id="rtOut"></div>
+      <div class="st-sec" id="rtGrowWrap" style="display:none"><div class="st-h" data-i="rtGrowT"></div><p class="st-s" data-i="rtGrowS"></p>
+        <div class="st-card" id="rtGrow"></div></div>
+      <p class="edu-note" data-i="trNote"></p>
+    </section>
+  </div>
 
   <div class="page" id="page-favorites">
     <section class="pg">
@@ -1776,7 +1978,7 @@ const LANDS3={
 };
 let TT={};
 function applyLang(){
-  const L=Object.assign({}, (typeof LANDS!=='undefined'?LANDS[LG]:{}), (typeof LANDS2!=='undefined'?LANDS2[LG]:{}), (typeof LANDS3!=='undefined'?LANDS3[LG]:{}), (typeof LANDS4!=='undefined'?LANDS4[LG]:{}), LANG[LG]); TT=L;
+  const L=Object.assign({}, (typeof LANDS!=='undefined'?LANDS[LG]:{}), (typeof LANDS2!=='undefined'?LANDS2[LG]:{}), (typeof LANDS3!=='undefined'?LANDS3[LG]:{}), (typeof LANDS4!=='undefined'?LANDS4[LG]:{}), (typeof LANDS5!=='undefined'?LANDS5[LG]:{}), (typeof LANDS6!=='undefined'?LANDS6[LG]:{}), LANG[LG]); TT=L;
   document.documentElement.lang=LG;
   document.querySelectorAll('[data-i]').forEach(el=>{ const k=el.getAttribute('data-i'); if(L[k]!=null) el.textContent=L[k]; });
   document.querySelectorAll('[data-ihtml]').forEach(el=>{ const k=el.getAttribute('data-ihtml'); if(L[k]!=null) el.innerHTML=L[k]; });
@@ -1836,7 +2038,10 @@ function profCard(s, idx, reason){
   h+='<div class="pc-top"><span class="pc-dot" style="background:rgb('+c.join(',')+')"></span><span class="pc-sec">'+secName(s.sec)+'</span>';
   h+='<button class="pc-fav'+(isf?' on':'')+'" data-fav="'+idx+'" aria-label="'+T('lFav')+'" aria-pressed="'+isf+'">'+(isf?'\u2665':'\u2661')+'</button></div>';
   h+='<div class="pc-name">'+profLabel(s)+'</div>';
-  h+='<div class="pc-stats"><div><b>'+(rdy(s)?fmt(s.salary):'\u2014')+'</b>'+(rdy(s)?' AZN':'')+'<span>'+(rdy(s)?T(s.src==='live'?'lSrcLive':'lSrcEst'):T('lSoon'))+'</span></div><div><b>\u2014</b><span>'+T('lInDev')+'</span></div></div>';
+  const _D=DEMAND[s.en];
+  h+='<div class="pc-stats"><div><b>'+(rdy(s)?fmt(s.salary):'\u2014')+'</b>'+(rdy(s)?' AZN':'')+'<span>'+(rdy(s)?T(s.src==='live'?'lSrcLive':'lSrcEst'):T('lSoon'))+'</span></div>'
+    +'<div>'+((_D&&_D.n>=10)?'<b>'+fmt(_D.n)+'</b><span>'+T('lOpenRoles')+' \u00b7 '+T('lSrcLive')+'</span>':'<b>\u2014</b><span>'+((_D&&_D.n>0)?T('lFewData'):T('lInDev'))+'</span>')+'</div></div>';
+  { const _tr=trendOf(s.en); if(_tr&&_tr.n>=10) h+='<div class="pc-live">'+miniSpark(_tr.d,86,22)+trendBadge(_tr)+'</div>'; }
   h+='<div class="pc-skills">'+s.skills.slice(0,4).map(k=>pcChip(skTR(k))).join('')+'</div>';
   if(reason) h+='<div class="pc-reason">'+reason+'</div>';
   h+='<button class="pc-more" data-prof="'+idx+'">'+T('lMore')+' \u2192</button>';
@@ -1859,7 +2064,7 @@ function refreshGrids(){ const on=document.querySelector('#landing .page.page-on
 function _showPage(name){
   if(name!=='detail') lastPage=name;
   document.querySelectorAll('#landing .page').forEach(pg=>pg.classList.toggle('page-on', pg.id==='page-'+name));
-  document.querySelectorAll('.ltab').forEach(t=>t.classList.toggle('on', t.getAttribute('data-page')===name)); var _dd=document.getElementById('lDd');if(_dd)_dd.classList.remove('open');var _ddb=document.getElementById('lDdBtn');if(_ddb)_ddb.classList.toggle('on',['search','match','compare','tools','favorites','edu','skillgap','outlook','parents','ai','videos','future'].indexOf(name)>=0);
+  document.querySelectorAll('.ltab').forEach(t=>t.classList.toggle('on', t.getAttribute('data-page')===name)); var _dd=document.getElementById('lDd');if(_dd)_dd.classList.remove('open');var _ddb=document.getElementById('lDdBtn');if(_ddb)_ddb.classList.toggle('on',['search','match','compare','tools','favorites','edu','skillgap','outlook','parents','ai','videos','future','stats','mysalary','routes'].indexOf(name)>=0);
   const l=document.getElementById('landing'); if(l) l.scrollTop=0;
   if(name==='search') renderSearch();
   else if(name==='compare') renderCompare();
@@ -1868,6 +2073,9 @@ function _showPage(name){
   else if(name==='ai') buildAI();
   else if(name==='edu') buildEdu();
   else if(name==='outlook') buildOutlook();
+  else if(name==='stats') buildStats();
+  else if(name==='mysalary') buildMySalary();
+  else if(name==='routes') buildRoutes();
 }
 function _openDetail(s){ renderDetail(s);
   document.querySelectorAll('#landing .page').forEach(pg=>pg.classList.toggle('page-on', pg.id==='page-detail'));
@@ -1876,7 +2084,7 @@ function _openDetail(s){ renderDetail(s);
 
 /* ---- hash router: back/forward + shareable page URLs ---- */
 let lastPage='home', pendingStar=null, BOOTED=false, PENDING_MAP=null;
-const PAGES={home:1,tools:1,outlook:1,videos:1,parents:1,future:1,edu:1,ai:1,skillgap:1,search:1,match:1,compare:1,favorites:1};
+const PAGES={home:1,tools:1,outlook:1,videos:1,parents:1,future:1,edu:1,ai:1,skillgap:1,search:1,match:1,compare:1,favorites:1,stats:1,mysalary:1,routes:1};
 function renderRoute(force){
   let h;
   if(force!=null){ h=force; }
@@ -1934,7 +2142,9 @@ function renderSearch(){ const inp=document.getElementById('searchInput'); const
     if(remoteOnly && s.rem<10) return;
     const hay=normStr(profLabel(s)+' '+(s.en||'')+' '+(s.name||'')+' '+s.skills.map(skTR).join(' ')+' '+s.skills.join(' '));
     if(q && hay.indexOf(q)<0) return; arr.push({s,i}); });
-  arr.sort((a,b)=> sortBy==='pay' ? b.s.salary-a.s.salary : sortBy==='entry' ? b.s.noexp-a.s.noexp : b.s.count-a.s.count);
+  if(sortBy==='trend'){ const tv=o=>{ const t=trendOf(o.s.en); return t? (t.v>=0? t.v*100+Math.min(9,t.r)*10 : 1+Math.min(9,t.r)) : 0; };
+    arr.sort((a,b)=> tv(b)-tv(a) || b.s.count-a.s.count); }
+  else arr.sort((a,b)=> sortBy==='pay' ? b.s.salary-a.s.salary : sortBy==='entry' ? b.s.noexp-a.s.noexp : b.s.count-a.s.count);
   const rc=document.getElementById('resultCount'); if(rc) rc.textContent=(T('lResultCount')||'{n}').replace('{n}',arr.length);
   res.innerHTML = arr.length? arr.map(o=>profCard(o.s,o.i)).join('') : '<div class="empty">'+T('lNoResults')+'</div>'; wireCards(res);
 }
@@ -1976,36 +2186,136 @@ function aiProfile(s, edu){ const L=LANG[LG]; const lines=[profLabel(s)+' — '+
   if(sim) lines.push(T('lSimilar')+': '+sim);
   if(edu) lines.push(T('aiEduLine'));
   return lines.join('\n'); }
+function lev1(a,b){ if(a===b)return true; const la=a.length,lb=b.length; if(Math.abs(la-lb)>1)return false;
+  let i=0,j=0,ed=0;
+  while(i<la&&j<lb){ if(a[i]===b[j]){i++;j++;continue;} if(++ed>1)return false;
+    if(la>lb)i++; else if(lb>la)j++; else {i++;j++;} }
+  return ed+(la-i)+(lb-j)<=1; }
+function fz(t,a){ if(t===a)return true;
+  if(a.length>=4 && t.length>=4 && (t.indexOf(a)===0||a.indexOf(t)===0))return true;
+  return t.length>=5&&a.length>=5&&lev1(t,a); }
+function aiFindAll(list,nq,toks,max){ const out=[],seen=new Set();
+  for(const o of list){ const key=o.s?o.s.en:o.k; if(seen.has(key))continue; let hit=false;
+    if(o.a.indexOf(' ')>=0){ if((' '+nq+' ').indexOf(' '+o.a+' ')>=0) hit=true; }
+    else for(const t of toks){ if(fz(t,o.a)){hit=true;break;} }
+    if(hit){ seen.add(key); out.push(o); if(out.length>=max)break; } }
+  return out; }
+function esc(x){ return (''+x).replace(/&/g,'&amp;').replace(/</g,'&lt;'); }
+function hasTok(toks,roots){ return toks.some(t=>roots.some(a=>t.indexOf(a)===0)); }
+function aiProfCard(s){ const i=STARS.indexOf(s), D=DEMAND[s.en], tr=trendOf(s.en);
+  let h='<div class="ac-h"><span class="pc-dot" style="background:rgb('+SEC[s.sec].c.join(',')+')"></span>'+esc(profLabel(s))+'</div>';
+  h+='<div class="ac-r"><i>'+T('pay')+'</i><b>'+(rdy(s)? fmt(s.salary)+' AZN \u00b7 '+T(s.src==='live'?'lSrcLive':'lSrcEst') : T('lSoon'))+'</b></div>';
+  h+='<div class="ac-r"><i>'+T('open')+'</i><b>'+((D&&D.n>=10)? fmt(D.n)+' \u00b7 '+T('lSrcLive') : ((D&&D.n>0)?T('lFewData'):T('lInDev')))+'</b></div>';
+  if(tr&&tr.v>=0) h+='<div class="ac-r"><i>'+T('dTrendT')+'</i><b>'+T(tr.v===2?'trUp':tr.v===0?'trDown':'trFlat')+'</b></div>';
+  h+='<div class="ac-r"><i>'+T('skills')+'</i><b>'+esc(s.skills.slice(0,4).map(skTR).join(', '))+'</b></div>';
+  h+='<div class="ai-acts"><button class="ai-act" data-act="open" data-i2="'+i+'">'+T('aiOpen')+'</button>'
+    +'<button class="ai-act" data-act="cmp" data-i2="'+i+'">'+T('aiCmp')+'</button>'
+    +'<button class="ai-act" data-act="map" data-i2="'+i+'">'+T('aiMap')+'</button></div>';
+  return h; }
+function aiCmpCard(a,b){ const ia=STARS.indexOf(a), ib=STARS.indexOf(b), DA=DEMAND[a.en],DB=DEMAND[b.en];
+  const row=(l,va,vb)=>'<div class="ac-r"><i>'+l+'</i><b>'+va+' \u2194 '+vb+'</b></div>';
+  let h='<div class="ac-h">'+esc(profLabel(a))+' \u2194 '+esc(profLabel(b))+'</div>';
+  h+=row(T('pay'), rdy(a)?fmt(a.salary):'\u2014', rdy(b)?fmt(b.salary):'\u2014');
+  h+=row(T('open'), (DA&&DA.n>=10)?fmt(DA.n):'\u2014', (DB&&DB.n>=10)?fmt(DB.n):'\u2014');
+  h+='<div class="ai-acts"><button class="ai-act" data-act="cmp2" data-i2="'+ia+'" data-j2="'+ib+'">'+T('aiCmpBtn')+'</button></div>';
+  return h; }
 function aiAnswer(q){ buildAIIndex(); const L=LANG[LG];
-  let nq=normStr(q).replace(/[^a-z0-9\u0430-\u044f\s]/g,' ').replace(/\s+/g,' ').trim();
+  let nq=normStr(q).replace(/[^a-z0-9\u0430-\u044f\u0451\s]/g,' ').replace(/\s+/g,' ').trim();
   const toks=nq.split(' ').filter(Boolean);
-  const eduQ=toks.some(t=>['учит','oxu','study','стат','olmaq','become','вуз','universitet','university'].some(a=>t.indexOf(a)===0));
-  const st=aiFind(AI_STARS,nq,toks);
-  if(st) return aiProfile(st.s, eduQ);
-  const sk=aiFind(AI_SKILLS,nq,toks);
+  if(toks.length<=3 && toks.some(t=>['привет','salam','салам','hello','hi','hey'].indexOf(t)>=0)) return {t:'text',v:T('aiWelcome')};
+  const eduQ=hasTok(toks,['учит','oxu','study','стат','olmaq','become','вуз','universitet','university','поступ']);
+  const profs=aiFindAll(AI_STARS,nq,toks,2);
+  const cmpQ=hasTok(toks,['сравн','vs','против','muqayis','müqayis','compare']) || toks.indexOf('или')>=0 || toks.indexOf('ya')>=0 || toks.indexOf('or')>=0;
+  if(profs.length>=2 && (cmpQ || profs.length===2)) return {t:'html',v:aiCmpCard(profs[0].s,profs[1].s)};
+  const trQ=hasTok(toks,['тренд','раст','растет','растёт','падает','дина','trend','artir','artır','böyü','boyu','rising','grow']);
+  if(trQ && profs.length){ const s=profs[0].s, tr=trendOf(s.en);
+    if(!tr) return {t:'text',v:profLabel(s)+': '+T('lInDev')};
+    const verdict=tr.v<0? T('lFewData')+' (n='+tr.n+')' : T(tr.v===2?'trUp':tr.v===0?'trDown':'trFlat');
+    return {t:'text',v:T('aiTrendA').replace('{p}',profLabel(s)).replace('{v}',verdict).replace('{r}',tr.r.toFixed(2))+'\n'+T('trNote')}; }
+  const topQ=hasTok(toks,['топ','top','лидер','самы','ən','en']);
+  const payQ=hasTok(toks,['зарплат','плат','maaş','maas','salary','pay','qazan','зараб']);
+  if(topQ&&payQ){ const top=STARS.slice().sort((a,b)=>b.salary-a.salary).slice(0,5);
+    return {t:'text',v:T('aiTopPayHead')+'\n'+top.map((s,k)=>(k+1)+'. '+profLabel(s)+' \u2014 '+fmt(s.salary)+' AZN ('+T(s.src==='live'?'lSrcLive':'lSrcEst')+')').join('\n')}; }
+  if(hasTok(toks,['востреб','teleb','tələb','demand','popul'])||(topQ&&hasTok(toks,['вакан','vakans','профес','peşə','pese','profession','job']))||topQ&&!profs.length&&!payQ){
+    const live=Object.keys(DEMAND).map(en=>({n:DEMAND[en].n,s:STARS.find(x=>x.en===en)}))
+      .filter(o=>o.s&&o.n>=10).sort((a,b)=>b.n-a.n).slice(0,5);
+    return {t:'text',v:T('aiTopHead')+'\n'+live.map((o,k)=>(k+1)+'. '+profLabel(o.s)+' \u2014 '+fmt(o.n)).join('\n')+'\n'+T('aiTopNote')}; }
+  if(hasTok(toks,['удал','uzaqdan','remote','online'])) return {t:'text',v:T('aiRemoteA')};
+  if(hasTok(toks,['опыт','täcrüb','tecrub','experience','нович','başlay','baslay','entry','старт'])) return {t:'text',v:T('aiEntryA')};
+  const mNum=/(^|\s)(\d{3,5})(\s|$)/.exec(nq);
+  if(mNum && payQ){ const v=+mNum[2]; if(v>=200&&v<=20000){
+    const meds=STARS.map(s=>s.salary); const n=meds.filter(x=>x<v).length;
+    return {t:'html',v:'<div class="ai-pre">'+esc(T('aiCalcA').replace('{n}',n).replace('{m}',meds.length))+'</div>'
+      +'<div class="ai-acts"><button class="ai-act" data-act="pg" data-pg="mysalary">'+T('aiCalcBtn')+'</button></div>'}; } }
+  if(profs.length){ const extra=eduQ?'<div style="margin-top:8px;font-size:12.5px;color:#6b7690">'+esc(T('aiEduLine'))+'</div>':'';
+    return {t:'html',v:aiProfCard(profs[0].s)+extra}; }
+  const sk=aiFind(AI_SKILLS,nq,toks) || aiFindAll(AI_SKILLS,nq,toks,1)[0];
   if(sk){ const list=STARS.filter(s=>s.skills.includes(sk.k));
     const sal=list.map(s=>s.salary).slice().sort((a,b)=>a-b);
     const med=sal.length? sal[Math.floor(sal.length/2)] : 0;
     const top=list.slice().sort((a,b)=>b.salary-a.salary).slice(0,3).map(s=>profLabel(s)+' ('+fmt(s.salary)+')').join(', ');
-    return skTR(sk.k)+': '+list.length+' '+L.profWord+', '+T('lMedian')+' '+fmt(med)+' AZN\n'+L.insTop+': '+top; }
-  const demQ=toks.some(t=>['востреб','teleb','demand','лидер','popul','top'].some(a=>t.indexOf(a)===0));
-  if(demQ){ const live=Object.keys(DEMAND).map(en=>({n:DEMAND[en].n, s:STARS.find(x=>x.en===en)}))
-      .filter(o=>o.s).sort((a,b)=>b.n-a.n).slice(0,5);
-    return T('aiTopHead')+'\n'+live.map((o,k)=>(k+1)+'. '+profLabel(o.s)+' — '+fmt(o.n)).join('\n')+'\n'+T('aiTopNote'); }
-  if(eduQ) return T('aiEduLine');
-  if(toks.length<=3 && toks.some(t=>['привет','salam','салам','hello','hi','hey'].indexOf(t)>=0)) return T('aiWelcome');
-  return T('aiStub'); }
-function aiSend(){ const inp=document.getElementById('aiInput'); if(!inp)return; const t=(inp.value||'').trim(); if(!t)return; aiAppend('user',t); inp.value=''; setTimeout(function(){ aiAppend('bot',aiAnswer(t)); },350); }
+    return {t:'text',v:skTR(sk.k)+': '+list.length+' '+L.profWord+', '+T('lMedian')+' '+fmt(med)+' AZN\n'+L.insTop+': '+top}; }
+  if(eduQ) return {t:'text',v:T('aiEduLine')};
+  return {t:'text',v:T('aiStub')}; }
+function aiAppendCard(html){ const log=document.getElementById('aiLog'); if(!log)return;
+  const d=document.createElement('div'); d.className='ai-card'; d.innerHTML=html; log.appendChild(d);
+  d.querySelectorAll('.ai-act').forEach(b=>{ b.onclick=()=>{ const act=b.getAttribute('data-act'), i=+b.getAttribute('data-i2');
+    if(act==='open') openDetail(STARS[i]);
+    else if(act==='map') openMapAt(STARS[i]);
+    else if(act==='cmp'){ FORCE_CMP=i; showPage('compare'); }
+    else if(act==='cmp2'){ FORCE_CMP=i; FORCE_CMPB=+b.getAttribute('data-j2'); showPage('compare'); }
+    else if(act==='pg') showPage(b.getAttribute('data-pg')); }; });
+  log.scrollTop=log.scrollHeight; }
+function aiSend(){ if(typeof AIP!=='undefined'&&AIP&&AIP.busy) return;
+  const inp=document.getElementById('aiInput'); if(!inp)return; const t=(inp.value||'').trim(); if(!t)return;
+  aiAppend('user',t); inp.value='';
+  AIH.push({role:'user',text:t}); if(AIH.length>12) AIH=AIH.slice(-12);
+  if(AIP.prov==='offline'){ setTimeout(function(){ const a=aiAnswer(t);
+      if(a&&a.t==='html') aiAppendCard(a.v); else aiAppend('bot',a&&a.v||T('aiStub'));
+      AIH.push({role:'model',text:(a&&a.v)?String(a.v).replace(/<[^>]+>/g,' '):''}); },300); return; }
+  if(AIP.prov==='claude'&&!AIP.cKey){ renderProv(); aiAppend('bot',T('aiKeyAsk')); return; }
+  if(AIP.prov==='gemini'&&!AIP.gKey){ renderProv(); aiAppend('bot',T('aiKeyAskG')); return; }
+  AIP.busy=true; aiTypingOn();
+  const call=(AIP.prov==='claude')?callClaude:callGemini;
+  call(AIH.slice()).then(function(txt){ aiTypingOff();
+      AIH.push({role:'model',text:txt});
+      aiAppendCard(aiParseTags(txt).html); })
+   .catch(function(err){ aiTypingOff();
+      try{console.warn('AI provider error:',err&&err.message,err&&err.body);}catch(e){}
+      const a=aiAnswer(t), note='<div class="ai-note">'+esc(T('aiErrNet'))+'</div>';
+      aiAppendCard(((a&&a.t==='html')? a.v : '<div class="ai-pre">'+mdLite((a&&a.v)||T('aiStub'))+'</div>')+note);
+      AIH.push({role:'model',text:(a&&a.v)?String(a.v).replace(/<[^>]+>/g,' '):''}); })
+   .finally(function(){ AIP.busy=false; }); }
 function buildAI(){ const log=document.getElementById('aiLog'); if(!log)return;
-  if(!log.dataset.init){ aiAppend('bot',T('aiWelcome')); log.dataset.init='1'; }
+  if(typeof AIP==='undefined'||!AIP){ setTimeout(buildAI,0); return; }
+  if(!log.dataset.init){ const hasKey=(AIP.prov==='gemini'&&AIP.gKey)||(AIP.prov==='claude'&&AIP.cKey); const w=(AIP.prov==='offline'||!hasKey)?T('aiWelcome'):T('aiWelcomeLLM').replace('{m}',AIP.prov==='claude'?'Claude':'Gemini');
+    aiAppend('bot',w); log.dataset.init='1'; }
+  renderProv();
+  document.querySelectorAll('#aiProv [data-prov]').forEach(function(b){ b.onclick=function(){
+    AIP.prov=b.getAttribute('data-prov');
+    try{localStorage.setItem('az_ai_prov',AIP.prov);}catch(e){}
+    renderProv();
+    if(AIP.prov==='claude'&&!AIP.cKey) aiAppend('bot',T('aiKeyAsk'));
+    if(AIP.prov==='gemini'&&!AIP.gKey) aiAppend('bot',T('aiKeyAskG')); }; });
+  const ks=document.getElementById('aiKeySave'), ki=document.getElementById('aiKeyInp');
+  if(ks&&ki) ks.onclick=function(){ const v=(ki.value||'').trim(); if(!v)return;
+    if(AIP.prov==='gemini'){ AIP.gKey=v; try{localStorage.setItem('az_ai_gkey',v);}catch(e){} }
+    else { AIP.cKey=v; try{localStorage.setItem('az_ai_ckey',v);}catch(e){} }
+    ki.value=''; renderProv(); };
   const sb=document.getElementById('aiSend'), inp=document.getElementById('aiInput'); if(sb)sb.onclick=aiSend; if(inp)inp.onkeydown=function(e){ if(e.key==='Enter')aiSend(); };
   document.querySelectorAll('#aiSuggest [data-q]').forEach(function(b){ b.onclick=function(){ const i2=document.getElementById('aiInput'); if(i2){i2.value=b.textContent; aiSend();} }; });
 }
-function buildOutlook(){ const el=document.getElementById('outList'); if(!el)return;
-  const rows=STARS.map((s,i)=>({s,i})).filter(o=>o.s.gtype==='up'||o.s.gtype==='emerge')
-    .sort((a,b)=>((a.s.gtype==='emerge')?0:1)-((b.s.gtype==='emerge')?0:1) || b.s.count-a.s.count);
-  el.innerHTML=rows.map(o=>'<button type="button" class="out-row" data-prof="'+o.i+'"><span class="out-name">'+profLabel(o.s)+'</span><span class="out-tag '+(o.s.gtype==='emerge'?'new':'up')+'">'+(o.s.gtype==='emerge'?T('outNew'):T('outUp'))+'</span></button>').join('');
+function buildOutlook(){ const el=document.getElementById('outList'); if(!el)return; el.className='st-card';
+  const rows=[];
+  STARS.forEach((s,i)=>{ const tr=trendOf(s.en); if(tr&&tr.n>=10) rows.push({s,i,tr}); });
+  if(!rows.length){ el.innerHTML='<div class="empty">'+T('lInDev')+'</div>'; return; }
+  rows.sort((a,b)=> (b.tr.v-a.tr.v) || (b.tr.r-a.tr.r) || (b.tr.n-a.tr.n));
+  el.innerHTML=rows.map((o,k)=>'<button type="button" class="st-row" data-prof="'+o.i+'">'
+    +'<span class="rk">'+(k+1)+'</span>'
+    +'<span class="nm"><span class="pc-dot" style="background:rgb('+SEC[o.s.sec].c.join(',')+')"></span><span>'+profLabel(o.s)+'</span></span>'
+    +'<span class="vv">'+miniSpark(o.tr.d,74,20)+'<span>'+fmt(o.tr.n)+'</span>'+trendBadge(o.tr)+'</span></button>').join('');
   el.querySelectorAll('[data-prof]').forEach(b=>b.onclick=()=>openDetail(profByIdx(+b.getAttribute('data-prof'))));
+  const nt=document.querySelector('#page-outlook [data-i="outNote"]'); if(nt) nt.textContent=T('outNote2')+' '+T('trNote');
 }
 function buildEdu(){ const pf=document.getElementById('eduProf'); if(!pf)return;
   const _cv=pf.value; pf.innerHTML=starOptions('');
@@ -2051,17 +2361,31 @@ function buildMatchPalette(){
   se.querySelectorAll('.chip-t').forEach(b=>b.onclick=()=>{ const i=+b.getAttribute('data-s'); if(matchSecSet.has(i))matchSecSet.delete(i);else matchSecSet.add(i); b.classList.toggle('on'); });
   sk.querySelectorAll('.chip-t').forEach(b=>b.onclick=()=>{ const k=decodeURIComponent(b.getAttribute('data-k')); if(matchSkillSet.has(k))matchSkillSet.delete(k);else matchSkillSet.add(k); b.classList.toggle('on'); });
 }
+function matchW(id){ const e=document.getElementById(id); return e? +e.value : 1; }
 function renderMatchResults(){ const out=document.getElementById('matchResults'); if(!out)return;
   const noexp=document.getElementById('matchNoExp').checked;
   if(matchSecSet.size===0 && matchSkillSet.size===0){ out.innerHTML='<div class="empty">'+T('lMatchEmpty')+'</div>'; return; }
+  const wS=matchW('wSkill'), wP=matchW('wPay'), wD=matchW('wDem');
+  let minS=1e9,maxS=0,maxN=1;
+  STARS.forEach(s=>{ if(s.salary<minS)minS=s.salary; if(s.salary>maxS)maxS=s.salary;
+    const D=DEMAND[s.en]; if(D&&D.n>maxN)maxN=D.n; });
   const scored=[];
-  STARS.forEach((s,i)=>{ let sc=0, hits=[];
-    s.skills.forEach(k=>{ if(matchSkillSet.has(k)){ sc+=2; hits.push(skTR(k)); } });
-    if(matchSecSet.has(s.sec)) sc+=1;
-    if(noexp && s.noexp>=40) sc+=1;
-    if(sc>0) scored.push({s,i,sc,hits}); });
-  scored.sort((a,b)=>b.sc-a.sc || b.s.count-a.s.count);
-  out.innerHTML = scored.length? scored.slice(0,18).map(o=>profCard(o.s,o.i, o.hits.length?(T('lMatchReason')+' '+o.hits.slice(0,3).join(', ')):'')).join('') : '<div class="empty">'+T('lNoResults')+'</div>';
+  STARS.forEach((s,i)=>{ let hits=[];
+    s.skills.forEach(k=>{ if(matchSkillSet.has(k)) hits.push(skTR(k)); });
+    const secHit=matchSecSet.has(s.sec);
+    if(!hits.length && !secHit) return;
+    const D=DEMAND[s.en], n=(D&&D.n>=10)?D.n:0;
+    let sc = wS*2*hits.length + (secHit?1.5:0)
+      + wP*2*((s.salary-minS)/(maxS-minS))
+      + wD*2*(n/maxN)
+      + ((noexp&&s.noexp>=40)?1:0);
+    scored.push({s,i,sc,hits,n}); });
+  scored.sort((a,b)=>b.sc-a.sc || b.s.salary-a.s.salary);
+  out.innerHTML = scored.length? scored.slice(0,18).map(o=>{
+      let rs=[]; if(o.hits.length) rs.push(T('lMatchReason')+' '+o.hits.slice(0,3).join(', '));
+      rs.push(fmt(o.s.salary)+' \u20bc'); if(o.n) rs.push(T('open').toLowerCase()+': '+fmt(o.n));
+      return profCard(o.s,o.i, rs.join(' \u00b7 ')); }).join('')
+    : '<div class="empty">'+T('lNoResults')+'</div>';
   wireCards(out);
 }
 
@@ -2075,21 +2399,33 @@ function renderCompare(){ const t=document.getElementById('cmpTable'); if(!t)ret
   const aE=document.getElementById('cmpA'), bE=document.getElementById('cmpB'); const ai=aE?+aE.value:-1, bi=bE?+bE.value:-1;
   if(ai<0||bi<0){ t.innerHTML='<div class="empty">'+T('lCompareHint')+'</div>'; return; }
   const A=STARS[ai], B=STARS[bi];
+  const src=s=>'<span class="tbdg '+(s.src==='live'?'tb2':'tbf')+'">'+T(s.src==='live'?'lSrcLive':'lSrcEst')+'</span>';
   let h='<div class="cmp-head"><div class="cmp-a">'+profLabel(A)+'</div><div class="cmp-k"></div><div class="cmp-b">'+profLabel(B)+'</div></div>';
   h+=cmpRow(T('lcSector'),secName(A.sec),secName(B.sec),0);
-  h+=cmpRow(T('lcPay'),rdy(A)?fmt(A.salary)+' AZN':T('lSoon'),rdy(B)?fmt(B.salary)+' AZN':T('lSoon'),(rdy(A)&&rdy(B))?(A.salary>B.salary?1:B.salary>A.salary?2:0):0);
-  { const DA=DEMAND[A.en], DB=DEMAND[B.en];
-    h+=cmpRow(T('lcOpen'),
-      DA? fmt(DA.n)+' \u00b7 '+T('lSrcLive') : T('lSoon'),
-      DB? fmt(DB.n)+' \u00b7 '+T('lSrcLive') : T('lSoon'),
-      (DA&&DB)? (DA.n>DB.n?1:DB.n>DA.n?2:0) : 0); }
-  h+=cmpRow(T('lcEng'),T('lInDev'),T('lInDev'),0);
-  h+=cmpRow(T('lcRus'),T('lInDev'),T('lInDev'),0);
-  h+=cmpRow(T('lcRem'),T('lInDev'),T('lInDev'),0);
-  h+=cmpRow(T('lcExp'),T('lInDev'),T('lInDev'),0);
-  h+=cmpRow(T('lcEntry'),T('lInDev'),T('lInDev'),0);
-  h+=cmpRow(T('lcSkills'),A.skills.slice(0,5).map(skTR).join(', '),B.skills.slice(0,5).map(skTR).join(', '),0);
+  h+=cmpRow(T('lcPay'),
+    rdy(A)?'<span class="cmp-live"><span>'+fmt(A.salary)+' AZN</span>'+src(A)+'</span>':T('lSoon'),
+    rdy(B)?'<span class="cmp-live"><span>'+fmt(B.salary)+' AZN</span>'+src(B)+'</span>':T('lSoon'),
+    (rdy(A)&&rdy(B))?(A.salary>B.salary?1:B.salary>A.salary?2:0):0);
+  { const TA=trendOf(A.en), TB=trendOf(B.en);
+    const cell=tr=> (tr&&tr.n>=10)? '<span class="cmp-live">'+miniSpark(tr.d,92,22)+'<span>'+fmt(tr.n)+' \u00b7 '+T('lSrcLive')+'</span></span>'
+      : ((tr&&tr.n>0)?T('lFewData'):T('lInDev'));
+    h+=cmpRow(T('lcOpen'), cell(TA), cell(TB),
+      (TA&&TB&&TA.n>=10&&TB.n>=10)? (TA.n>TB.n?1:TB.n>TA.n?2:0) : 0);
+    const bd=tr=> (tr&&tr.n>=10)? trendBadge(tr) : '\u2014';
+    h+=cmpRow(T('lcTrend'), bd(TA), bd(TB),
+      (TA&&TB&&TA.v>=0&&TB.v>=0)? (TA.v>TB.v?1:TB.v>TA.v?2:(TA.r>TB.r?1:TB.r>TA.r?2:0)) : 0); }
+  { const RA=ranksOf(A), RB=ranksOf(B);
+    const rk=R=>'#'+R.p+'/'+R.pm+' '+T('dRankPay')+(R.d?'<br>#'+R.d+'/'+R.dm+' '+T('dRankDem'):'');
+    h+=cmpRow(T('lcRank'), rk(RA), rk(RB), 0); }
   t.innerHTML=h;
+  { const setA=new Set(A.skills), common=B.skills.filter(k=>setA.has(k)),
+      onlyA=A.skills.filter(k=>common.indexOf(k)<0), onlyB=B.skills.filter(k=>common.indexOf(k)<0);
+    let sk='<div class="cmp-skl">';
+    if(common.length) sk+='<div class="lab">'+T('lcCommon')+'</div>'+common.map(k=>'<span class="chip-common">'+skTR(k)+'</span>').join('');
+    sk+='<div class="lab">'+T('lcOnly')+' '+profLabel(A)+'</div>'+(onlyA.length?onlyA.map(k=>pcChip(skTR(k))).join(''):'\u2014');
+    sk+='<div class="lab">'+T('lcOnly')+' '+profLabel(B)+'</div>'+(onlyB.length?onlyB.map(k=>pcChip(skTR(k))).join(''):'\u2014');
+    sk+='</div><p class="cmp-note">'+T('cmpNote')+'</p>';
+    t.insertAdjacentHTML('beforeend', sk); }
 }
 
 function langBars(s){ const a=[[T('bEn'),s.enp,'#56b3f5,#9fd6ff'],[T('bRu'),s.rup,'#a78bfa,#cdbcff'],[T('bRem'),s.rem,'#16b8a0,#54d0e0']];
@@ -2810,6 +3146,7 @@ var CP_TOOLS=[
  {pg:'map',t:'t_map_t'},{pg:'favorites',t:'t_favorites_t'},{pg:'edu',t:'t_edu_t'},
  {pg:'skillgap',t:'t_skillgap_t'},{pg:'outlook',t:'t_outlook_t'},{pg:'ai',t:'t_ai_t'},
  {pg:'videos',t:'t_video_t'},{pg:'future',t:'t_future_t'},{pg:'parents',t:'t_parents_t'},
+ {pg:'stats',t:'t_stats_t'},{pg:'mysalary',t:'t_mysal_t'},{pg:'routes',t:'t_routes_t'},
  {pg:'tools',t:'tHubT'}];
 var CP_ON=false, CP_SEL=0, CP_ITEMS=[];
 function cpOpen(){ var w=document.getElementById('cpWrap'), i=document.getElementById('cpInp');
@@ -2947,6 +3284,506 @@ function applySearchParams(qs){
     el.onchange=function(){ renderSearch(); }; });
 })();
 
+/* ================================================================
+   DATA LAYER v3 — real trends, market stats, salary check,
+   career routes, open-data export, smarter assistant glue
+   ================================================================ */
+var LANDS5={
+ az:{t_stats_t:'Bazar rəqəmlərlə',t_stats_d:'Sektorlar, maaşlar və bacarıqlar üzrə canlı statistika',
+  t_mysal_t:'Maaşım bazarda',t_mysal_d:'Maaşını 46 peşənin medianları ilə müqayisə et',
+  t_routes_t:'Karyera marşrutu',t_routes_d:'A-dan B-yə keçid yolu və çatışmayan bacarıqlar',
+  trUp:'tələbat artır',trFlat:'sabit',trDown:'soyuyur',lSortTrend:'trendə görə',
+  trNote:'Trend = peşənin yeni elan axınındakı payı: son 7 gün ilkin 7 günə qarşı (21 günlük pəncərə). Nəticə yalnız n\u226520 elanı olan peşələr üçün göstərilir.',
+  outNote2:'Trend canlı elan axınından hesablanır; az məlumatlı peşələr üçün nəticə göstərilmir.',
+  stOpen:'\u00abBazar rəqəmlərlə\u00bb səhifəsini aç \u2192',
+  stTitle:'Bazar rəqəmlərlə',stSub:'3 həftəlik canlı toplama üzrə hesablanmış mənzərə \u2014 heç bir rəqəm uydurulmayıb.',
+  stT1l:'unikal elan',stT2l:'toplama pəncərəsi',stT3l:'canlı tələbatlı peşə',stT4l:'canlı maaş medianı',
+  stInflowT:'Elanların gündəlik axını',stInflowS:'İlk günlərin zirvəsi \u2014 toplamanın başlanğıcında artıq mövcud olan elan bazasının idxalıdır.',
+  stShareT:'Vakansiyaların sektor payı',stShareS:'İzlənən 46 peşə üzrə canlı elan sayı',
+  stRangeT:'Maaş diapazonları sektor üzrə',stRangeS:'Peşə medianlarının min\u2013median\u2013maks aralığı (canlı + təxmin)',
+  stSkillsT:'Bazarın ən çox istənilən bacarıqları',stSkillsS:'Elanlardan çıxarılıb; peşənin elan sayı ilə çəkilənib',
+  stTopDem:'Canlı tələbat liderləri',stTopPay:'Maaş liderləri',stAds:'elan',
+  stExportT:'Açıq məlumat',stExportS:'Bütün dataset bir kliklə \u2014 tədqiqat, media və tədris üçün.',
+  stCSV:'CSV yüklə',stJSON:'JSON yüklə',stMethT:'Metodologiya',
+  stMeth:'Mənbələr \u2014 jobsearch.az və hellojob.az saytlarındakı açıq vakansiyalar. \u00abAd + şirkət\u00bb cütü üzrə dedupdan sonra 23.06\u201313.07.2026 pəncərəsində 3248 unikal elan qalıb. \u00abCanlı\u00bb maaş medianı yalnız elanlarda \u22658 açıq maaş olan yerdə göstərilir (belə peşə 12-dir); qalanlar təxmindir: sahə ortası (DSK, 2025) \u00d7 rol əmsalı. Canlı vakansiya sayı n\u226510 olduqda görünür. Trend \u2014 peşənin yeni elan axınındakı payı (son 7 gün ilkin 7 günə qarşı), nəticə n\u226520 olduqda. Bütün rəqəmlər bazar səviyyəsinin təxminidir, təklif deyil.',
+  msTitle:'Maaşım bazarda haradadır?',msSub:'Maaşını yaz \u2014 46 peşənin medianları ilə müqayisə edək.',
+  msSalL:'Maaşın, \u20bc/ay',msProfL:'Peşə (istəyə bağlı)',msNone:'\u2014 seçmə',msBtn:'Göstər',
+  msMarketT:'Bütün bazar üzrə',msAbove:'{m} peşədən {n}-nin medianından yuxarıdır ({p}%)',
+  msProfT:'Peşə üzrə',msSecT:'Sektor üzrə',msOfMed:'medianın {p}%-i',msLevelT:'Peşə daxilində səviyyə',
+  msErr:'Düzgün məbləğ yaz (\u20bc/ay)',msMedW:'median',
+  msNote:'Müqayisə peşə səviyyəli medianlar/təxminlərlədir, bütün maaşların paylanması ilə deyil.',
+  rtTitle:'Karyera marşrutu',rtSub:'Bacarıq kəsişmələri qrafı üzrə A-dan B-yə ən qısa yol \u2014 hər addımda maaş fərqi və öyrənməli bacarıqlar.',
+  rtBtn:'Marşrut qur',rtSame:'Bu eyni peşədir \ud83d\ude42',
+  rtNone:'Bacarıqlar üzrə birbaşa zəncir tapılmadı \u2014 bu peşələr ayrı dünyalardandır; təhsil vasitəsilə keçid daha realdır.',
+  rtLearn:'öyrən:',rtHops:'keçid sayı: {n}',rtGrowT:'Buradan hara böyümək olar',
+  rtGrowS:'Bacarıqca qonşu, medianı daha yüksək peşələr',rtNoGrow:'Qonşular arasında daha yüksək maaşlı tapılmadı',rt2hop:'iki addım',
+  dRankPay:'maaş üzrə',dRankDem:'tələbat üzrə',dTrendT:'21 günlük dinamika',
+  aiOpen:'Aç',aiCmp:'Müqayisə',aiMap:'Xəritədə',aiCmpBtn:'Tam müqayisəni aç',aiCalcBtn:'Alətə keç',
+  aiTopPayHead:'Maaş medianı üzrə liderlər:',
+  aiTrendA:'\u00ab{p}\u00bb: {v} (yeni elan axınındakı pay \u00d7{r}, 21 gün).',
+  aiEntryA:'Təcrübə tələbləri üzrə real toplama hələ gedir \u2014 dəqiq \u00abtəcrübəsiz\u00bb siyahısı verə bilmirəm. Sahə təxmininə görə start üçün ən açıq qapılar: kassir, kuryer, ofisiant, barista, resepşn. Xəritədəki \u00abKaryera\u00bb linzasına bax.',
+  aiRemoteA:'Uzaqdan iş üzrə real məlumat hələ toplanır \u2014 uydurmayacağam.',
+  aiCalcA:'Sürətli baxış: maaşın {m} peşədən {n}-nin medianından yuxarıdır. Tam mənzərə üçün \u00abMaaşım bazarda\u00bb alətinə keç.',
+  aiWelcome:'Salam! Atlasın canlı məlumatları ilə oflayn cavab verirəm. Bacardıqlarım: peşə profili (\u00abproqramçı\u00bb), müqayisə (\u00abaşpaz vs ofisiant\u00bb), \u00abmaaş üzrə top\u00bb, \u00abtələbat üzrə top\u00bb, trend (\u00abmarketoloqa tələbat artır?\u00bb), bacarıq (\u00abExcel kimə lazımdır\u00bb).'},
+ ru:{t_stats_t:'Рынок в цифрах',t_stats_d:'Живая статистика по секторам, зарплатам и навыкам',
+  t_mysal_t:'Моя зарплата на рынке',t_mysal_d:'Сравни свою зарплату с медианами 46 профессий',
+  t_routes_t:'Карьерный маршрут',t_routes_d:'Путь из A в B и недостающие навыки',
+  trUp:'спрос растёт',trFlat:'стабильно',trDown:'остывает',lSortTrend:'по тренду',
+  trNote:'Тренд = доля профессии в притоке новых объявлений: последние 7 дней против первых 7 (окно 21 день). Вердикт показывается только при n\u226520 объявлений.',
+  outNote2:'Тренд считается из живого притока объявлений; для профессий с малыми данными вердикт не показывается.',
+  stOpen:'Открыть \u00abРынок в цифрах\u00bb \u2192',
+  stTitle:'Рынок в цифрах',stSub:'Картина, посчитанная по трём неделям живого сбора \u2014 ни одной выдуманной цифры.',
+  stT1l:'уникальных объявлений',stT2l:'окно сбора',stT3l:'профессий с живым спросом',stT4l:'живых медиан зарплат',
+  stInflowT:'Ежедневный приток объявлений',stInflowS:'Пик первых дней \u2014 импорт объявлений, уже висевших на старте сбора.',
+  stShareT:'Доля секторов в вакансиях',stShareS:'Живое число объявлений по 46 отслеживаемым профессиям',
+  stRangeT:'Зарплатные диапазоны по секторам',stRangeS:'Мин\u2013медиана\u2013макс медиан профессий (живые + оценки)',
+  stSkillsT:'Самые востребованные навыки рынка',stSkillsS:'Извлечены из объявлений; взвешены по числу объявлений профессии',
+  stTopDem:'Лидеры живого спроса',stTopPay:'Лидеры по зарплате',stAds:'объявл.',
+  stExportT:'Открытые данные',stExportS:'Весь датасет в один клик \u2014 для исследований, медиа и преподавания.',
+  stCSV:'Скачать CSV',stJSON:'Скачать JSON',stMethT:'Методология',
+  stMeth:'Источники \u2014 публичные вакансии jobsearch.az и hellojob.az. После дедупликации по паре \u00abназвание + компания\u00bb осталось 3248 уникальных объявлений за окно 23.06\u201313.07.2026. \u00abЖивая\u00bb медиана зарплаты показывается только там, где в объявлениях встретилось \u22658 явных зарплат (таких профессий 12); остальные значения \u2014 оценка: средняя по отрасли (Госстат, 2025) \u00d7 коэффициент роли. Живое число вакансий показывается при n\u226510. Тренд \u2014 доля профессии в притоке новых объявлений (последние 7 дней против первых 7), вердикт при n\u226520. Все цифры \u2014 оценка уровня рынка, а не оферта.',
+  msTitle:'Где моя зарплата на рынке?',msSub:'Введи зарплату \u2014 сравним с медианами 46 профессий.',
+  msSalL:'Твоя зарплата, \u20bc/мес',msProfL:'Профессия (необязательно)',msNone:'\u2014 не указывать',msBtn:'Показать',
+  msMarketT:'По всему рынку',msAbove:'выше медиан {n} из {m} профессий ({p}%)',
+  msProfT:'По профессии',msSecT:'По сектору',msOfMed:'{p}% от медианы',msLevelT:'Уровень внутри профессии',
+  msErr:'Введи корректную сумму (\u20bc/мес)',msMedW:'медиана',
+  msNote:'Сравнение \u2014 с медианами/оценками уровня профессий, а не с распределением всех зарплат.',
+  rtTitle:'Карьерный маршрут',rtSub:'Кратчайший путь из A в B по графу пересечения навыков \u2014 на каждом шаге прирост зарплаты и что выучить.',
+  rtBtn:'Построить маршрут',rtSame:'Это одна и та же профессия \ud83d\ude42',
+  rtNone:'Прямой цепочки по навыкам не нашлось \u2014 эти профессии из разных миров; реальнее переход через обучение.',
+  rtLearn:'выучить:',rtHops:'переходов: {n}',rtGrowT:'Куда расти отсюда',
+  rtGrowS:'Соседние по навыкам профессии с более высокой медианой',rtNoGrow:'Среди соседей нет более высокооплачиваемых',rt2hop:'через шаг',
+  dRankPay:'по зарплате',dRankDem:'по спросу',dTrendT:'Динамика за 21 день',
+  aiOpen:'Открыть',aiCmp:'Сравнить',aiMap:'На карте',aiCmpBtn:'Открыть полное сравнение',aiCalcBtn:'Открыть инструмент',
+  aiTopPayHead:'Лидеры по медиане зарплаты:',
+  aiTrendA:'\u00ab{p}\u00bb: {v} (доля в притоке новых объявлений \u00d7{r} за 21 день).',
+  aiEntryA:'Реальный сбор требований к опыту ещё идёт \u2014 точного списка \u00abбез опыта\u00bb дать не могу. По отраслевой оценке самые открытые двери для старта: кассир, курьер, официант, бариста, ресепшн. Смотри линзу \u00abКарьеры\u00bb на карте.',
+  aiRemoteA:'Реальные данные по удалёнке ещё собираются \u2014 выдумывать не стану.',
+  aiCalcA:'Быстрая прикидка: твоя зарплата выше медиан {n} из {m} профессий. Точную картину смотри в \u00abМоя зарплата на рынке\u00bb.',
+  aiWelcome:'Привет! Отвечаю офлайн по живым данным атласа. Умею: профиль профессии (\u00abпрограммист\u00bb), сравнение (\u00abповар vs официант\u00bb), \u00abтоп по зарплате\u00bb, \u00abтоп по спросу\u00bb, тренд (\u00abрастёт ли спрос на маркетолога\u00bb), навык (\u00abкому нужен Excel\u00bb).'},
+ en:{t_stats_t:'Market in numbers',t_stats_d:'Live stats across sectors, pay and skills',
+  t_mysal_t:'My salary vs market',t_mysal_d:'Compare your pay with 46 profession medians',
+  t_routes_t:'Career route',t_routes_d:'Path from A to B and the missing skills',
+  trUp:'demand rising',trFlat:'stable',trDown:'cooling',lSortTrend:'by trend',
+  trNote:'Trend = the profession\u2019s share of new-ad inflow: last 7 days vs first 7 (21-day window). A verdict is shown only where n\u226520 ads.',
+  outNote2:'Trend is computed from the live ad inflow; no verdict is shown for low-data professions.',
+  stOpen:'Open Market in numbers \u2192',
+  stTitle:'Market in numbers',stSub:'A picture computed from three weeks of live collection \u2014 not a single invented number.',
+  stT1l:'unique ads',stT2l:'collection window',stT3l:'professions with live demand',stT4l:'live salary medians',
+  stInflowT:'Daily ad inflow',stInflowS:'The early spike is the backlog of ads already live when collection started.',
+  stShareT:'Sector share of vacancies',stShareS:'Live ad counts across the 46 tracked professions',
+  stRangeT:'Salary ranges by sector',stRangeS:'Min\u2013median\u2013max of profession medians (live + estimates)',
+  stSkillsT:'Most in-demand skills',stSkillsS:'Extracted from ads; weighted by each profession\u2019s ad count',
+  stTopDem:'Live demand leaders',stTopPay:'Pay leaders',stAds:'ads',
+  stExportT:'Open data',stExportS:'The full dataset in one click \u2014 for research, media and teaching.',
+  stCSV:'Download CSV',stJSON:'Download JSON',stMethT:'Methodology',
+  stMeth:'Sources \u2014 public vacancies on jobsearch.az and hellojob.az. After dedup by the title+company pair, 3248 unique ads remain for the 23.06\u201313.07.2026 window. A \u2018live\u2019 salary median is shown only where ads contained \u22658 explicit salaries (12 such professions); the rest are estimates: sector average (StatCom, 2025) \u00d7 a role factor. Live vacancy counts show at n\u226510. Trend is the profession\u2019s share of new-ad inflow (last 7 days vs first 7), verdicts at n\u226520. Every figure estimates the market level, not an offer.',
+  msTitle:'Where does my pay sit?',msSub:'Enter your pay \u2014 we compare it with the medians of 46 professions.',
+  msSalL:'Your pay, \u20bc/mo',msProfL:'Profession (optional)',msNone:'\u2014 skip',msBtn:'Show',
+  msMarketT:'Across the market',msAbove:'above the medians of {n} of {m} professions ({p}%)',
+  msProfT:'Vs the profession',msSecT:'Vs the sector',msOfMed:'{p}% of the median',msLevelT:'Level inside the profession',
+  msErr:'Enter a valid amount (\u20bc/mo)',msMedW:'median',
+  msNote:'Comparison is against profession-level medians/estimates, not the distribution of all salaries.',
+  rtTitle:'Career route',rtSub:'Shortest path from A to B over the skill-overlap graph \u2014 pay delta and what to learn at each hop.',
+  rtBtn:'Build route',rtSame:'That\u2019s the same profession \ud83d\ude42',
+  rtNone:'No skill chain found \u2014 these professions live in different worlds; retraining is the realistic bridge.',
+  rtLearn:'learn:',rtHops:'hops: {n}',rtGrowT:'Where to grow from here',
+  rtGrowS:'Skill-adjacent professions with a higher median',rtNoGrow:'No higher-paying neighbours found',rt2hop:'two hops',
+  dRankPay:'by pay',dRankDem:'by demand',dTrendT:'21-day dynamics',
+  aiOpen:'Open',aiCmp:'Compare',aiMap:'On map',aiCmpBtn:'Open full comparison',aiCalcBtn:'Open the tool',
+  aiTopPayHead:'Leaders by median pay:',
+  aiTrendA:'\u2018{p}\u2019: {v} (share of new-ad inflow \u00d7{r} over 21 days).',
+  aiEntryA:'Real experience-requirement collection is still running, so I can\u2019t give an exact entry-level list. By sector estimate the widest-open doors are: cashier, courier, waiter, barista, receptionist. See the Careers lens on the map.',
+  aiRemoteA:'Real remote-work data is still being collected \u2014 I won\u2019t make it up.',
+  aiCalcA:'Quick take: your pay is above the medians of {n} of {m} professions. See \u2018My salary vs market\u2019 for the full picture.',
+  aiWelcome:'Hi! I answer offline from the atlas\u2019s live data. I can do: a profession profile (\u2018developer\u2019), comparison (\u2018chef vs waiter\u2019), \u2018top by pay\u2019, \u2018top by demand\u2019, trend (\u2018is demand for marketers rising\u2019), skills (\u2018who needs Excel\u2019).'}
+};
+applyLang();
+
+/* ---- trend engine (guards TREND, which is initialised later in this script) ---- */
+function TRW(){ try{ return TREND; }catch(e){ return null; } }
+function trendOf(en){ var D=DEMAND[en]; var Tr=TRW(); if(!D||!D.d||!Tr) return null;
+  var d=D.d, Tc=Tr.counts, e=0,eT=0,l=0,lT=0,i;
+  for(i=0;i<7;i++){ e+=d[i]||0; eT+=Tc[i]||0; }
+  for(i=d.length-7;i<d.length;i++){ l+=d[i]||0; lT+=Tc[i]||0; }
+  var se=eT? e/eT:0, sl=lT? l/lT:0, r= se>0 ? sl/se : (sl>0? 9:1);
+  var o={n:D.n,d:d,r:r,se:se,sl:sl};
+  o.v = D.n<20 ? -1 : r>=1.25 ? 2 : r<=0.75 ? 0 : 1;
+  return o; }
+function trendBadge(tr){ if(!tr) return '';
+  var k=tr.v===2?'trUp':tr.v===1?'trFlat':tr.v===0?'trDown':'lFewData';
+  return '<span class="tbdg tb'+(tr.v<0?'f':tr.v)+'">'+T(k)+'</span>'; }
+function miniSpark(d,w,h){ w=w||88; h=h||24;
+  var mx=1,i; for(i=0;i<d.length;i++) if(d[i]>mx) mx=d[i];
+  var st=(w-4)/(d.length-1), p='';
+  for(i=0;i<d.length;i++) p+=(i?' L':'M')+(2+i*st).toFixed(1)+' '+(h-2-(d[i]/mx)*(h-4)).toFixed(1);
+  return '<svg class="mspark" width="'+w+'" height="'+h+'" viewBox="0 0 '+w+' '+h+'" aria-hidden="true"><path d="'+p+'" fill="none" stroke="#17a08f" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/></svg>'; }
+var RANKS=null;
+function ranksOf(s){ if(!RANKS){ RANKS={pay:{},dem:{},payN:STARS.length,demN:0};
+    STARS.slice().sort(function(a,b){return b.salary-a.salary;}).forEach(function(x,k){RANKS.pay[x.en]=k+1;});
+    var dl=Object.keys(DEMAND).map(function(en){return {en:en,n:DEMAND[en].n};}).sort(function(a,b){return b.n-a.n;});
+    RANKS.demN=dl.length; dl.forEach(function(o,k){RANKS.dem[o.en]=k+1;}); }
+  return {p:RANKS.pay[s.en],pm:RANKS.payN,d:RANKS.dem[s.en],dm:RANKS.demN}; }
+
+/* ---- career graph: adjacency, shortest path, growth moves ---- */
+var ADJ=null;
+function buildAdj(){ if(ADJ) return;
+  ADJ=STARS.map(function(){ return new Set(); });
+  STARS.forEach(function(a,i){ (a.related||[]).forEach(function(b){ var j=STARS.indexOf(b);
+    if(j>=0){ ADJ[i].add(j); ADJ[j].add(i); } }); }); }
+function findPath(a,b){ buildAdj(); if(a===b) return [a];
+  var prev=new Array(STARS.length).fill(-1), q=[a], seen=new Set([a]), qi=0;
+  while(qi<q.length){ var v=q[qi++]; if(v===b) break;
+    ADJ[v].forEach(function(w){ if(!seen.has(w)){ seen.add(w); prev[w]=v; q.push(w); } }); }
+  if(!seen.has(b)) return null;
+  var p=[b]; while(p[0]!==a) p.unshift(prev[p[0]]); return p; }
+function missingSkills(f,t){ return t.skills.filter(function(k){ return f.skills.indexOf(k)<0; }); }
+function growthMoves(s){ buildAdj(); var i=STARS.indexOf(s), out=[];
+  ADJ[i].forEach(function(j){ var b=STARS[j];
+    if(b.salary>s.salary) out.push({b:b,d:b.salary-s.salary,miss:missingSkills(s,b)}); });
+  if(out.length<3){ var two=new Set();
+    ADJ[i].forEach(function(j){ ADJ[j].forEach(function(k){ if(k!==i && !ADJ[i].has(k)) two.add(k); }); });
+    two.forEach(function(k){ var b=STARS[k];
+      if(b.salary>s.salary) out.push({b:b,d:b.salary-s.salary,miss:missingSkills(s,b),hop2:true}); }); }
+  out.sort(function(x,y){ return y.d-x.d; }); return out.slice(0,3); }
+
+/* ---- open-data export ---- */
+function dlBlob(name,mime,txt){ var b=new Blob([txt],{type:mime}), u=URL.createObjectURL(b), a=document.createElement('a');
+  a.href=u; a.download=name; document.body.appendChild(a); a.click();
+  setTimeout(function(){ URL.revokeObjectURL(u); a.remove(); },400); }
+function exportCSV(){ var H=['sector_en','name_az','name_en','salary_azn','salary_source','vacancies_live','trend_ratio_21d','skills_live','skills_curated'];
+  var rows=STARS.map(function(s){ var D=DEMAND[s.en]||{}, tr=trendOf(s.en);
+    return [SEC[s.sec].e,s.name,s.en,s.salary,s.src||'',D.n||'',(tr&&tr.n>=20)?tr.r.toFixed(2):'',(D.skills||[]).join('|'),s.skills.join('|')]
+      .map(function(v){ v=''+v; return /[",\n]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v; }).join(','); });
+  dlBlob('atlas-professions.csv','text/csv;charset=utf-8','\uFEFF'+H.join(',')+'\n'+rows.join('\n')); }
+function exportJSON(){ var Tr=TRW()||{days:[],counts:[],total:0};
+  var o={meta:{ads_total:Tr.total,window:[Tr.days[0],Tr.days[Tr.days.length-1]],
+    sources:['jobsearch.az','hellojob.az'],dedupe:'title+company',
+    live_salary_rule:'median where >=8 explicit salaries',display_threshold:'n>=10',trend_rule:'inflow share, last 7d vs first 7d, verdict at n>=20'},
+   daily:{days:Tr.days,counts:Tr.counts},
+   professions:STARS.map(function(s){ var D=DEMAND[s.en]||{}, tr=trendOf(s.en);
+     return {sector:SEC[s.sec].e,name_az:s.name,name_en:s.en,salary_azn:s.salary,salary_source:s.src||null,
+       vacancies:D.n||null,daily:D.d||null,trend_ratio_21d:(tr&&tr.n>=20)?+tr.r.toFixed(2):null,
+       skills_live:D.skills||[],skills_curated:s.skills}; })};
+  dlBlob('atlas-data.json','application/json',JSON.stringify(o,null,1)); }
+
+/* ---- page: market in numbers ---- */
+function stFlowSVG(){ var Tr=TRW(); var c=Tr.counts, dys=Tr.days, W=720,H=150,P=30;
+  var mx=1,i; for(i=0;i<c.length;i++) if(c[i]>mx) mx=c[i];
+  function sx(i){ return P+i*(W-P*2)/(c.length-1); } function sy(v){ return H-24-(v/mx)*(H-52); }
+  var d=''; c.forEach(function(v,i){ d+=(i?' L':'M')+sx(i).toFixed(1)+' '+sy(v).toFixed(1); });
+  var ar=d+' L'+sx(c.length-1).toFixed(1)+' '+(H-24)+' L'+P+' '+(H-24)+' Z';
+  var g='<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="daily inflow">';
+  g+='<line x1="'+P+'" y1="'+(H-24)+'" x2="'+(W-P)+'" y2="'+(H-24)+'" stroke="#eef2f8" stroke-width="1.4"/>';
+  g+='<path d="'+ar+'" fill="rgba(23,182,164,.12)"/><path d="'+d+'" fill="none" stroke="#17a08f" stroke-width="2"/>';
+  c.forEach(function(v,i){ g+='<circle cx="'+sx(i).toFixed(1)+'" cy="'+sy(v).toFixed(1)+'" r="2.6" fill="#17a08f"><title>'+dys[i]+' \u00b7 +'+v+'</title></circle>'; });
+  [0,5,10,15,20].forEach(function(i){ g+='<text x="'+sx(i).toFixed(1)+'" y="'+(H-8)+'" text-anchor="middle" font-size="9.5" fill="#9aa4ba" font-family="IBM Plex Mono,monospace">'+fmtDay(i)+'</text>'; });
+  g+='<text x="'+(P-7)+'" y="'+(sy(mx)+3).toFixed(1)+'" text-anchor="end" font-size="9.5" fill="#9aa4ba" font-family="IBM Plex Mono,monospace">'+mx+'</text>';
+  return g+'</svg>'; }
+function buildStats(){ var Tr=TRW(); if(!Tr){ setTimeout(buildStats,0); return; }
+  var el;
+  el=document.getElementById('stTiles');
+  if(el){ var liveDem=Object.keys(DEMAND).length, liveSal=STARS.filter(function(s){return s.src==='live';}).length;
+    var win=fmtDay(0)+'\u2013'+fmtDay(Tr.days.length-1);
+    el.innerHTML='<div class="st-tile"><b>'+fmt(Tr.total)+'</b><span>'+T('stT1l')+'</span></div>'
+      +'<div class="st-tile"><b class="mono" style="font-size:21px;line-height:1.35">'+win+'</b><span>'+T('stT2l')+'</span></div>'
+      +'<div class="st-tile"><b>'+liveDem+'</b><span>'+T('stT3l')+'</span></div>'
+      +'<div class="st-tile"><b>'+liveSal+' / '+STARS.length+'</b><span>'+T('stT4l')+'</span></div>'; }
+  el=document.getElementById('stFlow'); if(el) el.innerHTML=stFlowSVG();
+  el=document.getElementById('stShare');
+  if(el){ var sd=SEC.map(function(x,i){ var n=0;
+      STARS.forEach(function(s){ if(s.sec===i && DEMAND[s.en]) n+=DEMAND[s.en].n; }); return {i:i,n:n}; })
+      .sort(function(a,b){ return b.n-a.n; });
+    var tot=sd.reduce(function(a,c){return a+c.n;},0)||1, mx=sd[0].n||1;
+    el.innerHTML=sd.map(function(o){ var c=SEC[o.i].c.join(',');
+      return '<div class="st-bar"><span class="nm"><span class="pc-dot" style="background:rgb('+c+')"></span>'+secName(o.i)+'</span>'
+        +'<span class="t"><span class="f" style="width:'+(o.n/mx*100).toFixed(1)+'%;background:rgb('+c+')"></span></span>'
+        +'<span class="n">'+fmt(o.n)+' \u00b7 '+(o.n/tot*100).toFixed(1)+'%</span></div>'; }).join(''); }
+  el=document.getElementById('stRange');
+  if(el){ var gmin=1e9,gmax=0;
+    STARS.forEach(function(s){ if(s.salary<gmin)gmin=s.salary; if(s.salary>gmax)gmax=s.salary; });
+    var px=function(v){ return ((v-gmin)/(gmax-gmin)*100).toFixed(1)+'%'; };
+    var rows=SEC.map(function(x,i){ var a=STARS.filter(function(s){return s.sec===i;}).map(function(s){return s.salary;}).sort(function(p,q){return p-q;});
+      return {i:i,min:a[0],max:a[a.length-1],med:a[Math.floor(a.length/2)]}; })
+      .sort(function(a,b){ return b.med-a.med; });
+    el.innerHTML=rows.map(function(o){ var c=SEC[o.i].c.join(',');
+      return '<div class="st-rng"><span class="nm"><span class="pc-dot" style="background:rgb('+c+')"></span>'+secName(o.i)+'</span>'
+        +'<span class="st-track"><span class="rail"></span>'
+        +'<span class="span" style="left:'+px(o.min)+';width:calc('+px(o.max)+' - '+px(o.min)+');background:rgb('+c+')"></span>'
+        +'<span class="med" style="left:'+px(o.med)+';background:rgb('+c+')" title="'+T('msMedW')+' '+fmt(o.med)+'"></span>'
+        +'<span class="lb" style="left:'+px(o.min)+'">'+fmt(o.min)+'</span>'
+        +'<span class="lb" style="left:'+px(o.max)+'">'+fmt(o.max)+'</span></span></div>'; }).join(''); }
+  el=document.getElementById('stSkills');
+  if(el){ var w={};
+    Object.keys(DEMAND).forEach(function(en){ (DEMAND[en].skills||[]).forEach(function(k){ w[k]=(w[k]||0)+DEMAND[en].n; }); });
+    var top=Object.keys(w).sort(function(a,b){return w[b]-w[a];}).slice(0,12);
+    el.innerHTML=top.map(function(k){ return '<span class="st-skill">'+k+'<b>\u03a3 '+fmt(w[k])+'</b></span>'; }).join(''); }
+  el=document.getElementById('stTopDem');
+  if(el){ var dl=Object.keys(DEMAND).map(function(en){ return {s:STARS.find(function(x){return x.en===en;}),n:DEMAND[en].n}; })
+      .filter(function(o){return o.s&&o.n>=10;}).sort(function(a,b){return b.n-a.n;}).slice(0,8);
+    el.innerHTML=dl.map(function(o,k){ var i=STARS.indexOf(o.s), tr=trendOf(o.s.en);
+      return '<button type="button" class="st-row" data-prof="'+i+'"><span class="rk">'+(k+1)+'</span>'
+        +'<span class="nm"><span class="pc-dot" style="background:rgb('+SEC[o.s.sec].c.join(',')+')"></span><span>'+profLabel(o.s)+'</span></span>'
+        +'<span class="vv">'+miniSpark(tr.d,64,18)+'<span>'+fmt(o.n)+'</span></span></button>'; }).join(''); }
+  el=document.getElementById('stTopPay');
+  if(el){ var pl=STARS.slice().sort(function(a,b){return b.salary-a.salary;}).slice(0,8);
+    el.innerHTML=pl.map(function(s,k){ var i=STARS.indexOf(s);
+      return '<button type="button" class="st-row" data-prof="'+i+'"><span class="rk">'+(k+1)+'</span>'
+        +'<span class="nm"><span class="pc-dot" style="background:rgb('+SEC[s.sec].c.join(',')+')"></span><span>'+profLabel(s)+'</span></span>'
+        +'<span class="vv"><span>'+fmt(s.salary)+' \u20bc</span><span class="tbdg '+(s.src==='live'?'tb2':'tbf')+'">'+T(s.src==='live'?'lSrcLive':'lSrcEst')+'</span></span></button>'; }).join(''); }
+  document.querySelectorAll('#page-stats .st-row').forEach(function(b){
+    b.onclick=function(){ openDetail(profByIdx(+b.getAttribute('data-prof'))); }; });
+  var bc=document.getElementById('expCSV'), bj=document.getElementById('expJSON');
+  if(bc) bc.onclick=exportCSV; if(bj) bj.onclick=exportJSON; }
+
+/* ---- page: my salary vs market ---- */
+function buildMySalary(){ var pf=document.getElementById('msProf'); if(!pf) return;
+  var cv=pf.value;
+  pf.innerHTML='<option value="-1">'+T('msNone')+'</option>'+starOptions('');
+  if(cv!==''&&pf.querySelector('option[value="'+cv+'"]')) pf.value=cv;
+  else if(typeof CTX!=='undefined'&&CTX>=0) pf.value=''+CTX;
+  var bt=document.getElementById('msBtn'), inp=document.getElementById('msSal');
+  var go=function(){ renderMySalary(); };
+  if(bt) bt.onclick=go;
+  if(inp) inp.onkeydown=function(e){ if(e.key==='Enter') go(); };
+  var out=document.getElementById('msOut');
+  if(out && out.classList.contains('on')) renderMySalary(); }
+function renderMySalary(){ var out=document.getElementById('msOut'); if(!out) return;
+  var v=+((document.getElementById('msSal')||{}).value||0);
+  if(!(v>0&&v<100000)){ out.classList.add('on'); out.innerHTML='<div class="ms-blk"><div class="ms-big" style="color:#b06d12">'+T('msErr')+'</div></div>'; return; }
+  var pi=+((document.getElementById('msProf')||{}).value); var s=(pi>=0)?STARS[pi]:null;
+  var meds=STARS.map(function(x){return x.salary;}).sort(function(a,b){return a-b;});
+  var below=meds.filter(function(x){return x<v;}).length, pct=Math.round(below/meds.length*100);
+  var gmin=meds[0], gmax=meds[meds.length-1];
+  var px=function(x){ return (Math.max(0,Math.min(1,(x-gmin)/(gmax-gmin)))*100).toFixed(1)+'%'; };
+  var dots=STARS.map(function(x){ return '<span class="dot" style="left:'+px(x.salary)+';background:rgb('+SEC[x.sec].c.join(',')+')" title="'+profLabel(x)+' \u00b7 '+fmt(x.salary)+'"></span>'; }).join('');
+  var h='<div class="ms-blk"><div class="ms-t">'+T('msMarketT')+'</div>'
+    +'<div class="ms-big">'+fmt(v)+' \u20bc \u2014 '+T('msAbove').replace('{n}',below).replace('{m}',meds.length).replace('{p}',pct)+'</div>'
+    +'<div class="ms-scale"><span class="rail"></span>'+dots
+    +'<span class="me" style="left:'+px(v)+'"></span><span class="melb" style="left:'+px(v)+'">'+fmt(v)+'</span>'
+    +'<span class="end" style="left:0">'+fmt(gmin)+'</span><span class="end" style="right:0">'+fmt(gmax)+'</span></div>'
+    +'<div class="ms-sub">'+T('msNote')+'</div></div>';
+  if(s){ var d=Math.round((v/s.salary-1)*100), up=d>=0;
+    var lo=s.salary*0.5, hi=s.salary*2.3, lpx=function(x){ return (Math.max(0,Math.min(1,(x-lo)/(hi-lo)))*100).toFixed(1)+'%'; };
+    var marks=[0.65,1,1.5,2.1], cols=['#bfe6de','#8fd6c8','#54c2ad','#17a08f'];
+    var segs='',labs='';
+    for(var k2=0;k2<marks.length;k2++){ var a2=s.salary*marks[k2], b2=(k2<marks.length-1)?s.salary*marks[k2+1]:hi;
+      segs+='<span class="seg" style="left:'+lpx(a2)+';width:calc('+lpx(b2)+' - '+lpx(a2)+');background:'+cols[k2]+';border-radius:'+(k2===0?'4px 0 0 4px':k2===marks.length-1?'0 4px 4px 0':'0')+'"></span>';
+      labs+='<span class="sl" style="left:calc(('+lpx(a2)+' + '+lpx(b2)+')/2)">'+LV[k2]+' '+fmt(r50(s.salary*marks[k2]))+'</span>'; }
+    h+='<div class="ms-blk"><div class="ms-t">'+T('msProfT')+' \u00b7 '+profLabel(s)+' <span class="tbdg '+(s.src==='live'?'tb2':'tbf')+'" style="vertical-align:middle">'+T(s.src==='live'?'lSrcLive':'lSrcEst')+'</span></div>'
+      +'<div class="ms-diff '+(up?'up':'dn')+'">'+(up?'+':'')+d+'% \u00b7 '+T('msOfMed').replace('{p}',Math.round(v/s.salary*100))+' ('+fmt(s.salary)+' \u20bc)</div>'
+      +'<div class="ms-t" style="margin-top:14px">'+T('msLevelT')+'</div>'
+      +'<div class="ms-lvl">'+segs+'<span class="me" style="left:'+lpx(v)+';top:14px;height:24px"></span>'+labs+'</div></div>';
+    var sa=STARS.filter(function(x){return x.sec===s.sec;}).map(function(x){return x.salary;}).sort(function(a,b){return a-b;});
+    var smed=sa[Math.floor(sa.length/2)], sd=Math.round((v/smed-1)*100);
+    h+='<div class="ms-blk"><div class="ms-t">'+T('msSecT')+' \u00b7 '+secName(s.sec)+'</div>'
+      +'<div class="ms-diff '+(sd>=0?'up':'dn')+'">'+(sd>=0?'+':'')+sd+'% \u00b7 '+T('msMedW')+' '+fmt(smed)+' \u20bc</div></div>'; }
+  out.classList.add('on'); out.innerHTML=h; }
+
+/* ---- page: career route ---- */
+function buildRoutes(){ var a=document.getElementById('rtFrom'), b=document.getElementById('rtTo'); if(!a||!b) return;
+  var av=a.value, bv=b.value, opts=starOptions('');
+  a.innerHTML=opts; b.innerHTML=opts;
+  if(av!==''&&a.querySelector('option[value="'+av+'"]')) a.value=av;
+  else if(typeof CTX!=='undefined'&&CTX>=0) a.value=''+CTX;
+  if(bv!==''&&b.querySelector('option[value="'+bv+'"]')) b.value=bv;
+  else { var s0=STARS[+a.value]||STARS[0], best=growthMoves(s0)[0];
+    if(best) b.value=''+STARS.indexOf(best.b); }
+  var go=function(){ renderRouteChain(); renderGrow(); };
+  document.getElementById('rtBtn').onclick=go;
+  a.onchange=function(){ if(typeof setCtx==='function') setCtx(+a.value); renderGrow(); };
+  renderGrow();
+  var outp=document.getElementById('rtOut'); if(outp&&outp.children.length) renderRouteChain(); }
+function rtStepCard(s){ var i=STARS.indexOf(s);
+  return '<button type="button" class="rt-card" data-prof="'+i+'"><span class="pc-dot big" style="background:rgb('+SEC[s.sec].c.join(',')+')"></span>'
+    +'<b>'+profLabel(s)+'</b><span class="sal">'+fmt(s.salary)+' \u20bc \u00b7 '+T(s.src==='live'?'lSrcLive':'lSrcEst')+'</span></button>'; }
+function renderRouteChain(){ var out=document.getElementById('rtOut'); if(!out) return;
+  var ai=+((document.getElementById('rtFrom')||{}).value||0), bi=+((document.getElementById('rtTo')||{}).value||0);
+  if(ai===bi){ out.innerHTML='<div class="empty">'+T('rtSame')+'</div>'; return; }
+  var p=findPath(ai,bi);
+  if(!p){ out.innerHTML='<div class="empty">'+T('rtNone')+'</div>'; return; }
+  var h='<div class="result-count" style="margin:0 0 10px">'+T('rtHops').replace('{n}',p.length-1)+'</div><div class="rt-chain">';
+  p.forEach(function(idx,k){ var s=STARS[idx];
+    if(k>0){ var pr=STARS[p[k-1]], d=s.salary-pr.salary,
+      miss=missingSkills(pr,s).slice(0,3).map(skTR).join(', ');
+      h+='<div class="rt-link"><span class="dl '+(d>=0?'up':'dn')+'">'+(d>=0?'+':'\u2212')+fmt(Math.abs(d))+' \u20bc</span>'
+        +(miss?'<span class="lr">'+T('rtLearn')+' <b>'+miss+'</b></span>':'')+'</div>'; }
+    h+=rtStepCard(s); });
+  h+='</div>';
+  out.innerHTML=h;
+  out.querySelectorAll('.rt-card').forEach(function(bn){ bn.onclick=function(){ openDetail(profByIdx(+bn.getAttribute('data-prof'))); }; }); }
+function renderGrow(){ var wrap=document.getElementById('rtGrowWrap'), el=document.getElementById('rtGrow'); if(!wrap||!el) return;
+  var s=STARS[+((document.getElementById('rtFrom')||{}).value||0)]; if(!s){ wrap.style.display='none'; return; }
+  var g=growthMoves(s); wrap.style.display='';
+  if(!g.length){ el.innerHTML='<div class="empty" style="padding:16px 0">'+T('rtNoGrow')+'</div>'; return; }
+  el.innerHTML=g.map(function(o){ var i=STARS.indexOf(o.b);
+    return '<button type="button" class="grow-r" data-prof="'+i+'"><span class="pc-dot" style="background:rgb('+SEC[o.b.sec].c.join(',')+')"></span>'
+      +'<b>'+profLabel(o.b)+'</b><span class="gd">+'+fmt(o.d)+' \u20bc'+(o.hop2?' \u00b7 '+T('rt2hop'):'')+'</span>'
+      +'<span class="gm">'+(o.miss.length? T('rtLearn')+' '+o.miss.slice(0,3).map(skTR).join(', ') : '')+'</span></button>'; }).join('');
+  el.querySelectorAll('.grow-r').forEach(function(bn){ bn.onclick=function(){ openDetail(profByIdx(+bn.getAttribute('data-prof'))); }; }); }
+
+/* ---- detail page v3: ranks, 21-day dynamics, growth block ---- */
+var FORCE_CMPB=-1;
+function detailV3(s){ var body=document.getElementById('detailBody'); if(!body) return;
+  var nm=body.querySelector('.d2-name');
+  if(nm && !body.querySelector('.d2-rank')){ var r=ranksOf(s), rt='#'+r.p+'/'+r.pm+' '+T('dRankPay');
+    if(r.d) rt+=' \u00b7 #'+r.d+'/'+r.dm+' '+T('dRankDem');
+    nm.insertAdjacentHTML('afterend','<div class="d2-rank">'+rt+'</div>'); }
+  var tr=trendOf(s.en);
+  if(tr && tr.n>=10){ var tile=body.querySelectorAll('.d2-stat')[1];
+    if(tile && !tile.querySelector('.d2-trend'))
+      tile.insertAdjacentHTML('beforeend','<div class="d2-trend">'+miniSpark(tr.d,110,26)+trendBadge(tr)+'</div>'); }
+  var nba=body.querySelector('.nba');
+  if(nba && !body.querySelector('.grow')){ var g=growthMoves(s);
+    if(g.length){ var d=document.createElement('div'); d.className='grow';
+      d.innerHTML='<div class="nba-t">'+T('rtGrowT')+'</div>'+g.map(function(o){ var i=STARS.indexOf(o.b);
+        return '<button type="button" class="grow-r" data-prof="'+i+'"><span class="pc-dot" style="background:rgb('+SEC[o.b.sec].c.join(',')+')"></span>'
+          +'<b>'+profLabel(o.b)+'</b><span class="gd">+'+fmt(o.d)+' \u20bc</span>'
+          +'<span class="gm">'+(o.miss.length? T('rtLearn')+' '+o.miss.slice(0,3).map(skTR).join(', ') : '')+'</span></button>'; }).join('');
+      nba.parentNode.insertBefore(d,nba.nextSibling);
+      d.querySelectorAll('.grow-r').forEach(function(bn){ bn.onclick=function(){ openDetail(profByIdx(+bn.getAttribute('data-prof'))); }; }); } } }
+(function(){
+  var _rd=renderDetail; renderDetail=function(s){ _rd(s); detailV3(s); };
+  var _rc=renderCompare; renderCompare=function(){ var b=document.getElementById('cmpB');
+    if(b && FORCE_CMPB>=0){ b.value=''+FORCE_CMPB; FORCE_CMPB=-1; } _rc(); };
+  var _rp=refreshPages; refreshPages=function(){ _rp();
+    var on=document.querySelector('#landing .page.page-on'); if(!on) return;
+    if(on.id==='page-stats') buildStats();
+    else if(on.id==='page-mysalary') buildMySalary();
+    else if(on.id==='page-routes') buildRoutes();
+    else if(on.id==='page-outlook') buildOutlook(); };
+  /* deep-linked first paint for the new pages */
+  var on=document.querySelector('#landing .page.page-on');
+  if(on){ if(on.id==='page-stats') buildStats();
+    else if(on.id==='page-mysalary') buildMySalary();
+    else if(on.id==='page-routes') buildRoutes();
+    else if(on.id==='page-outlook') buildOutlook(); }
+})();
+
+/* ================================================================
+   v4 — LLM assistant: Gemini (default) / Claude (optional key) /
+   offline rules engine as a provider and as automatic fallback.
+   ================================================================ */
+var LANDS6={
+ az:{aiProvL:'Model',aiProvOff:'Oflayn',aiProvOffS:'oflayn qaydalar mühərriki',
+  aiKeyNeed:'API açarı lazımdır',aiKeyPh:'Anthropic API key (sk-ant-\u2026)',aiKeyPhG:'Google Gemini API key (AIza\u2026)',aiKeySave:'Yadda saxla',aiKeyAskG:'Gemini üçün pulsuz API açarını aistudio.google.com/apikey saytından al və bura yapışdır — açar yalnız bu brauzerdə saxlanılır.',
+  aiKeyAsk:'Claude üçün öz Anthropic API açarını daxil et \u2014 o yalnız bu brauzerdə saxlanılır (localStorage) və birbaşa api.anthropic.com-a gedir.',
+  aiProvNote:'Suallar seçilmiş provayderin API-sinə birbaşa, atlasın kompakt məlumat xülasəsi ilə birlikdə göndərilir. Açarlar yalnız sənin brauzerində saxlanılır. Gemini defolt olaraq aktivdir; oflayn rejim şəbəkəsiz də işləyir.',
+  aiErrNet:'Provayder əlçatmazdır (şəbəkə / kvota / açar) \u2014 eyni məlumatlarla oflayn mühərrik cavab verdi.',
+  aiWelcomeLLM:'Salam! Mən {m} vasitəsilə cavab verirəm və yalnız atlasın canlı məlumatlarına əsaslanıram: 3248 elan, maaşlar, tələbat, trendlər. Peşə, müqayisə, \u00abmaaş üzrə top\u00bb, trend soruş \u2014 və ya öz vəziyyətini yaz.',
+  aiHint:'Canlı assistent: defolt \u2014 Gemini, açarla \u2014 Claude, oflayn rejim həmişə əlçatandır.',
+  t_ai_d:'Atlasın canlı məlumatları ilə cavab verir (Gemini / Claude / oflayn)',
+  lcTrend:'Trend (21 gün)',lcRank:'Reytinqlər',lcCommon:'Ortaq bacarıqlar',lcOnly:'Yalnız:',
+  cmpNote:'Dillər, uzaqdan iş, təcrübə tələbləri və şirkətlər bu sahələrin toplanması bitəndə görünəcək \u2014 burada uydurma dəyər yoxdur.',
+  mWeights:'Prioritetlər',mwSkill:'Bacarıqlar',mwPay:'Maaş',mwDem:'Tələbat',
+  mFormula:'xal = bacarıqlar\u00d7w + sektor + maaş\u00d7w + tələbat\u00d7w (normallaşdırılıb) \u00b7 \u00abbaşlayıram\u00bb \u2014 təxmin'},
+ ru:{aiProvL:'Модель',aiProvOff:'Оффлайн',aiProvOffS:'офлайн-движок правил',
+  aiKeyNeed:'нужен API-ключ',aiKeyPh:'Anthropic API key (sk-ant-\u2026)',aiKeyPhG:'Google Gemini API key (AIza\u2026)',aiKeySave:'Сохранить',aiKeyAskG:'Для Gemini возьми бесплатный API-ключ на aistudio.google.com/apikey и вставь сюда — он сохранится только в этом браузере.',
+  aiKeyAsk:'Для Claude вставь свой API-ключ Anthropic \u2014 он сохранится только в этом браузере (localStorage) и уходит напрямую в api.anthropic.com.',
+  aiProvNote:'Вопросы уходят напрямую в API выбранного провайдера вместе с компактной выжимкой данных атласа. Ключи хранятся только в твоём браузере. Gemini включён по умолчанию; офлайн-режим работает даже без сети.',
+  aiErrNet:'Провайдер недоступен (сеть / квота / ключ) \u2014 ответил офлайн-движок по тем же данным.',
+  aiWelcomeLLM:'Привет! Я отвечаю через {m} и опираюсь только на живые данные атласа: 3248 объявлений, зарплаты, спрос, тренды. Спроси про профессию, сравнение, \u00abтоп по зарплате\u00bb, тренд \u2014 или опиши свою ситуацию.',
+  aiHint:'Живой ассистент: по умолчанию \u2014 Gemini, по ключу \u2014 Claude, офлайн-режим доступен всегда.',
+  t_ai_d:'Отвечает по живым данным атласа (Gemini / Claude / офлайн)',
+  lcTrend:'Тренд (21 день)',lcRank:'Ранги',lcCommon:'Общие навыки',lcOnly:'Только у:',
+  cmpNote:'Языки, удалёнка, требования к опыту и компании появятся, когда закончится сбор этих полей \u2014 выдуманных значений здесь нет.',
+  mWeights:'Приоритеты',mwSkill:'Навыки',mwPay:'Зарплата',mwDem:'Спрос',
+  mFormula:'счёт = навыки\u00d7w + сектор + зарплата\u00d7w + спрос\u00d7w (нормировано) \u00b7 \u00abя начинаю\u00bb \u2014 оценка'},
+ en:{aiProvL:'Model',aiProvOff:'Offline',aiProvOffS:'offline rules engine',
+  aiKeyNeed:'API key needed',aiKeyPh:'Anthropic API key (sk-ant-\u2026)',aiKeyPhG:'Google Gemini API key (AIza\u2026)',aiKeySave:'Save',aiKeyAskG:'For Gemini, grab a free API key at aistudio.google.com/apikey and paste it here — it stays only in this browser.',
+  aiKeyAsk:'For Claude, paste your Anthropic API key \u2014 it is stored only in this browser (localStorage) and goes straight to api.anthropic.com.',
+  aiProvNote:'Questions go directly to the chosen provider\u2019s API together with a compact digest of the atlas data. Keys live only in your browser. Gemini is on by default; the offline mode works even without a network.',
+  aiErrNet:'Provider unavailable (network / quota / key) \u2014 the offline engine answered from the same data.',
+  aiWelcomeLLM:'Hi! I answer via {m}, grounded only in the atlas\u2019s live data: 3248 ads, salaries, demand, trends. Ask about a profession, a comparison, \u2018top by pay\u2019, a trend \u2014 or describe your situation.',
+  aiHint:'A live assistant: Gemini by default, Claude with your key, offline mode always available.',
+  t_ai_d:'Answers from the atlas\u2019s live data (Gemini / Claude / offline)',
+  lcTrend:'Trend (21d)',lcRank:'Ranks',lcCommon:'Shared skills',lcOnly:'Only:',
+  cmpNote:'Languages, remote share, experience requirements and companies will appear once those fields finish collecting \u2014 nothing here is invented.',
+  mWeights:'Priorities',mwSkill:'Skills',mwPay:'Salary',mwDem:'Demand',
+  mFormula:'score = skills\u00d7w + sector + salary\u00d7w + demand\u00d7w (normalized) \u00b7 \u201cstarting out\u201d is an estimate'}
+};
+applyLang();
+
+/* === AI PROVIDER CONFIG ===
+   The default Gemini key below is baked in for the free tier. Anyone can read it
+   in the page source, so restrict it to your site's domain in Google Cloud Console
+   (API key -> Application restrictions -> HTTP referrers), or rotate it here.
+   Overrides: localStorage az_ai_gkey / az_ai_ckey / az_ai_prov. */
+var AIP={prov:'gemini',gModel:'gemini-2.5-flash',cModel:'claude-sonnet-4-6',
+  gKey:'',cKey:'',busy:false};
+try{ AIP.prov=localStorage.getItem('az_ai_prov')||AIP.prov;
+  AIP.gKey=localStorage.getItem('az_ai_gkey')||AIP.gKey;
+  AIP.cKey=localStorage.getItem('az_ai_ckey')||''; }catch(e){}
+var AIH=[], AI_DIGEST='';
+function aiDigest(){ if(AI_DIGEST) return AI_DIGEST;
+  var L=['DATASET \u2014 Azerbaijan job-market atlas. 3248 unique ads (jobsearch.az + hellojob.az), window 23.06\u201313.07.2026, dedup by title+company.',
+   'Columns: profession_en | az | ru | sector | median_salary_AZN(source: live=computed from >=8 ad salaries, est=sector-average estimate) | live_vacancies_21d | trend(last7d vs first7d inflow share)'];
+  STARS.forEach(function(s){ var D=DEMAND[s.en]||{}, tr=trendOf(s.en);
+    var tv=!tr?'-':tr.v===2?'rising':tr.v===0?'cooling':tr.v===1?'stable':'low-data';
+    L.push(s.en+' | '+s.name+' | '+(PROF_RU[s.en]||'')+' | '+SEC[s.sec].e+' | '+s.salary+'('+(s.src||'est')+') | '+(D.n||0)+' | '+tv
+      +((D.skills&&D.skills.length)?' | top_ad_skills: '+D.skills.join(', '):'')); });
+  AI_DIGEST=L.join('\n'); return AI_DIGEST; }
+function aiSysPrompt(){ var lang=LG==='az'?'Azerbaijani':LG==='ru'?'Russian':'English';
+  return 'You are the built-in career assistant of an Azerbaijani labour-market atlas website. Ground every number strictly in the dataset below. If something is not in the dataset \u2014 experience requirements, remote-work share, language requirements, specific companies \u2014 say that this data is still being collected; never invent it. When citing an est salary, mention it is a sector-based estimate. Be concise (under 120 words), warm, practical. Answer in '+lang+' unless the user clearly asks otherwise. When your answer focuses on one or two specific professions, append tags like [[prof:Software Developer]] (using the exact profession_en value) at the very end of the message \u2014 the site renders them as buttons. No tables; light **bold** is fine.\n\n'+aiDigest(); }
+function callGemini(hist){ function go(model){
+    return fetch('https://generativelanguage.googleapis.com/v1beta/models/'+model+':generateContent?key='+encodeURIComponent(AIP.gKey),{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({systemInstruction:{parts:[{text:aiSysPrompt()}]},
+        contents:hist.map(function(m){return {role:m.role==='user'?'user':'model',parts:[{text:m.text}]};}),
+        generationConfig:{temperature:0.4,maxOutputTokens:512}})})
+    .then(function(r){ if(r.ok) return r.json();
+      return r.text().then(function(x){ var e=new Error('HTTP '+r.status); e.st=r.status; e.body=(x||'').slice(0,180); throw e; }); })
+    .then(function(j){ var c=j.candidates&&j.candidates[0], p=c&&c.content&&c.content.parts;
+      var txt=(p||[]).map(function(x){return x.text||'';}).join('').trim();
+      if(!txt) throw new Error('empty response'); return txt; }); }
+  return go(AIP.gModel).catch(function(e){
+    if(e.st===404 && AIP.gModel!=='gemini-2.0-flash'){ AIP.gModel='gemini-2.0-flash'; return go(AIP.gModel); }
+    throw e; }); }
+function callClaude(hist){
+  return fetch('https://api.anthropic.com/v1/messages',{method:'POST',
+    headers:{'Content-Type':'application/json','x-api-key':AIP.cKey,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
+    body:JSON.stringify({model:AIP.cModel,max_tokens:512,system:aiSysPrompt(),
+      messages:hist.map(function(m){return {role:m.role==='user'?'user':'assistant',content:m.text};})})})
+  .then(function(r){ if(r.ok) return r.json();
+    return r.text().then(function(x){ var e=new Error('HTTP '+r.status); e.st=r.status; e.body=(x||'').slice(0,180); throw e; }); })
+  .then(function(j){ var txt=(j.content||[]).map(function(b){return b.type==='text'?(b.text||''):'';}).join('').trim();
+    if(!txt) throw new Error('empty response'); return txt; }); }
+function mdLite(t){ t=esc(t); t=t.replace(/\*\*([^*\n]+)\*\*/g,'<b>$1</b>'); return t.replace(/\n/g,'<br>'); }
+function aiParseTags(txt){ var ids=[];
+  txt=txt.replace(/\[\[\s*prof\s*:\s*([^\]]+?)\s*\]\]/gi,function(_,nm){ nm=nm.trim().toLowerCase();
+    var i=-1, k;
+    for(k=0;k<STARS.length;k++){ var s=STARS[k];
+      if(s.en.toLowerCase()===nm || s.name.toLowerCase()===nm || (PROF_RU[s.en]||'').toLowerCase()===nm){ i=k; break; } }
+    if(i>=0 && ids.indexOf(i)<0) ids.push(i);
+    return ''; }).trim();
+  var h='<div class="ai-pre">'+mdLite(txt)+'</div>';
+  if(ids.length){ h+='<div class="ai-acts">'+ids.slice(0,2).map(function(i){
+      return '<button class="ai-act" data-act="open" data-i2="'+i+'">'+T('aiOpen')+': '+esc(profLabel(STARS[i]))+'</button>'
+        +'<button class="ai-act" data-act="map" data-i2="'+i+'">'+T('aiMap')+'</button>'; }).join('')+'</div>'; }
+  return {html:h, ids:ids}; }
+function aiTypingOn(){ var log=document.getElementById('aiLog'); if(!log) return;
+  var d=document.createElement('div'); d.className='ai-msg bot ai-typing'; d.id='aiTyping';
+  d.innerHTML='<i></i><i></i><i></i>'; log.appendChild(d); log.scrollTop=log.scrollHeight; }
+function aiTypingOff(){ var d=document.getElementById('aiTyping'); if(d) d.remove(); }
+function aiStatusTxt(){ return AIP.prov==='gemini' ? 'Gemini \u00b7 '+(AIP.gKey?AIP.gModel:T('aiKeyNeed'))
+  : AIP.prov==='claude' ? 'Claude \u00b7 '+(AIP.cKey?AIP.cModel:T('aiKeyNeed'))
+  : T('aiProvOffS'); }
+function renderProv(){ document.querySelectorAll('#aiProv [data-prov]').forEach(function(b){
+    b.classList.toggle('on', b.getAttribute('data-prov')===AIP.prov); });
+  var st=document.getElementById('aiStatus'); if(st) st.textContent=aiStatusTxt();
+  var kr=document.getElementById('aiKeyRow'); if(kr) kr.hidden=!((AIP.prov==='claude'&&!AIP.cKey)||(AIP.prov==='gemini'&&!AIP.gKey));
+  var ki=document.getElementById('aiKeyInp'); if(ki) ki.placeholder=(AIP.prov==='gemini')?T('aiKeyPhG'):T('aiKeyPh'); }
+
+/* match priority sliders + polite regions */
+['wSkill','wPay','wDem'].forEach(function(id){ var e=document.getElementById(id); if(!e) return;
+  e.oninput=function(){ var v=document.getElementById(id+'V'); if(v) v.textContent=e.value;
+    var mr=document.getElementById('matchResults');
+    if(mr && mr.querySelector('.pc')) renderMatchResults(); }; });
+['msOut','rtOut','matchResults'].forEach(function(id){ var e=document.getElementById(id);
+  if(e) e.setAttribute('aria-live','polite'); });
+(function(){ var on=document.querySelector('#landing .page.page-on');
+  if(on && on.id==='page-ai') buildAI(); })();
+
 /* ---------- tab bar + unified nav state ---------- */
 document.querySelectorAll('.tb').forEach(function(b){
   b.onclick=function(){ showPage(b.getAttribute('data-page')); }; });
@@ -2957,7 +3794,7 @@ function syncUINav(){
   if(name==='map'){ var dd=document.getElementById('lDd'); if(dd) dd.classList.remove('open'); }
   document.querySelectorAll('.tb').forEach(function(t){
     t.classList.toggle('on', t.getAttribute('data-page')===name); });
-  var MM=['search','match','compare','tools','favorites','edu','skillgap','outlook','parents','ai','videos','future'],
+  var MM=['search','match','compare','tools','favorites','edu','skillgap','outlook','parents','ai','videos','future','stats','mysalary','routes'],
       b=document.getElementById('lDdBtn');
   if(b) b.classList.toggle('on', MM.indexOf(name)>=0); }
 (function(){ var _rr=renderRoute;
